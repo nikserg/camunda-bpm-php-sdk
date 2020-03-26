@@ -1,18 +1,12 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: hentschel
- * Date: 25.07.13
- * Time: 10:43
- * To change this template use File | Settings | File Templates.
- */
+
 
 namespace org\camunda\php\tests;
 use org\camunda\php\sdk\entity\request\ExecutionRequest;
 use org\camunda\php\sdk\entity\request\VariableRequest;
 use org\camunda\php\sdk\service\ExecutionService;
 
-include("../../vendor/autoload.php");
+include("../vendor/autoload.php");
 
 class ExecutionServiceTest extends \PHPUnit\Framework\TestCase {
   protected static $restApi;

@@ -1,11 +1,5 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: hentschel
- * Date: 13.06.13
- * Time: 10:03
- * To change this template use File | Settings | File Templates.
- */
+
 
 namespace org\camunda\php\sdk\service;
 
