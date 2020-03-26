@@ -3,8 +3,6 @@
 
 namespace org\camunda\php\sdk\entity\request;
 
-use org\camunda\php\sdk\entity\request\Request;
-
 class CredentialsRequest extends Request
 {
     protected $password;

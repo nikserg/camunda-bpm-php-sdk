@@ -3,7 +3,13 @@
 
 namespace org\camunda\php\sdk\entity\request;
 
-
+/**
+ * Class VariableRequest
+ *
+ * @package org\camunda\php\sdk\entity\request
+ *
+ * TODO: valueInfo
+ */
 class VariableRequest extends Request
 {
     protected $value;
@@ -82,6 +88,4 @@ class VariableRequest extends Request
     {
         return $this->value;
     }
-
-
 }
