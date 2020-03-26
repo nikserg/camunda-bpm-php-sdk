@@ -32,6 +32,11 @@
   },
 
   "autoload": {
-    "classmap": [ "oop/main/", "procedual/main"]
+    "psr-4": {
+      "org\\camunda\\php\\sdk": "src/"
+    },
+    "classmap": [
+      "oop/main/"
+    ]
   }
 }
