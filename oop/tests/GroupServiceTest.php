@@ -17,23 +17,22 @@ use org\camunda\php\sdk\entity\request\UserRequest;
 use org\camunda\php\sdk\service\GroupService;
 use org\camunda\php\sdk\service\UserService;
 
-class GroupServiceTest extends \PHPUnit_Framework_TestCase {
+class GroupServiceTest extends \PHPUnit\Framework\TestCase {
   protected static $restApi;
   protected static $gs;
   protected static $us;
 
-  public static function setUpBeforeClass() {
+  public static function setUpBeforeClass(): void {
     self::$restApi = 'http://localhost:8080/engine-rest';
     print("\n\nCLASS: " . __CLASS__ . "\n");
     self::$gs = new GroupService(self::$restApi);
     self::$us = new UserService(self::$restApi);
   }
 
-  public static function tearDownAfterClass() {
+  public static function tearDownAfterClass(): void {
     self::$restApi = null;
   }
 
-  //--------------------------------  TEST CREATE GROUP  ----------------------------------------
   public function testCreateGroup() {
    
     $groupRequest = new GroupRequest();
@@ -58,7 +57,6 @@ class GroupServiceTest extends \PHPUnit_Framework_TestCase {
     self::$gs->deleteGroup('PHP_UNIT_TEST_2');
   }
 
-  //--------------------------------  TEST ADD GROUP MEMBER  ----------------------------------------
   public function testAddGroupMember() {
          $user = new UserRequest();
     $userProfile = new ProfileRequest();
@@ -98,7 +96,6 @@ class GroupServiceTest extends \PHPUnit_Framework_TestCase {
     
   }
 
-  //--------------------------------  TEST DELETE GROUP  ----------------------------------------
   public function testDeleteGroup() {
    
     $groupRequest = new GroupRequest();
@@ -121,7 +118,6 @@ class GroupServiceTest extends \PHPUnit_Framework_TestCase {
     
   }
 
-  //--------------------------------  TEST REMOVE GROUP MEMBER  ----------------------------------------
   public function testRemoveGroupMember() {
          $user = new UserRequest();
     $userProfile = new ProfileRequest();
@@ -164,7 +160,6 @@ class GroupServiceTest extends \PHPUnit_Framework_TestCase {
     
   }
 
-  //--------------------------------  TEST GET GROUP  ----------------------------------------
   public function testGetGroup() {
    
     $groupRequest = new GroupRequest();
@@ -187,7 +182,6 @@ class GroupServiceTest extends \PHPUnit_Framework_TestCase {
     
   }
 
-  //--------------------------------  TEST GET GROUPS  ----------------------------------------
   public function testGetGroups() {
    
     $groupRequest = new GroupRequest();
@@ -215,7 +209,6 @@ class GroupServiceTest extends \PHPUnit_Framework_TestCase {
     
   }
 
-  //--------------------------------  TEST GET GROUP COUNT  ----------------------------------------
   public function testGetGroupCount() {
    
     $groupRequest = new GroupRequest();
@@ -245,7 +238,6 @@ class GroupServiceTest extends \PHPUnit_Framework_TestCase {
     
   }
 
-  //--------------------------------  TEST UPDATE GROUP  ----------------------------------------
   public function testUpdateGroup(){
    
     $groupRequest = new GroupRequest();

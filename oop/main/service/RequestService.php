@@ -8,302 +8,189 @@
  */
 
 namespace org\camunda\php\sdk\service;
+
 use org\camunda\php\sdk\entity\request\CredentialsRequest;
 use org\camunda\php\sdk\entity\request\ProfileRequest;
 use org\camunda\php\sdk\entity\request\Request;
 use org\camunda\php\sdk\entity\request\VariableRequest;
 use org\camunda\php\sdk\entity\response\VariableInstance;
 
-class RequestService {
-  private $requestObject;
-  private $requestMethod = "GET";
-  private $requestUrl;
-  private $http_status_code;
-  private $restApiUrl;
+class RequestService
+{
+    private $requestObject;
+    private $requestMethod = "GET";
+    private $requestUrl;
+    private $httpStatusCode;
+    private $restApiUrl;
 
-  public function __construct($restApiUrl) {
-    $this->restApiUrl = $restApiUrl;
-  }
+    public function __construct($restApiUrl)
+    {
+        $this->restApiUrl = $restApiUrl;
+    }
 
-  /**
-   * @param Request $requestObject
-   */
-  protected function setRequestObject(Request $requestObject = null) {
-    $this->requestObject = $requestObject;
-  }
+    /**
+     * @param Request $requestObject
+     */
+    protected function setRequestObject(Request $requestObject = null)
+    {
+        $this->requestObject = $requestObject;
+    }
 
-  /**
-   * @return mixed
-   */
-  protected function getRequestObject() {
-    return $this->requestObject;
-  }
+    /**
+     * @return mixed
+     */
+    protected function getRequestObject()
+    {
+        return $this->requestObject;
+    }
 
-  /**
-   * @param mixed $requestMethod
-   */
-  protected function setRequestMethod($requestMethod) {
-    $this->requestMethod = $requestMethod;
-  }
+    /**
+     * @param mixed $requestMethod
+     */
+    protected function setRequestMethod($requestMethod)
+    {
+        $this->requestMethod = $requestMethod;
+    }
 
-  /**
-   * @return mixed
-   */
-  protected function getRequestMethod() {
-    return $this->requestMethod;
-  }
+    /**
+     * @return mixed
+     */
+    protected function getRequestMethod()
+    {
+        return $this->requestMethod;
+    }
 
-  /**
-   * @param $requestUrl
-   */
-  protected function setRequestUrl($requestUrl) {
-    $this->requestUrl = $requestUrl;
-  }
+    /**
+     * @param $requestUrl
+     */
+    protected function setRequestUrl($requestUrl)
+    {
+        $this->requestUrl = $requestUrl;
+    }
 
-  /**
-   * @return mixed
-   */
-  protected function getRequestUrl() {
-    return $this->requestUrl;
-  }
+    /**
+     * @return mixed
+     */
+    protected function getRequestUrl()
+    {
+        return $this->requestUrl;
+    }
 
-  /**
-   * @param mixed $http_status_code
-   */
-  public function setHttpStatusCode($http_status_code) {
-    $this->http_status_code = $http_status_code;
-  }
+    /**
+     * @param mixed $httpStatusCode
+     */
+    public function setHttpStatusCode($httpStatusCode)
+    {
+        $this->httpStatusCode = $httpStatusCode;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getHttpStatusCode() {
-    return $this->http_status_code;
-  }
+    /**
+     * @return mixed
+     */
+    public function getHttpStatusCode()
+    {
+        return $this->httpStatusCode;
+    }
 
+    private function reset()
+    {
+        $this->setRequestObject(null);
+        $this->setRequestUrl('');
+        $this->setRequestMethod('GET');
+    }
 
-
-  /**
-   * executes the rest request
-   *
-   * @throws \Exception
-   * @return mixed server response
-   */
-  protected function execute() {
-    $this->restApiUrl = preg_replace('/\/$/', '', $this->restApiUrl);
-
-    $tmp = array();
-
-    if($this->requestMethod != 'GET') {
-      if(isset($this->requestObject)) {
-        foreach($this->requestObject->iterate() AS $index => $value) {
-          if($value != null && !empty($value)) {
-            // We need to change the Objects of Profile and Credentials into an Array
-            if($value instanceof ProfileRequest ||$value instanceof CredentialsRequest) {
-              $objArray = array();
-               foreach($value->iterate() AS $i => $d) {
-                 if(!empty($d)) {
-                   $objArray[$i] = $d;
-                 }
-               }
-               $value = $objArray;
-            }
-
-            // Needed for Modifications and Deletions in VariableRequest
-            // Changes Array Data into a new Array if these are instances of VariableRequest
-            if(is_array($value)) {
-              foreach($value AS $valueIndex => $valueData) {
-                if($valueData instanceof VariableRequest) {
-                  $objArray = array();
-                  foreach($valueData->iterate() AS $i => $d) {
-                    if(!empty($d)) {
-                      $objArray[$i] = $d;
+    /**
+     * executes the rest request
+     *
+     * @throws \Exception
+     * @return mixed server response
+     */
+    protected function execute()
+    {
+        if (!function_exists('curl_version')) {
+            throw new \Error("Package requires curl extension");
+        }
+        $data = [];
+        $url = preg_replace('/\/$/', '', $this->restApiUrl) . $this->requestUrl;
+        $method = strtoupper($this->requestMethod);
+        if ($method == 'GET') {
+            if (isset($this->requestObject)) {
+                foreach ($this->requestObject->iterate() AS $index => $value) {
+                    if (!empty($value)) {
+                        $data[] = $index . '=' . $value;
                     }
-                  }
-                  $valueData = $objArray;
                 }
-                $value[$valueIndex] = $valueData;
-              }
             }
-            $tmp[$index] = $value;
-          }
-        }
-      }
-
-      if(empty($tmp)) {
-        $tmp = new \stdClass();
-      }
-      $data = json_encode($tmp);
-
-    } else {
-      $data = '?';
-      if(isset($this->requestObject)) {
-        foreach($this->requestObject->iterate() AS $index => $value) {
-          if($value != null && !empty($value)) {
-            $tmp[] = $index.'='.$value;
-          }
-        }
-      }
-
-      $data .= implode('&', $tmp);
-    }
-
-    switch(strtoupper($this->requestMethod)) {
-      case 'OPTIONS':
-        if($this->checkCurl()) {
-          $ch = curl_init($this->restApiUrl.$this->requestUrl);
-          curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'OPTIONS');
-          curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-          $request = curl_exec($ch);
-          $this->http_status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-          curl_close($ch);
+            $ch = curl_init($url . '?' . implode('&', $data));
+            curl_setopt($ch, CURLOPT_COOKIEJAR, './');
+            curl_setopt($ch, CURLOPT_COOKIEFILE, './');
         } else {
-          $streamContext = stream_context_create(array(
-              'http' => array(
-                'method' => 'OPTIONS'
-              )
-            )
-          );
-          $request = file_get_contents($this->restApiUrl.$this->requestUrl, null, $streamContext);
-          $this->http_status_code = substr($http_response_header[0], 9, 3);
+            if (isset($this->requestObject)) {
+                foreach ($this->requestObject->iterate() AS $index => $value) {
+                    if ($value != null && !empty($value)) {
+                        // We need to change the Objects of Profile and Credentials into an Array
+                        if ($value instanceof ProfileRequest || $value instanceof CredentialsRequest) {
+                            $objArray = [];
+                            foreach ($value->iterate() AS $i => $d) {
+                                if (!empty($d)) {
+                                    $objArray[$i] = $d;
+                                }
+                            }
+                            $value = $objArray;
+                        }
+                        // Needed for Modifications and Deletions in VariableRequest
+                        // Changes Array Data into a new Array if these are instances of VariableRequest
+                        if (is_array($value)) {
+                            foreach ($value AS $valueIndex => $valueData) {
+                                if ($valueData instanceof VariableRequest) {
+                                    $objArray = [];
+                                    foreach ($valueData->iterate() AS $i => $d) {
+                                        if (!empty($d)) {
+                                            $objArray[$i] = $d;
+                                        }
+                                    }
+                                    $valueData = $objArray;
+                                }
+                                $value[$valueIndex] = $valueData;
+                            }
+                        }
+                        $data[$index] = $value;
+                    }
+                }
+            }
+            if (empty($data)) {
+                $data = new \stdClass();
+            }
+            $ch = curl_init($url);
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
         }
-        break;
-
-      case 'DELETE':
-        if($this->checkCurl()) {
-          $ch = curl_init($this->restApiUrl.$this->requestUrl);
-          curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
-          curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-          curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-          curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-            'Content-Type: application/json',
-            'Content-Length: '.strlen($data)
-          ));
-          $request = curl_exec($ch);
-          $this->http_status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-          curl_close($ch);
-        } else {
-          $streamContext = stream_context_create(array(
-              'http' => array(
-                'method' => 'DELETE',
-                'header' => 'Content-Type: application/json'."\r\n"
-                .'Content-Length:'.strlen($data)."\r\n",
-                'content' => $data
-              )
-            )
-          );
-          $request = file_get_contents($this->restApiUrl.$this->requestUrl, null, $streamContext);
-          $this->http_status_code = substr($http_response_header[0], 9, 3);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        switch ($method) {
+            case 'DELETE':
+            case 'PUT':
+            case 'POST':
+                $dataString = json_encode($data);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+                curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                    'Content-Type: application/json',
+                    'Content-Length: ' . strlen($dataString),
+                ]);
+                break;
         }
-        break;
-      case 'PUT':
-        if($this->checkCurl()) {
-          $ch = curl_init($this->restApiUrl.$this->requestUrl);
-          curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
-          curl_setopt($ch, CURLINFO_HEADER_OUT, 1);
-          curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-          curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-          curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-            'Content-Type: application/json',
-            'Content-Length: '.strlen($data)
-          ));
-
-          $request = curl_exec($ch);
-          $this->http_status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-          curl_close($ch);
-        } else {
-          $streamContext = stream_context_create(array(
-              'http' => array(
-                'method' => 'PUT',
-                'header' => 'Content-Type: application/json'."\r\n"
-                .'Content-Length:'.strlen($data)."\r\n",
-                'content' => $data
-              )
-            )
-          );
-
-          $request = file_get_contents($this->restApiUrl.$this->requestUrl, null, $streamContext);
-          $this->http_status_code = substr($http_response_header[0], 9, 3);
-        }
-        break;
-      case 'POST':
-        if($this->checkCurl()) {
-          $ch = curl_init($this->restApiUrl.$this->requestUrl);
-          curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
-          curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-          curl_setopt($ch, CURLINFO_HEADER_OUT, 1);
-          curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-          curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-            'Content-Type: application/json',
-            'Content-Length: '.strlen($data)
-          ));
-          $request = curl_exec($ch);
-          $this->http_status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-          curl_close($ch);
-        } else {
-          $streamContext = stream_context_create(array(
-              'http' => array(
-                'method' => 'POST',
-                'header' => 'Content-Type: application/json'."\r\n"
-                .'Content-Length:'.strlen($data)."\r\n",
-                'content' => $data
-              )
-            )
-          );
-
-          $request = file_get_contents($this->restApiUrl.$this->requestUrl, null, $streamContext);
-          $this->http_status_code = substr($http_response_header[0], 9, 3);
-        }
-        break;
-      case 'GET':
-      default:
-
-      if($this->checkCurl()) {
-        $ch = curl_init($this->restApiUrl.$this->requestUrl.$data);
-        curl_setopt ($ch, CURLOPT_COOKIEJAR, './');
-        curl_setopt ($ch, CURLOPT_COOKIEFILE, './');
-        curl_setopt ($ch, CURLOPT_RETURNTRANSFER, true);
-
         $request = curl_exec($ch);
-        $this->http_status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $this->httpStatusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
-      } else {
-        $request = file_get_contents($this->restApiUrl.$this->requestUrl.$data);
-        $this->http_status_code = substr($http_response_header[0], 9, 3);
-      }
-        break;
+        if (!preg_match('/(^10|^20)[0-9]/', $this->httpStatusCode)) {
+            if (empty($request)) {
+                $error = new \stdClass();
+                $error->type = "Not found!";
+                $error->message = "No Message!";
+            } else {
+                $error = json_decode($request);
+            }
+            throw new \Exception("HTTP $this->httpStatusCode\nErrorType: $error->type\nError Message: $error->message");
+        }
+        $this->reset();
+        return json_decode($request);
     }
-
-    if(preg_match('/(^10|^20)[0-9]/', $this->http_status_code)) {
-      $this->reset();
-      return json_decode($request);
-    } else {
-      $this->reset();
-      if($request != null && $request != "" && !empty($request)) {
-        $error = json_decode($request);
-      } else {
-        $error = new \stdClass();
-        $error->type = "Not found!";
-        $error->message = "No Message!";
-      }
-      throw new \Exception("Error! HTTP Status Code: " .$this->http_status_code. " -- ErrorType: ". $error->type . " --
-      Error Message: ". $error->message);
-    }
-  }
-
-  /**
-   * simple curl check
-   *
-   * @return bool
-   */
-  private function checkCurl() {
-    return function_exists('curl_version');
-  }
-
-  private function reset() {
-    $this->setRequestObject(null);
-    $this->setRequestUrl('');
-    $this->setRequestMethod('GET');
-  }
-
 }

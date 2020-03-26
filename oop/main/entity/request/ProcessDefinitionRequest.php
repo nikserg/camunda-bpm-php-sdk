@@ -45,7 +45,7 @@ class ProcessDefinitionRequest extends Request {
 
   /**
    * @param mixed $name
-   * @return this
+   * @return $this
    */
   public function setName($name) {
       $this->name = $name;
@@ -61,7 +61,7 @@ class ProcessDefinitionRequest extends Request {
 
   /**
    * @param mixed $nameLike
-   * @return this
+   * @return $this
    */
   public function setNameLike($nameLike) {
       $this->nameLike = $nameLike;
@@ -77,7 +77,7 @@ class ProcessDefinitionRequest extends Request {
 
   /**
    * @param mixed $deploymentId
-   * @return this
+   * @return $this
    */
   public function setDeploymentId($deploymentId) {
       $this->deploymentId = $deploymentId;
@@ -93,7 +93,7 @@ class ProcessDefinitionRequest extends Request {
 
   /**
    * @param mixed $key
-   * @return this
+   * @return $this
    */
   public function setKey($key) {
       $this->key = $key;
@@ -109,7 +109,7 @@ class ProcessDefinitionRequest extends Request {
 
   /**
    * @param mixed $keyLike
-   * @return this
+   * @return $this
    */
   public function setKeyLike($keyLike) {
       $this->keyLike = $keyLike;
@@ -125,7 +125,7 @@ class ProcessDefinitionRequest extends Request {
 
   /**
    * @param mixed $category
-   * @return this
+   * @return $this
    */
   public function setCategory($category) {
       $this->category = $category;
@@ -141,7 +141,7 @@ class ProcessDefinitionRequest extends Request {
 
   /**
    * @param mixed $categoryLike
-   * @return this
+   * @return $this
    */
   public function setCategoryLike($categoryLike) {
       $this->categoryLike = $categoryLike;
@@ -157,7 +157,7 @@ class ProcessDefinitionRequest extends Request {
 
   /**
    * @param mixed $ver
-   * @return this
+   * @return $this
    */
   public function setVer($ver) {
       $this->ver = $ver;
@@ -173,7 +173,7 @@ class ProcessDefinitionRequest extends Request {
 
   /**
    * @param mixed $latest
-   * @return this
+   * @return $this
    */
   public function setLatest($latest) {
       $this->latest = $latest;
@@ -189,7 +189,7 @@ class ProcessDefinitionRequest extends Request {
 
   /**
    * @param mixed $resourceName
-   * @return this
+   * @return $this
    */
   public function setResourceName($resourceName) {
       $this->resourceName = $resourceName;
@@ -205,7 +205,7 @@ class ProcessDefinitionRequest extends Request {
 
   /**
    * @param mixed $resourceNameLike
-   * @return this
+   * @return $this
    */
   public function setResourceNameLike($resourceNameLike) {
       $this->resourceNameLike = $resourceNameLike;
@@ -221,7 +221,7 @@ class ProcessDefinitionRequest extends Request {
 
   /**
    * @param mixed $startableBy
-   * @return this
+   * @return $this
    */
   public function setStartableBy($startableBy) {
       $this->startableBy = $startableBy;
@@ -237,7 +237,7 @@ class ProcessDefinitionRequest extends Request {
 
   /**
    * @param mixed $active
-   * @return this
+   * @return $this
    */
   public function setActive($active) {
       $this->active = $active;
@@ -253,7 +253,7 @@ class ProcessDefinitionRequest extends Request {
 
   /**
    * @param mixed $suspended
-   * @return this
+   * @return $this
    */
   public function setSuspended($suspended) {
       $this->suspended = $suspended;
@@ -269,7 +269,7 @@ class ProcessDefinitionRequest extends Request {
 
   /**
    * @param mixed $incidentId
-   * @return this
+   * @return $this
    */
   public function setIncidentId($incidentId) {
       $this->incidentId = $incidentId;
@@ -285,7 +285,7 @@ class ProcessDefinitionRequest extends Request {
 
   /**
    * @param mixed $incidentType
-   * @return this
+   * @return $this
    */
   public function setIncidentType($incidentType) {
       $this->incidentType = $incidentType;
@@ -301,7 +301,7 @@ class ProcessDefinitionRequest extends Request {
 
   /**
    * @param mixed $incidentMessage
-   * @return this
+   * @return $this
    */
   public function setIncidentMessage($incidentMessage) {
       $this->incidentMessage = $incidentMessage;
@@ -317,7 +317,7 @@ class ProcessDefinitionRequest extends Request {
 
   /**
    * @param mixed $incidentMessageLike
-   * @return this
+   * @return $this
    */
   public function setIncidentMessageLike($incidentMessageLike) {
       $this->incidentMessageLike = $incidentMessageLike;
@@ -333,7 +333,7 @@ class ProcessDefinitionRequest extends Request {
 
   /**
    * @param mixed $sortBy
-   * @return this
+   * @return $this
    */
   public function setSortBy($sortBy) {
       $this->sortBy = $sortBy;
@@ -349,7 +349,7 @@ class ProcessDefinitionRequest extends Request {
 
   /**
    * @param mixed $sortOrder
-   * @return this
+   * @return $this
    */
   public function setSortOrder($sortOrder) {
       $this->sortOrder = $sortOrder;
@@ -365,7 +365,7 @@ class ProcessDefinitionRequest extends Request {
 
   /**
    * @param mixed $firstResult
-   * @return this
+   * @return $this
    */
   public function setFirstResult($firstResult) {
       $this->firstResult = $firstResult;
@@ -381,7 +381,7 @@ class ProcessDefinitionRequest extends Request {
 
   /**
    * @param mixed $maxResults
-   * @return this
+   * @return $this
    */
   public function setMaxResults($maxResults) {
       $this->maxResults = $maxResults;
@@ -397,7 +397,7 @@ class ProcessDefinitionRequest extends Request {
 
   /**
    * @param mixed $variables
-   * @return this
+   * @return $this
    */
   public function setVariables($variables) {
       $this->variables = $variables;
@@ -413,7 +413,7 @@ class ProcessDefinitionRequest extends Request {
 
   /**
    * @param mixed $businessKey
-   * @return this
+   * @return $this
    */
   public function setBusinessKey($businessKey) {
       $this->businessKey = $businessKey;
@@ -429,7 +429,7 @@ class ProcessDefinitionRequest extends Request {
 
   /**
    * @param mixed $caseInstanceId
-   * @return this
+   * @return $this
    */
   public function setCaseInstanceId($caseInstanceId) {
       $this->caseInstanceId = $caseInstanceId;

@@ -14,21 +14,20 @@ use org\camunda\php\sdk\service\ExecutionService;
 
 include("../../vendor/autoload.php");
 
-class ExecutionServiceTest extends \PHPUnit_Framework_TestCase {
+class ExecutionServiceTest extends \PHPUnit\Framework\TestCase {
   protected static $restApi;
   protected static $es;
 
-  public static function setUpBeforeClass() {
+  public static function setUpBeforeClass(): void {
     self::$restApi = 'http://localhost:8080/engine-rest';
     print("\n\nCLASS: " . __CLASS__ . "\n");
     self::$es = new ExecutionService(self::$restApi);
   }
 
-  public static function tearDownAfterClass() {
+  public static function tearDownAfterClass(): void {
     self::$restApi = null;
   }
 
-  //--------------------------------  TEST GET SINGLE EXECUTION  ----------------------------------------
   /**
    * @test
    */
@@ -42,7 +41,6 @@ class ExecutionServiceTest extends \PHPUnit_Framework_TestCase {
 
   }
 
-  //--------------------------------  TEST GET EXECUTIONS  ----------------------------------------
   /**
    * @test
    */
@@ -61,7 +59,6 @@ class ExecutionServiceTest extends \PHPUnit_Framework_TestCase {
 
   }
 
-  //--------------------------------  TEST GET EXECUTION COUNT  ----------------------------------------
   /**
    * @test
    */
@@ -84,7 +81,6 @@ class ExecutionServiceTest extends \PHPUnit_Framework_TestCase {
 
   }
 
-  //--------------------------------  TEST GET LOCAL EXECUTION VARIABLE  ----------------------------------------
   /**
    * @test
    */
@@ -99,7 +95,6 @@ class ExecutionServiceTest extends \PHPUnit_Framework_TestCase {
 
   }
 
-  //--------------------------------  TEST PUT LOCAL EXECUTION VARIABLE  ----------------------------------------
   /**
    * @test
    */
@@ -115,7 +110,6 @@ class ExecutionServiceTest extends \PHPUnit_Framework_TestCase {
 
   }
 
-  //--------------------------------  TEST PUT LOCAL EXECUTION VARIABLE  ----------------------------------------
   /**
    * @test
    */
@@ -136,7 +130,6 @@ class ExecutionServiceTest extends \PHPUnit_Framework_TestCase {
 
   }
 
-  //--------------------------------  TEST GET LOCAL EXECUTION VARIABLES  ----------------------------------------
   /**
    * @test
    */
@@ -156,7 +149,6 @@ class ExecutionServiceTest extends \PHPUnit_Framework_TestCase {
 
   }
 
-  //--------------------------------  TEST UPDATE AND DELETE PROCESS VARIABLES  ----------------------------------------
   /**
    * @test
    */
@@ -195,7 +187,6 @@ class ExecutionServiceTest extends \PHPUnit_Framework_TestCase {
 
   }
 
-  //--------------------------------  TEST TRIGGER EXECUTION  ----------------------------------------
   /**
    * TODO: find a way which fulfill the need of this test!
    * @test
@@ -206,7 +197,6 @@ class ExecutionServiceTest extends \PHPUnit_Framework_TestCase {
     );
   }
 
-  //--------------------------------  TEST GET MESSAGE EVENT SUBSCRIPTIONS  ----------------------------------------
   /**
    * TODO: find a way which fulfill the need of this test!
    * @test
@@ -217,7 +207,6 @@ class ExecutionServiceTest extends \PHPUnit_Framework_TestCase {
     );
   }
 
-  //--------------------------------  TEST TRIGGER MESSAGE EVENT SUBSCRIPTIONS  ----------------------------------------
   /**
    * TODO: find a way which fulfill the need of this test!
    * @test
