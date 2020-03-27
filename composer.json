@@ -32,7 +32,7 @@
 
   "autoload": {
     "psr-4": {
-      "org\\camunda\\php\\sdk": "src/"
+      "org\\camunda\\php\\sdk\\": "src/"
     }
   }
 }
