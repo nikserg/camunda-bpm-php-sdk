@@ -4,8 +4,6 @@ namespace org\camunda\php\tests;
 
 use org\camunda\php\sdk\service\ProcessEngineService;
 
-include('../vendor/autoload.php');
-
 class ProcessEngineServiceTest extends \PHPUnit\Framework\TestCase
 {
     /**
@@ -15,7 +13,7 @@ class ProcessEngineServiceTest extends \PHPUnit\Framework\TestCase
 
     public static function setUpBeforeClass(): void
     {
-        self::$pes = new ProcessEngineService('http://localhost:8080/engine-rest');
+        self::$pes = new ProcessEngineService($_ENV['camunda_url']);
     }
 
     /**

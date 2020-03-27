@@ -3,14 +3,12 @@
 namespace org\camunda\php\tests;
 
 use org\camunda\php\sdk\entity\request\CredentialsRequest;
+use org\camunda\php\sdk\entity\request\IdentityLinksRequest;
 use org\camunda\php\sdk\entity\request\ProfileRequest;
 use org\camunda\php\sdk\entity\request\TaskRequest;
 use org\camunda\php\sdk\entity\request\UserRequest;
-use org\camunda\php\sdk\entity\request\IdentityLinksRequest;
 use org\camunda\php\sdk\service\TaskService;
 use org\camunda\php\sdk\service\UserService;
-
-include('../vendor/autoload.php');
 
 class TaskServiceTest extends \PHPUnit\Framework\TestCase
 {
@@ -25,8 +23,8 @@ class TaskServiceTest extends \PHPUnit\Framework\TestCase
 
     public static function setUpBeforeClass(): void
     {
-        self::$ts = new TaskService('http://localhost:8080/engine-rest');
-        self::$us = new UserService('http://localhost:8080/engine-rest');
+        self::$ts = new TaskService($_ENV['camunda_url']);
+        self::$us = new UserService($_ENV['camunda_url']);
     }
 
     /**
@@ -48,12 +46,12 @@ class TaskServiceTest extends \PHPUnit\Framework\TestCase
      */
     function testGetTasks()
     {
-        $this->assertGreaterThan(0, count(get_object_vars(self::$ts->getTasks(new TaskRequest()))));
-        $this->assertGreaterThan(0, count(get_object_vars(self::$ts->getTasks(new TaskRequest(), true))));
+        $this->assertGreaterThan(0, count(self::$ts->getTasks(new TaskRequest())));
+        $this->assertGreaterThan(0, count(self::$ts->getTasks(new TaskRequest(), true)));
         $tr = new TaskRequest();
         $tr->setAssignee('demo');
-        $this->assertGreaterThan(0, count(get_object_vars(self::$ts->getTasks($tr, true))));
-        $this->assertGreaterThan(0, count(get_object_vars(self::$ts->getTasks($tr))));
+        $this->assertGreaterThan(0, count(self::$ts->getTasks($tr, true)));
+        $this->assertGreaterThan(0, count(self::$ts->getTasks($tr)));
         $tasks = self::$ts->getTasks(new TaskRequest());
         foreach ($tasks as $task) {
             if (!preg_match('/^waitStates\:.*|^calledProcess:.*/', $task->getProcessDefinitionId())) {
@@ -145,20 +143,6 @@ class TaskServiceTest extends \PHPUnit\Framework\TestCase
         self::$us->deleteUser('shentschel');
     }
 
-    function testCompleteTask()
-    {
-        $this->markTestIncomplete(
-            'Needs a good method to deploy processes on the fly with the engine'
-        );
-    }
-
-    function testResolveTask()
-    {
-        $this->markTestIncomplete(
-            'Needs a good method to deploy processes on the fly with the engine'
-        );
-    }
-
     /**
      * @throws \Exception
      */
@@ -240,7 +224,7 @@ class TaskServiceTest extends \PHPUnit\Framework\TestCase
         $ilr->setType('candidate');
         $ilr->setGroupId('demo');
         self::$ts->addIdentityLink($task->getId(), $ilr);
-        $this->assertGreaterThan(0, count(get_object_vars(self::$ts->getIdentityLinks($task->getId(), $ilr))));
+        $this->assertGreaterThan(0, count(self::$ts->getIdentityLinks($task->getId(), $ilr)));
     }
 
     /**
@@ -253,6 +237,6 @@ class TaskServiceTest extends \PHPUnit\Framework\TestCase
         $ilr->setType('candidate');
         $ilr->setGroupId('demo');
         self::$ts->deleteIdentityLink($task->getId(), $ilr);
-        $this->assertEquals(0, count(get_object_vars(self::$ts->getIdentityLinks($task->getId(), $ilr))));
+        $this->assertEquals(0, count(self::$ts->getIdentityLinks($task->getId(), $ilr)));
     }
 }

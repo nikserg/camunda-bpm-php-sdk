@@ -6,8 +6,6 @@ use org\camunda\php\sdk\entity\request\ExecutionRequest;
 use org\camunda\php\sdk\entity\request\VariableRequest;
 use org\camunda\php\sdk\service\ExecutionService;
 
-include("../vendor/autoload.php");
-
 class ExecutionServiceTest extends \PHPUnit\Framework\TestCase
 {
     /**
@@ -17,7 +15,7 @@ class ExecutionServiceTest extends \PHPUnit\Framework\TestCase
 
     public static function setUpBeforeClass(): void
     {
-        self::$es = new ExecutionService('http://localhost:8080/engine-rest');
+        self::$es = new ExecutionService($_ENV['camunda_url']);
     }
 
     /**
@@ -37,14 +35,14 @@ class ExecutionServiceTest extends \PHPUnit\Framework\TestCase
      */
     function testGetExecutions()
     {
-        $this->assertNotEmpty(get_object_vars(self::$es->getExecutions(new ExecutionRequest())));
+        $this->assertNotEmpty(self::$es->getExecutions(new ExecutionRequest()));
         $er = new ExecutionRequest();
         $er->setActive(true);
-        $this->assertNotEmpty(get_object_vars(self::$es->getExecutions($er)));
-        $this->assertNotEmpty(get_object_vars(self::$es->getExecutions(new ExecutionRequest(), true)));
+        $this->assertNotEmpty(self::$es->getExecutions($er));
+        $this->assertNotEmpty(self::$es->getExecutions(new ExecutionRequest(), true));
         $er = new ExecutionRequest();
         $er->setActive(true);
-        $this->assertNotEmpty(get_object_vars(self::$es->getExecutions($er, true)));
+        $this->assertNotEmpty(self::$es->getExecutions($er, true));
     }
 
     /**
@@ -53,15 +51,15 @@ class ExecutionServiceTest extends \PHPUnit\Framework\TestCase
     function testGetExecutionCount()
     {
         $eic = self::$es->getCount(new ExecutionRequest());
-        $eic2 = count(get_object_vars(self::$es->getExecutions(new ExecutionRequest())));
+        $eic2 = count(self::$es->getExecutions(new ExecutionRequest()));
         $this->assertEquals($eic, $eic2);
         $eic = self::$es->getCount(new ExecutionRequest(), true);
-        $eic2 = count(get_object_vars(self::$es->getExecutions(new ExecutionRequest(), true)));
+        $eic2 = count(self::$es->getExecutions(new ExecutionRequest(), true));
         $this->assertEquals($eic, $eic2);
         $er = new ExecutionRequest();
         $er->setActive(true);
         $eic = self::$es->getCount($er);
-        $eic2 = count(get_object_vars(self::$es->getExecutions($er)));
+        $eic2 = count(self::$es->getExecutions($er));
         $this->assertEquals($eic, $eic2);
     }
 
@@ -118,7 +116,7 @@ class ExecutionServiceTest extends \PHPUnit\Framework\TestCase
         $ev = new VariableRequest();
         $ev->setValue("testValue")->setType('String');
         self::$es->putExecutionVariable($ei->getId(), 'testVariable', $ev);
-        $this->assertGreaterThan(0, count(get_object_vars(self::$es->getExecutionVariables($ei->getId()))));
+        $this->assertGreaterThan(0, count(self::$es->getExecutionVariables($ei->getId())));
         $this->assertEquals(
             'testValue',
             self::$es->getExecutionVariables($ei->getId())['testVariable']->getValue()
@@ -149,32 +147,11 @@ class ExecutionServiceTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('newTestValue', self::$es->getExecutionVariable($ei->getId(), 'testVariable')->getValue());
         $this->assertEquals('newTestValue2',
             self::$es->getExecutionVariable($ei->getId(), 'testVariable2')->getValue());
-        $pvc = count(get_object_vars(self::$es->getExecutionVariables($ei->getId())));
+        $pvc = count(self::$es->getExecutionVariables($ei->getId()));
         $ev = new VariableRequest();
         $pm = ['testVariable', 'testVariable2'];
         $ev->setDeletions($pm);
         self::$es->updateOrDeleteExecutionVariables($ei->getId(), $ev);
-        $this->assertEquals($pvc - 2, count(get_object_vars(self::$es->getExecutionVariables($ei->getId()))));
-    }
-
-    function testTriggerExecution()
-    {
-        $this->markTestIncomplete(
-            'find a way which fulfill the need of this test!'
-        );
-    }
-
-    function testGetMessageEventSubscriptions()
-    {
-        $this->markTestIncomplete(
-            'find a way which fulfill the need of this test!'
-        );
-    }
-
-    function testTriggerMessageEventSubscription()
-    {
-        $this->markTestIncomplete(
-            'find a way which fulfill the need of this test!'
-        );
+        $this->assertEquals($pvc - 2, count(self::$es->getExecutionVariables($ei->getId())));
     }
 }

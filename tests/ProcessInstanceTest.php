@@ -6,8 +6,6 @@ use org\camunda\php\sdk\entity\request\ProcessInstanceRequest;
 use org\camunda\php\sdk\entity\request\VariableRequest;
 use org\camunda\php\sdk\service\ProcessInstanceService;
 
-include('../vendor/autoload.php');
-
 class ProcessInstanceTest extends \PHPUnit\Framework\TestCase
 {
     /**
@@ -17,7 +15,7 @@ class ProcessInstanceTest extends \PHPUnit\Framework\TestCase
 
     public static function setUpBeforeClass(): void
     {
-        self::$pis = new ProcessInstanceService('http://localhost:8080/engine-rest');
+        self::$pis = new ProcessInstanceService($_ENV['camunda_url']);
     }
 
     /**
@@ -84,14 +82,14 @@ class ProcessInstanceTest extends \PHPUnit\Framework\TestCase
     function testDeleteSingleProcessInstance()
     {
         $pi = self::$pis->getInstances(new ProcessInstanceRequest())[0];
-        $pvc = count(get_object_vars(self::$pis->getProcessVariables($pi->getId())));
+        $pvc = count(self::$pis->getProcessVariables($pi->getId()));
         $piv = new VariableRequest();
         $piv->setValue('testValue')->setType('String');
         self::$pis->putProcessVariable($pi->getId(), 'testVariable', $piv);
-        $this->assertEquals($pvc + 1, count(get_object_vars(self::$pis->getProcessVariables($pi->getId()))));
+        $this->assertEquals($pvc + 1, count(self::$pis->getProcessVariables($pi->getId())));
         $this->assertEquals('testValue', self::$pis->getProcessVariable($pi->getId(), 'testVariable')->getValue());
         self::$pis->deleteProcessVariable($pi->getId(), 'testVariable');
-        $this->assertEquals($pvc, count(get_object_vars(self::$pis->getProcessVariables($pi->getId()))));
+        $this->assertEquals($pvc, count(self::$pis->getProcessVariables($pi->getId())));
     }
 
     /**
@@ -100,13 +98,13 @@ class ProcessInstanceTest extends \PHPUnit\Framework\TestCase
     function testGetProcessVariables()
     {
         $pi = self::$pis->getInstances(new ProcessInstanceRequest())[0];
-        $pvc = count(get_object_vars(self::$pis->getProcessVariables($pi->getId())));
+        $pvc = count(self::$pis->getProcessVariables($pi->getId()));
         $piv = new VariableRequest();
         $piv->setValue('testValue')->setType('String');
         self::$pis->putProcessVariable($pi->getId(), 'testVariable', $piv);
-        $this->assertEquals($pvc + 1, count(get_object_vars(self::$pis->getProcessVariables($pi->getId()))));
+        $this->assertEquals($pvc + 1, count(self::$pis->getProcessVariables($pi->getId())));
         self::$pis->deleteProcessVariable($pi->getId(), 'testVariable');
-        $this->assertEquals($pvc, count(get_object_vars(self::$pis->getProcessVariables($pi->getId()))));
+        $this->assertEquals($pvc, count(self::$pis->getProcessVariables($pi->getId())));
     }
 
     /**
@@ -131,22 +129,12 @@ class ProcessInstanceTest extends \PHPUnit\Framework\TestCase
         self::$pis->updateOrDeleteProcessVariables($pi->getId(), $piv);
         $this->assertEquals('newTestValue', self::$pis->getProcessVariable($pi->getId(), 'testVariable')->getValue());
         $this->assertEquals('newTestValue2', self::$pis->getProcessVariable($pi->getId(), 'testVariable2')->getValue());
-        $pvc = count(get_object_vars(self::$pis->getProcessVariables($pi->getId())));
+        $pvc = count(self::$pis->getProcessVariables($pi->getId()));
         $piv = new VariableRequest();
         $pm = ['testVariable', 'testVariable2'];
         $piv->setDeletions($pm);
         self::$pis->updateOrDeleteProcessVariables($pi->getId(), $piv);
-        $this->assertEquals($pvc - 2, count(get_object_vars(self::$pis->getProcessVariables($pi->getId()))));
-    }
-
-    /**
-     * @throws \Exception
-     */
-    function testGetActivityInstances()
-    {
-        $pi = self::$pis->getInstances(new ProcessInstanceRequest())[0];
-        self::$pis->getActivityInstances($pi->getId(), new ProcessInstanceRequest());
-        $this->markTestIncomplete('To be implemented');
+        $this->assertEquals($pvc - 2, count(self::$pis->getProcessVariables($pi->getId())));
     }
 
     /**
@@ -174,9 +162,9 @@ class ProcessInstanceTest extends \PHPUnit\Framework\TestCase
     {
         $processInstance = self::$pis->getInstances(new ProcessInstanceRequest())[0];
         $variables = self::$pis->getProcessVariables($processInstance->getId());
-        $this->assertEquals(3, count(get_object_vars($variables)));
+        $this->assertEquals(3, count($variables));
         self::$pis->deleteProcessVariable($processInstance->getId(), 'value2');
-        $this->assertEquals(2, count(get_object_vars(self::$pis->getProcessVariables($processInstance->getId()))));
+        $this->assertEquals(2, count(self::$pis->getProcessVariables($processInstance->getId())));
         $addProcessVariableRequest = new VariableRequest();
         $addProcessVariableRequest->setValue(1000);
         $addProcessVariableRequest->setType("Integer");

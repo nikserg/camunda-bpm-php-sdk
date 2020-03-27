@@ -7,8 +7,6 @@ use org\camunda\php\sdk\entity\request\ProfileRequest;
 use org\camunda\php\sdk\entity\request\UserRequest;
 use org\camunda\php\sdk\service\UserService;
 
-include('../vendor/autoload.php');
-
 class UserServiceTest extends \PHPUnit\Framework\TestCase
 {
     /**
@@ -18,7 +16,7 @@ class UserServiceTest extends \PHPUnit\Framework\TestCase
 
     public static function setUpBeforeClass(): void
     {
-        self::$us = new UserService('http://localhost:8080/engine-rest');
+        self::$us = new UserService($_ENV['camunda_url']);
     }
 
     /**
@@ -115,7 +113,7 @@ class UserServiceTest extends \PHPUnit\Framework\TestCase
         $user = new UserRequest();
         $userProfile = new ProfileRequest();
         $userCredentials = new CredentialsRequest();
-        $userProfile->setId('php_unit_tester_1')
+        $userProfile->setId('phpUnitTesterOne')
             ->setFirstName('PHP')
             ->setLastName('UNIT')
             ->setEmail('PHP_UNIT_SQUAD@CAMUNDA.COM');
@@ -123,11 +121,11 @@ class UserServiceTest extends \PHPUnit\Framework\TestCase
         $user->setProfile($userProfile)->setCredentials($userCredentials);
         self::$us->createUser($user);
         $this->assertEquals('shentschel', self::$us->getUsers(new UserRequest())[$userId + 1]->getId());
-        $this->assertEquals('php_unit_tester_1', self::$us->getUsers(new UserRequest())[$userId]->getId());
+        $this->assertEquals('phpUnitTesterOne', self::$us->getUsers(new UserRequest())[$userId]->getId());
         $this->assertEquals('shentschel', self::$us->getUsers($filteredUser)[0]->getId());
         $this->assertObjectNotHasAttribute('user_1', self::$us->getUsers($filteredUser));
         self::$us->deleteUser('shentschel');
-        self::$us->deleteUser('php_unit_tester_1');
+        self::$us->deleteUser('phpUnitTesterOne');
     }
 
     /**
@@ -193,13 +191,6 @@ class UserServiceTest extends \PHPUnit\Framework\TestCase
         self::$us->updateProfile('shentschel', $userProfile);
         $this->assertEquals('John', self::$us->getProfile('shentschel')->getFirstName());
         self::$us->deleteUser('shentschel');
-    }
-
-    function testUpdateUserCredentials()
-    {
-        $this->markTestIncomplete(
-            'Create with authorisation'
-        );
     }
 
     /**
