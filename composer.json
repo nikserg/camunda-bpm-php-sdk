@@ -1,14 +1,22 @@
 {
   "name": "izucken/camunda-bpm-php-sdk",
-  "description": "PHP SDK for camundaBPM process services",
+  "description": "PHP SDK for Camunda BPM engine rest service",
   "license": "Apache-2.0",
   "minimum-stability": "stable",
-  "keywords": ["sdk","camunda", "camunda bpm"],
+  "keywords": [
+    "camunda",
+    "rest",
+    "sdk"
+  ],
   "homepage": "http://camunda.org",
   "authors": [
     {
       "name": "Stefan Hentschel",
       "email": "stefan.hentschel@camunda.com"
+    },
+    {
+      "name": "izucken",
+      "email": "izucken@gmail.com"
     }
   ],
 
@@ -22,21 +30,9 @@
     "phpunit/phpunit": "^8"
   },
 
-  "archive": {
-    "exclude": [
-      "/procedual/test",
-      "/procedual/test/*",
-      "/oop/test",
-      "/oop/test/*"
-    ]
-  },
-
   "autoload": {
     "psr-4": {
       "org\\camunda\\php\\sdk": "src/"
-    },
-    "classmap": [
-      "oop/main/"
-    ]
+    }
   }
 }
