@@ -118,7 +118,7 @@ abstract class RequestService
             }
         }
         $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_COOKIEJAR, './'); // TODO: wtf?? storing in a source location??
+        curl_setopt($ch, CURLOPT_COOKIEJAR, './'); // TODO: storing in cwd??
         curl_setopt($ch, CURLOPT_COOKIEFILE, './');
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $this->requestMethod);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);

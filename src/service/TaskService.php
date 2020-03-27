@@ -100,7 +100,7 @@ class TaskService extends RequestService
     }
 
     /**
-     * Unclaims a task
+     * Removes claims from a task
      *
      * @link http://docs.camunda.org/api-references/rest/#!/task/post-unclaim
      *
