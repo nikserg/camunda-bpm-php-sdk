@@ -1,8 +1,6 @@
 <?php
 
-
 namespace org\camunda\php\sdk\entity\response;
-
 
 use org\camunda\php\sdk\helper\CastHelper;
 
@@ -22,7 +20,7 @@ class HistoricProcessInstance extends CastHelper
     /**
      * @param mixed $businessKey
      */
-    public function setBusinessKey($businessKey)
+    function setBusinessKey($businessKey)
     {
         $this->businessKey = $businessKey;
     }
@@ -30,7 +28,7 @@ class HistoricProcessInstance extends CastHelper
     /**
      * @return mixed
      */
-    public function getBusinessKey()
+    function getBusinessKey()
     {
         return $this->businessKey;
     }
@@ -38,7 +36,7 @@ class HistoricProcessInstance extends CastHelper
     /**
      * @param mixed $deleteReason
      */
-    public function setDeleteReason($deleteReason)
+    function setDeleteReason($deleteReason)
     {
         $this->deleteReason = $deleteReason;
     }
@@ -46,7 +44,7 @@ class HistoricProcessInstance extends CastHelper
     /**
      * @return mixed
      */
-    public function getDeleteReason()
+    function getDeleteReason()
     {
         return $this->deleteReason;
     }
@@ -54,7 +52,7 @@ class HistoricProcessInstance extends CastHelper
     /**
      * @param mixed $durationInMillis
      */
-    public function setDurationInMillis($durationInMillis)
+    function setDurationInMillis($durationInMillis)
     {
         $this->durationInMillis = $durationInMillis;
     }
@@ -62,7 +60,7 @@ class HistoricProcessInstance extends CastHelper
     /**
      * @return mixed
      */
-    public function getDurationInMillis()
+    function getDurationInMillis()
     {
         return $this->durationInMillis;
     }
@@ -70,7 +68,7 @@ class HistoricProcessInstance extends CastHelper
     /**
      * @param mixed $endTime
      */
-    public function setEndTime($endTime)
+    function setEndTime($endTime)
     {
         $this->endTime = $endTime;
     }
@@ -78,7 +76,7 @@ class HistoricProcessInstance extends CastHelper
     /**
      * @return mixed
      */
-    public function getEndTime()
+    function getEndTime()
     {
         return $this->endTime;
     }
@@ -86,7 +84,7 @@ class HistoricProcessInstance extends CastHelper
     /**
      * @param mixed $id
      */
-    public function setId($id)
+    function setId($id)
     {
         $this->id = $id;
     }
@@ -94,7 +92,7 @@ class HistoricProcessInstance extends CastHelper
     /**
      * @return mixed
      */
-    public function getId()
+    function getId()
     {
         return $this->id;
     }
@@ -102,7 +100,7 @@ class HistoricProcessInstance extends CastHelper
     /**
      * @param mixed $processDefinitionId
      */
-    public function setProcessDefinitionId($processDefinitionId)
+    function setProcessDefinitionId($processDefinitionId)
     {
         $this->processDefinitionId = $processDefinitionId;
     }
@@ -110,7 +108,7 @@ class HistoricProcessInstance extends CastHelper
     /**
      * @return mixed
      */
-    public function getProcessDefinitionId()
+    function getProcessDefinitionId()
     {
         return $this->processDefinitionId;
     }
@@ -118,7 +116,7 @@ class HistoricProcessInstance extends CastHelper
     /**
      * @param mixed $startActivityId
      */
-    public function setStartActivityId($startActivityId)
+    function setStartActivityId($startActivityId)
     {
         $this->startActivityId = $startActivityId;
     }
@@ -126,7 +124,7 @@ class HistoricProcessInstance extends CastHelper
     /**
      * @return mixed
      */
-    public function getStartActivityId()
+    function getStartActivityId()
     {
         return $this->startActivityId;
     }
@@ -134,7 +132,7 @@ class HistoricProcessInstance extends CastHelper
     /**
      * @param mixed $startTime
      */
-    public function setStartTime($startTime)
+    function setStartTime($startTime)
     {
         $this->startTime = $startTime;
     }
@@ -142,7 +140,7 @@ class HistoricProcessInstance extends CastHelper
     /**
      * @return mixed
      */
-    public function getStartTime()
+    function getStartTime()
     {
         return $this->startTime;
     }
@@ -150,7 +148,7 @@ class HistoricProcessInstance extends CastHelper
     /**
      * @param mixed $startUserId
      */
-    public function setStartUserId($startUserId)
+    function setStartUserId($startUserId)
     {
         $this->startUserId = $startUserId;
     }
@@ -158,7 +156,7 @@ class HistoricProcessInstance extends CastHelper
     /**
      * @return mixed
      */
-    public function getStartUserId()
+    function getStartUserId()
     {
         return $this->startUserId;
     }
@@ -166,7 +164,7 @@ class HistoricProcessInstance extends CastHelper
     /**
      * @param mixed $superProcessInstanceId
      */
-    public function setSuperProcessInstanceId($superProcessInstanceId)
+    function setSuperProcessInstanceId($superProcessInstanceId)
     {
         $this->superProcessInstanceId = $superProcessInstanceId;
     }
@@ -174,10 +172,8 @@ class HistoricProcessInstance extends CastHelper
     /**
      * @return mixed
      */
-    public function getSuperProcessInstanceId()
+    function getSuperProcessInstanceId()
     {
         return $this->superProcessInstanceId;
     }
-
-
 }

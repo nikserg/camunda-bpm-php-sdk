@@ -1,6 +1,5 @@
 <?php
 
-
 namespace org\camunda\php\sdk\entity\response;
 
 use org\camunda\php\sdk\helper\CastHelper;
@@ -13,7 +12,7 @@ class Form extends CastHelper
     /**
      * @param mixed $contextPath
      */
-    public function setContextPath($contextPath)
+    function setContextPath($contextPath)
     {
         $this->contextPath = $contextPath;
     }
@@ -21,7 +20,7 @@ class Form extends CastHelper
     /**
      * @return mixed
      */
-    public function getContextPath()
+    function getContextPath()
     {
         return $this->contextPath;
     }
@@ -29,7 +28,7 @@ class Form extends CastHelper
     /**
      * @param mixed $key
      */
-    public function setKey($key)
+    function setKey($key)
     {
         $this->key = $key;
     }
@@ -37,10 +36,8 @@ class Form extends CastHelper
     /**
      * @return mixed
      */
-    public function getKey()
+    function getKey()
     {
         return $this->key;
     }
-
-
 }

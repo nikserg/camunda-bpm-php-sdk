@@ -1,14 +1,10 @@
 <?php
 
-
 namespace org\camunda\php\sdk\service;
 
-use org\camunda\php\sdk\entity\request\CredentialsRequest;
-use org\camunda\php\sdk\entity\request\ProfileRequest;
 use org\camunda\php\sdk\entity\request\Request;
-use org\camunda\php\sdk\entity\request\VariableRequest;
 
-class RequestService
+abstract class RequestService
 {
     /**
      * @var string
@@ -28,7 +24,7 @@ class RequestService
     private $requestObject;
     private $httpStatusCode;
 
-    public function __construct(string $restApiUrl)
+    function __construct(string $restApiUrl)
     {
         $this->restApiUrl = preg_replace('/\/$/', '', $restApiUrl);
     }
@@ -84,7 +80,7 @@ class RequestService
     /**
      * @param mixed $httpStatusCode
      */
-    public function setHttpStatusCode($httpStatusCode)
+    function setHttpStatusCode($httpStatusCode)
     {
         $this->httpStatusCode = $httpStatusCode;
     }
@@ -92,7 +88,7 @@ class RequestService
     /**
      * @return mixed
      */
-    public function getHttpStatusCode()
+    function getHttpStatusCode()
     {
         return $this->httpStatusCode;
     }
@@ -118,62 +114,41 @@ class RequestService
         $url = $this->restApiUrl . $this->requestUrl;
         if ($this->requestMethod == 'GET') {
             if (isset($this->requestObject)) {
-                $url .= '?' . http_build_query($this->requestObject->iterateFilled());
-            }
-            $ch = curl_init($url);
-            curl_setopt($ch, CURLOPT_COOKIEJAR, './');
-            curl_setopt($ch, CURLOPT_COOKIEFILE, './');
-        } else {
-            $ch = curl_init($url);
-            if (in_array($this->requestMethod, ['POST', 'DELETE', 'PUT',])) {
-                if (isset($this->requestObject)) {
-                    $data = [];
-                    foreach ($this->requestObject->iterate() AS $index => $value) {
-                        if ($value != null && !empty($value)) {
-                            // We need to change the Objects of Profile and Credentials into an Array
-                            if ($value instanceof ProfileRequest || $value instanceof CredentialsRequest) {
-                                $value = $value->iterateFilled();
-                            }
-                            // Needed for Modifications and Deletions in VariableRequest
-                            // Changes Array Data into a new Array if these are instances of VariableRequest
-                            if (is_array($value)) {
-                                foreach ($value AS $valueIndex => $valueData) {
-                                    if ($valueData instanceof VariableRequest) {
-                                        $valueData = $valueData->iterateFilled();
-                                    }
-                                    $value[$valueIndex] = $valueData;
-                                }
-                            }
-                            $data[$index] = $value;
-                        }
-                    }
-                } else {
-                    $data = new \stdClass();
-                }
-                $dataString = json_encode($data);
-                curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
-                curl_setopt($ch, CURLOPT_HTTPHEADER, [
-                    'Content-Type: application/json',
-                    'Content-Length: ' . strlen($dataString),
-                ]);
+                $url .= '?' . http_build_query($this->requestObject->fieldsFilled());
             }
         }
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_COOKIEJAR, './'); // TODO: wtf?? storing in a source location??
+        curl_setopt($ch, CURLOPT_COOKIEFILE, './');
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $this->requestMethod);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        if (in_array($this->requestMethod, ['POST', 'DELETE', 'PUT',])) {
+            $data = new \stdClass;
+            if (isset($this->requestObject)) {
+                $data = $this->requestObject->serializeToHashMap();
+            }
+            $dataString = json_encode($data);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                'Content-Type: application/json',
+                'Content-Length: ' . strlen($dataString),
+            ]);
+        }
         $response = curl_exec($ch);
         $this->httpStatusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
+        $this->reset();
         if (!preg_match('/^[12]0[0-9]/', $this->httpStatusCode)) {
             if (empty($response)) {
-                $error = new \stdClass();
-                $error->type = "Not found!";
-                $error->message = "No Message!";
+                $errorData = new \stdClass();
+                $errorData->type = "Not found!";
+                $errorData->message = "No Message!";
             } else {
-                $error = json_decode($response);
+                $errorData = json_decode($response);
             }
-            throw new \Exception("HTTP $this->httpStatusCode error type $error->type: $error->message");
+            throw new \Exception("HTTP $this->httpStatusCode error type $errorData->type: $errorData->message");
         }
-        $this->reset();
-        return json_decode($response);
+        $responseData = json_decode($response);
+        return $responseData;
     }
 }

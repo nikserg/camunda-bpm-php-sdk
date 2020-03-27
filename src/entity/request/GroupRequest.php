@@ -1,8 +1,6 @@
 <?php
 
-
 namespace org\camunda\php\sdk\entity\request;
-
 
 class GroupRequest extends Request
 {
@@ -20,7 +18,7 @@ class GroupRequest extends Request
      * @param mixed $firstResult
      * @return $this
      */
-    public function setFirstResult($firstResult)
+    function setFirstResult($firstResult)
     {
         $this->firstResult = $firstResult;
         return $this;
@@ -29,7 +27,7 @@ class GroupRequest extends Request
     /**
      * @return mixed
      */
-    public function getFirstResult()
+    function getFirstResult()
     {
         return $this->firstResult;
     }
@@ -38,7 +36,7 @@ class GroupRequest extends Request
      * @param mixed $id
      * @return $this
      */
-    public function setId($id)
+    function setId($id)
     {
         $this->id = $id;
         return $this;
@@ -47,7 +45,7 @@ class GroupRequest extends Request
     /**
      * @return mixed
      */
-    public function getId()
+    function getId()
     {
         return $this->id;
     }
@@ -56,7 +54,7 @@ class GroupRequest extends Request
      * @param mixed $maxResults
      * @return $this
      */
-    public function setMaxResults($maxResults)
+    function setMaxResults($maxResults)
     {
         $this->maxResults = $maxResults;
         return $this;
@@ -65,7 +63,7 @@ class GroupRequest extends Request
     /**
      * @return mixed
      */
-    public function getMaxResults()
+    function getMaxResults()
     {
         return $this->maxResults;
     }
@@ -74,7 +72,7 @@ class GroupRequest extends Request
      * @param mixed $member
      * @return $this
      */
-    public function setMember($member)
+    function setMember($member)
     {
         $this->member = $member;
         return $this;
@@ -83,7 +81,7 @@ class GroupRequest extends Request
     /**
      * @return mixed
      */
-    public function getMember()
+    function getMember()
     {
         return $this->member;
     }
@@ -92,7 +90,7 @@ class GroupRequest extends Request
      * @param mixed $name
      * @return $this
      */
-    public function setName($name)
+    function setName($name)
     {
         $this->name = $name;
         return $this;
@@ -101,7 +99,7 @@ class GroupRequest extends Request
     /**
      * @return mixed
      */
-    public function getName()
+    function getName()
     {
         return $this->name;
     }
@@ -110,7 +108,7 @@ class GroupRequest extends Request
      * @param mixed $nameLike
      * @return $this
      */
-    public function setNameLike($nameLike)
+    function setNameLike($nameLike)
     {
         $this->nameLike = $nameLike;
         return $this;
@@ -119,7 +117,7 @@ class GroupRequest extends Request
     /**
      * @return mixed
      */
-    public function getNameLike()
+    function getNameLike()
     {
         return $this->nameLike;
     }
@@ -128,7 +126,7 @@ class GroupRequest extends Request
      * @param mixed $sortBy
      * @return $this
      */
-    public function setSortBy($sortBy)
+    function setSortBy($sortBy)
     {
         $this->sortBy = $sortBy;
         return $this;
@@ -137,7 +135,7 @@ class GroupRequest extends Request
     /**
      * @return mixed
      */
-    public function getSortBy()
+    function getSortBy()
     {
         return $this->sortBy;
     }
@@ -146,7 +144,7 @@ class GroupRequest extends Request
      * @param mixed $sortOrder
      * @return $this
      */
-    public function setSortOrder($sortOrder)
+    function setSortOrder($sortOrder)
     {
         $this->sortOrder = $sortOrder;
         return $this;
@@ -155,7 +153,7 @@ class GroupRequest extends Request
     /**
      * @return mixed
      */
-    public function getSortOrder()
+    function getSortOrder()
     {
         return $this->sortOrder;
     }
@@ -164,7 +162,7 @@ class GroupRequest extends Request
      * @param mixed $type
      * @return $this
      */
-    public function setType($type)
+    function setType($type)
     {
         $this->type = $type;
         return $this;
@@ -173,10 +171,8 @@ class GroupRequest extends Request
     /**
      * @return mixed
      */
-    public function getType()
+    function getType()
     {
         return $this->type;
     }
-
-
 }

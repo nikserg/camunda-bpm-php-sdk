@@ -1,6 +1,5 @@
 <?php
 
-
 namespace org\camunda\php\sdk\entity\response;
 
 use org\camunda\php\sdk\helper\CastHelper;
@@ -21,7 +20,7 @@ class ProcessDefinition extends CastHelper
     /**
      * @param mixed $category
      */
-    public function setCategory($category)
+    function setCategory($category)
     {
         $this->category = $category;
     }
@@ -29,7 +28,7 @@ class ProcessDefinition extends CastHelper
     /**
      * @return mixed
      */
-    public function getCategory()
+    function getCategory()
     {
         return $this->category;
     }
@@ -37,7 +36,7 @@ class ProcessDefinition extends CastHelper
     /**
      * @param mixed $deploymentId
      */
-    public function setDeploymentId($deploymentId)
+    function setDeploymentId($deploymentId)
     {
         $this->deploymentId = $deploymentId;
     }
@@ -45,7 +44,7 @@ class ProcessDefinition extends CastHelper
     /**
      * @return mixed
      */
-    public function getDeploymentId()
+    function getDeploymentId()
     {
         return $this->deploymentId;
     }
@@ -53,7 +52,7 @@ class ProcessDefinition extends CastHelper
     /**
      * @param mixed $description
      */
-    public function setDescription($description)
+    function setDescription($description)
     {
         $this->description = $description;
     }
@@ -61,7 +60,7 @@ class ProcessDefinition extends CastHelper
     /**
      * @return mixed
      */
-    public function getDescription()
+    function getDescription()
     {
         return $this->description;
     }
@@ -69,7 +68,7 @@ class ProcessDefinition extends CastHelper
     /**
      * @param mixed $diagram
      */
-    public function setDiagram($diagram)
+    function setDiagram($diagram)
     {
         $this->diagram = $diagram;
     }
@@ -77,7 +76,7 @@ class ProcessDefinition extends CastHelper
     /**
      * @return mixed
      */
-    public function getDiagram()
+    function getDiagram()
     {
         return $this->diagram;
     }
@@ -85,7 +84,7 @@ class ProcessDefinition extends CastHelper
     /**
      * @param mixed $id
      */
-    public function setId($id)
+    function setId($id)
     {
         $this->id = $id;
     }
@@ -93,7 +92,7 @@ class ProcessDefinition extends CastHelper
     /**
      * @return mixed
      */
-    public function getId()
+    function getId()
     {
         return $this->id;
     }
@@ -101,7 +100,7 @@ class ProcessDefinition extends CastHelper
     /**
      * @param mixed $key
      */
-    public function setKey($key)
+    function setKey($key)
     {
         $this->key = $key;
     }
@@ -109,7 +108,7 @@ class ProcessDefinition extends CastHelper
     /**
      * @return mixed
      */
-    public function getKey()
+    function getKey()
     {
         return $this->key;
     }
@@ -117,7 +116,7 @@ class ProcessDefinition extends CastHelper
     /**
      * @param mixed $name
      */
-    public function setName($name)
+    function setName($name)
     {
         $this->name = $name;
     }
@@ -125,7 +124,7 @@ class ProcessDefinition extends CastHelper
     /**
      * @return mixed
      */
-    public function getName()
+    function getName()
     {
         return $this->name;
     }
@@ -133,7 +132,7 @@ class ProcessDefinition extends CastHelper
     /**
      * @param mixed $resource
      */
-    public function setResource($resource)
+    function setResource($resource)
     {
         $this->resource = $resource;
     }
@@ -141,7 +140,7 @@ class ProcessDefinition extends CastHelper
     /**
      * @return mixed
      */
-    public function getResource()
+    function getResource()
     {
         return $this->resource;
     }
@@ -149,7 +148,7 @@ class ProcessDefinition extends CastHelper
     /**
      * @param mixed $suspended
      */
-    public function setSuspended($suspended)
+    function setSuspended($suspended)
     {
         $this->suspended = $suspended;
     }
@@ -157,7 +156,7 @@ class ProcessDefinition extends CastHelper
     /**
      * @return mixed
      */
-    public function getSuspended()
+    function getSuspended()
     {
         return $this->suspended;
     }
@@ -165,7 +164,7 @@ class ProcessDefinition extends CastHelper
     /**
      * @param mixed $version
      */
-    public function setVersion($version)
+    function setVersion($version)
     {
         $this->version = $version;
     }
@@ -173,10 +172,8 @@ class ProcessDefinition extends CastHelper
     /**
      * @return mixed
      */
-    public function getVersion()
+    function getVersion()
     {
         return $this->version;
     }
-
-
 }

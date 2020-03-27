@@ -1,6 +1,5 @@
 <?php
 
-
 namespace org\camunda\php\sdk\entity\request;
 
 class StatisticRequest extends Request
@@ -13,7 +12,7 @@ class StatisticRequest extends Request
      * @param mixed $failedJobs
      * @return $this
      */
-    public function setFailedJobs($failedJobs)
+    function setFailedJobs($failedJobs)
     {
         $this->failedJobs = $failedJobs;
         return $this;
@@ -22,7 +21,7 @@ class StatisticRequest extends Request
     /**
      * @return mixed
      */
-    public function getFailedJobs()
+    function getFailedJobs()
     {
         return $this->failedJobs;
     }
@@ -31,7 +30,7 @@ class StatisticRequest extends Request
      * @param mixed $incidents
      * @return $this
      */
-    public function setIncidents($incidents)
+    function setIncidents($incidents)
     {
         $this->incidents = $incidents;
         return $this;
@@ -40,7 +39,7 @@ class StatisticRequest extends Request
     /**
      * @return mixed
      */
-    public function getIncidents()
+    function getIncidents()
     {
         return $this->incidents;
     }
@@ -49,7 +48,7 @@ class StatisticRequest extends Request
      * @param mixed $incidentsForType
      * @return $this
      */
-    public function setIncidentsForType($incidentsForType)
+    function setIncidentsForType($incidentsForType)
     {
         $this->incidentsForType = $incidentsForType;
         return $this;
@@ -58,10 +57,8 @@ class StatisticRequest extends Request
     /**
      * @return mixed
      */
-    public function getIncidentsForType()
+    function getIncidentsForType()
     {
         return $this->incidentsForType;
     }
-
-
 }

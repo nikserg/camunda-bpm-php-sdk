@@ -1,6 +1,5 @@
 <?php
 
-
 namespace org\camunda\php\tests;
 
 use org\camunda\php\sdk\entity\request\HistoricActivityInstanceRequest;
@@ -9,40 +8,40 @@ use org\camunda\php\sdk\entity\request\HistoricVariableInstanceRequest;
 use org\camunda\php\sdk\entity\request\HistoricActivityStatisticRequest;
 use org\camunda\php\sdk\entity\request\ProcessDefinitionRequest;
 use org\camunda\php\sdk\service\HistoryService;
+use org\camunda\php\sdk\service\ProcessDefinitionService;
 
-include('../../vendor/autoload.php');
+include('../vendor/autoload.php');
 
 class HistoryServiceTest extends \PHPUnit\Framework\TestCase
 {
-    protected static $restApi;
+    /**
+     * @var HistoryService
+     */
     protected static $hs;
+    /**
+     * @var ProcessDefinitionService
+     */
     protected static $pds;
 
     public static function setUpBeforeClass(): void
     {
-        self::$restApi = 'http://localhost:8080/engine-rest';
-        print("\n\nCLASS: " . __CLASS__ . "\n");
-        self::$hs = new HistoryService(self::$restApi);
-    }
-
-    public static function tearDownAfterClass(): void
-    {
-        self::$restApi = null;
+        self::$hs = new HistoryService('http://localhost:8080/engine-rest');
+        self::$pds = new ProcessDefinitionService('http://localhost:8080/engine-rest');
     }
 
     /**
-     * @test
+     * @throws \Exception
      */
-    public function getActivityInstances()
+    function testGetActivityInstances()
     {
         $activityInstances = self::$hs->getActivityInstances(new HistoricActivityInstanceRequest());
-        $this->assertEmpty($activityInstances->historicActivityInstance_0->getAssignee());
+        $this->assertEmpty($activityInstances[0]->getAssignee());
     }
 
     /**
-     * @test
+     * @throws \Exception
      */
-    public function getActivityInstancesCount()
+    function testGetActivityInstancesCount()
     {
         $activityInstancesCount = self::$hs->getActivityInstancesCount(new HistoricActivityInstanceRequest());
         $this->assertNotEquals(0, $activityInstancesCount);
@@ -51,18 +50,18 @@ class HistoryServiceTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @test
+     * @throws \Exception
      */
-    public function getProcessInstances()
+    function testGetProcessInstances()
     {
         $processInstances = self::$hs->getProcessInstances(new HistoricProcessInstanceRequest());
-        $this->assertEmpty($processInstances->historicProcessInstance_0->getStartUserId());
+        $this->assertEmpty($processInstances[0]->getStartUserId());
     }
 
     /**
-     * @test
+     * @throws \Exception
      */
-    public function getProcessInstancesCount()
+    function testGetProcessInstancesCount()
     {
         $processInstancesCount = self::$hs->getProcessInstancesCount(new HistoricProcessInstanceRequest());
         $this->assertNotEquals(0, $processInstancesCount);
@@ -71,19 +70,19 @@ class HistoryServiceTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @test
+     * @throws \Exception
      */
-    public function getVariableInstances()
+    function testGetVariableInstances()
     {
         $variableInstance = self::$hs->getVariableInstances(new HistoricVariableInstanceRequest());
-        $this->assertNotEmpty($variableInstance->historicVariableInstance_0->getType());
-        $this->assertEquals('String', $variableInstance->historicVariableInstance_0->getType());
+        $this->assertNotEmpty($variableInstance[0]->getType());
+        $this->assertEquals('String', $variableInstance[0]->getType());
     }
 
     /**
-     * @test
+     * @throws \Exception
      */
-    public function getVariableInstancesCount()
+    function testGetVariableInstancesCount()
     {
         $variableInstanceCount = self::$hs->getVariableInstances(new HistoricVariableInstanceRequest());
         $this->assertNotEquals(0, $variableInstanceCount);
@@ -92,13 +91,13 @@ class HistoryServiceTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @test
+     * @throws \Exception
      */
-    public function testGetHistoricActivityStatistics()
+    function testGetHistoricActivityStatistics()
     {
-        $pdi = self::$pds->getDefinitions(new ProcessDefinitionRequest())->definition_0->getId();
+        $pdi = self::$pds->getDefinitions(new ProcessDefinitionRequest())[0]->getId();
         $has = self::$hs->getHistoricActivityStatistic($pdi,
-            new HistoricActivityStatisticRequest())->statistic_0->getId();
-        $this->assertNotEmpty('UserTask_1', $has);
+            new HistoricActivityStatisticRequest())[0];
+        $this->assertNotEmpty('UserTask_1', $has->getId());
     }
 }

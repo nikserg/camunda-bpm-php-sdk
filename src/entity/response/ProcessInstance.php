@@ -1,6 +1,5 @@
 <?php
 
-
 namespace org\camunda\php\sdk\entity\response;
 
 use org\camunda\php\sdk\helper\CastHelper;
@@ -17,7 +16,7 @@ class ProcessInstance extends CastHelper
     /**
      * @param mixed $businessKey
      */
-    public function setBusinessKey($businessKey)
+    function setBusinessKey($businessKey)
     {
         $this->businessKey = $businessKey;
     }
@@ -25,7 +24,7 @@ class ProcessInstance extends CastHelper
     /**
      * @return mixed
      */
-    public function getBusinessKey()
+    function getBusinessKey()
     {
         return $this->businessKey;
     }
@@ -33,7 +32,7 @@ class ProcessInstance extends CastHelper
     /**
      * @param mixed $definitionId
      */
-    public function setDefinitionId($definitionId)
+    function setDefinitionId($definitionId)
     {
         $this->definitionId = $definitionId;
     }
@@ -41,7 +40,7 @@ class ProcessInstance extends CastHelper
     /**
      * @return mixed
      */
-    public function getDefinitionId()
+    function getDefinitionId()
     {
         return $this->definitionId;
     }
@@ -49,7 +48,7 @@ class ProcessInstance extends CastHelper
     /**
      * @param mixed $ended
      */
-    public function setEnded($ended)
+    function setEnded($ended)
     {
         $this->ended = $ended;
     }
@@ -57,7 +56,7 @@ class ProcessInstance extends CastHelper
     /**
      * @return mixed
      */
-    public function getEnded()
+    function getEnded()
     {
         return $this->ended;
     }
@@ -65,7 +64,7 @@ class ProcessInstance extends CastHelper
     /**
      * @param mixed $id
      */
-    public function setId($id)
+    function setId($id)
     {
         $this->id = $id;
     }
@@ -73,7 +72,7 @@ class ProcessInstance extends CastHelper
     /**
      * @return mixed
      */
-    public function getId()
+    function getId()
     {
         return $this->id;
     }
@@ -81,7 +80,7 @@ class ProcessInstance extends CastHelper
     /**
      * @param mixed $links
      */
-    public function setLinks($links)
+    function setLinks($links)
     {
         $this->links = $links;
     }
@@ -89,7 +88,7 @@ class ProcessInstance extends CastHelper
     /**
      * @return mixed
      */
-    public function getLinks()
+    function getLinks()
     {
         return $this->links;
     }
@@ -97,7 +96,7 @@ class ProcessInstance extends CastHelper
     /**
      * @param mixed $suspended
      */
-    public function setSuspended($suspended)
+    function setSuspended($suspended)
     {
         $this->suspended = $suspended;
     }
@@ -105,10 +104,8 @@ class ProcessInstance extends CastHelper
     /**
      * @return mixed
      */
-    public function getSuspended()
+    function getSuspended()
     {
         return $this->suspended;
     }
-
-
 }

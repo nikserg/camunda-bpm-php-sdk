@@ -1,9 +1,7 @@
 <?php
 
-
 namespace org\camunda\php\sdk\service;
 
-use Exception;
 use org\camunda\php\sdk\entity\request\CredentialsRequest;
 use org\camunda\php\sdk\entity\request\ProfileRequest;
 use org\camunda\php\sdk\entity\request\UserRequest;
@@ -12,7 +10,6 @@ use org\camunda\php\sdk\entity\response\User;
 
 class UserService extends RequestService
 {
-
     /**
      * Create a new user
      *
@@ -21,12 +18,11 @@ class UserService extends RequestService
      * @param UserRequest $request user properties
      * @throws \Exception
      */
-    public function createUser(UserRequest $request)
+    function createUser(UserRequest $request)
     {
         $this->setRequestUrl('/user/create');
         $this->setRequestObject($request);
         $this->setRequestMethod('POST');
-
         $this->execute();
     }
 
@@ -35,15 +31,14 @@ class UserService extends RequestService
      *
      * @link http://docs.camunda.org/api-references/rest/#!/user/delete
      *
-     * @param String $id user ID
+     * @param string $id user ID
      * @throws \Exception
      */
-    public function deleteUser($id)
+    function deleteUser($id)
     {
         $this->setRequestUrl('/user/' . $id);
         $this->setRequestObject(null);
         $this->setRequestMethod('DELETE');
-
         $this->execute();
     }
 
@@ -52,22 +47,15 @@ class UserService extends RequestService
      *
      * @link http://docs.camunda.org/api-references/rest/#!/user/get
      *
-     * @param String $id user ID
+     * @param string $id user ID
      * @throws \Exception
      * @return \org\camunda\php\sdk\entity\response\User $this requested profile
      */
-    public function getProfile($id)
+    function getProfile($id)
     {
         $this->setRequestUrl('/user/' . $id . '/profile');
         $this->setRequestObject(null);
-        $this->setRequestMethod('GET');
-
-        $user = new User();
-        try {
-            return $user->cast($this->execute());
-        } catch (Exception $e) {
-            throw $e;
-        }
+        return User::cast($this->execute());
     }
 
     /**
@@ -77,25 +65,13 @@ class UserService extends RequestService
      *
      * @param UserRequest $request filter parameters
      * @throws \Exception
-     * @return object list of requested users
+     * @return User[] list of requested users
      */
-    public function getUsers(UserRequest $request)
+    function getUsers(UserRequest $request)
     {
         $this->setRequestUrl('/user/');
         $this->setRequestObject($request);
-        $this->setRequestMethod('GET');
-
-        try {
-            $prepare = $this->execute();
-            $response = [];
-            foreach ($prepare AS $index => $data) {
-                $user = new User();
-                $response['user_' . $index] = $user->cast($data);
-            }
-            return (object)$response;
-        } catch (Exception $e) {
-            throw $e;
-        }
+        return User::castList($this->execute());
     }
 
     /**
@@ -107,12 +83,10 @@ class UserService extends RequestService
      * @throws \Exception
      * @return int Amount of users
      */
-    public function getCount(UserRequest $request)
+    function getCount(UserRequest $request)
     {
         $this->setRequestUrl('/user/count');
         $this->setRequestObject($request);
-        $this->setRequestMethod('GET');
-
         return $this->execute()->count;
     }
 
@@ -121,16 +95,15 @@ class UserService extends RequestService
      *
      * @link http://docs.camunda.org/api-references/rest/#!/user/put-update-profile
      *
-     * @param String         $id user ID
+     * @param string         $id user ID
      * @param ProfileRequest $request user properties
      * @throws \Exception
      */
-    public function updateProfile($id, ProfileRequest $request)
+    function updateProfile($id, ProfileRequest $request)
     {
         $this->setRequestUrl('/user/' . $id . '/profile');
         $this->setRequestObject($request);
         $this->setRequestMethod('PUT');
-
         $this->execute();
     }
 
@@ -139,16 +112,15 @@ class UserService extends RequestService
      *
      * @link http://docs.camunda.org/api-references/rest/#!/user/put-update-credentials
      *
-     * @param String             $id user ID
+     * @param string             $id user ID
      * @param CredentialsRequest $request credential properties
      * @throws \Exception
      */
-    public function updateCredentials($id, CredentialsRequest $request)
+    function updateCredentials($id, CredentialsRequest $request)
     {
         $this->setRequestUrl('/user/' . $id . '/credentials');
         $this->setRequestObject($request);
         $this->setRequestMethod('PUT');
-
         $this->execute();
     }
 
@@ -161,18 +133,12 @@ class UserService extends RequestService
      * @throws \Exception
      * @return ResourceOption $this
      */
-    public function getResourceOption()
+    function getResourceOption()
     {
-        $resourceOption = new ResourceOption();
         $this->setRequestUrl('/user');
         $this->setRequestObject(null);
         $this->setRequestMethod('OPTIONS');
-
-        try {
-            return $resourceOption->cast($this->execute());
-        } catch (Exception $e) {
-            throw $e;
-        }
+        return ResourceOption::cast($this->execute());
     }
 
     /**
@@ -181,21 +147,15 @@ class UserService extends RequestService
      *
      * @link http://docs.camunda.org/latest/api-references/rest/#user-user-resource-options
      *
-     * @param String $id user ID
+     * @param string $id user ID
      * @throws \Exception
      * @return ResourceOption $this
      */
-    public function getResourceInstanceOption($id)
+    function getResourceInstanceOption($id)
     {
-        $requestOption = new ResourceOption();
         $this->setRequestUrl('/user/' . $id);
         $this->setRequestObject(null);
         $this->setRequestMethod('OPTIONS');
-
-        try {
-            return $requestOption->cast($this->execute());
-        } catch (Exception $e) {
-            throw $e;
-        }
+        return ResourceOption::cast($this->execute());
     }
 }

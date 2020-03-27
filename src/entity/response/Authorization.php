@@ -1,8 +1,6 @@
 <?php
 
-
 namespace org\camunda\php\sdk\entity\response;
-
 
 use org\camunda\php\sdk\helper\CastHelper;
 
@@ -17,7 +15,6 @@ class Authorization extends CastHelper
     protected $resourceId;
     protected $links;
     protected $count;
-
     protected $permissionName;
     protected $resourceName;
     protected $isAuthorized;
@@ -25,7 +22,7 @@ class Authorization extends CastHelper
     /**
      * @param mixed $count
      */
-    public function setCount($count)
+    function setCount($count)
     {
         $this->count = $count;
     }
@@ -33,7 +30,7 @@ class Authorization extends CastHelper
     /**
      * @return mixed
      */
-    public function getCount()
+    function getCount()
     {
         return $this->count;
     }
@@ -41,7 +38,7 @@ class Authorization extends CastHelper
     /**
      * @param mixed $groupId
      */
-    public function setGroupId($groupId)
+    function setGroupId($groupId)
     {
         $this->groupId = $groupId;
     }
@@ -49,7 +46,7 @@ class Authorization extends CastHelper
     /**
      * @return mixed
      */
-    public function getGroupId()
+    function getGroupId()
     {
         return $this->groupId;
     }
@@ -57,7 +54,7 @@ class Authorization extends CastHelper
     /**
      * @param mixed $id
      */
-    public function setId($id)
+    function setId($id)
     {
         $this->id = $id;
     }
@@ -65,7 +62,7 @@ class Authorization extends CastHelper
     /**
      * @return mixed
      */
-    public function getId()
+    function getId()
     {
         return $this->id;
     }
@@ -73,7 +70,7 @@ class Authorization extends CastHelper
     /**
      * @param mixed $isAuthorized
      */
-    public function setIsAuthorized($isAuthorized)
+    function setIsAuthorized($isAuthorized)
     {
         $this->isAuthorized = $isAuthorized;
     }
@@ -81,7 +78,7 @@ class Authorization extends CastHelper
     /**
      * @return mixed
      */
-    public function getIsAuthorized()
+    function getIsAuthorized()
     {
         return $this->isAuthorized;
     }
@@ -89,7 +86,7 @@ class Authorization extends CastHelper
     /**
      * @param mixed $links
      */
-    public function setLinks($links)
+    function setLinks($links)
     {
         $this->links = $links;
     }
@@ -97,7 +94,7 @@ class Authorization extends CastHelper
     /**
      * @return mixed
      */
-    public function getLinks()
+    function getLinks()
     {
         return $this->links;
     }
@@ -105,7 +102,7 @@ class Authorization extends CastHelper
     /**
      * @param mixed $permissionName
      */
-    public function setPermissionName($permissionName)
+    function setPermissionName($permissionName)
     {
         $this->permissionName = $permissionName;
     }
@@ -113,7 +110,7 @@ class Authorization extends CastHelper
     /**
      * @return mixed
      */
-    public function getPermissionName()
+    function getPermissionName()
     {
         return $this->permissionName;
     }
@@ -121,7 +118,7 @@ class Authorization extends CastHelper
     /**
      * @param mixed $permissions
      */
-    public function setPermissions($permissions)
+    function setPermissions($permissions)
     {
         $this->permissions = $permissions;
     }
@@ -129,7 +126,7 @@ class Authorization extends CastHelper
     /**
      * @return mixed
      */
-    public function getPermissions()
+    function getPermissions()
     {
         return $this->permissions;
     }
@@ -137,7 +134,7 @@ class Authorization extends CastHelper
     /**
      * @param mixed $resourceId
      */
-    public function setResourceId($resourceId)
+    function setResourceId($resourceId)
     {
         $this->resourceId = $resourceId;
     }
@@ -145,7 +142,7 @@ class Authorization extends CastHelper
     /**
      * @return mixed
      */
-    public function getResourceId()
+    function getResourceId()
     {
         return $this->resourceId;
     }
@@ -153,7 +150,7 @@ class Authorization extends CastHelper
     /**
      * @param mixed $resourceName
      */
-    public function setResourceName($resourceName)
+    function setResourceName($resourceName)
     {
         $this->resourceName = $resourceName;
     }
@@ -161,7 +158,7 @@ class Authorization extends CastHelper
     /**
      * @return mixed
      */
-    public function getResourceName()
+    function getResourceName()
     {
         return $this->resourceName;
     }
@@ -169,7 +166,7 @@ class Authorization extends CastHelper
     /**
      * @param mixed $resourceType
      */
-    public function setResourceType($resourceType)
+    function setResourceType($resourceType)
     {
         $this->resourceType = $resourceType;
     }
@@ -177,7 +174,7 @@ class Authorization extends CastHelper
     /**
      * @return mixed
      */
-    public function getResourceType()
+    function getResourceType()
     {
         return $this->resourceType;
     }
@@ -185,7 +182,7 @@ class Authorization extends CastHelper
     /**
      * @param mixed $type
      */
-    public function setType($type)
+    function setType($type)
     {
         $this->type = $type;
     }
@@ -193,7 +190,7 @@ class Authorization extends CastHelper
     /**
      * @return mixed
      */
-    public function getType()
+    function getType()
     {
         return $this->type;
     }
@@ -201,7 +198,7 @@ class Authorization extends CastHelper
     /**
      * @param mixed $userId
      */
-    public function setUserId($userId)
+    function setUserId($userId)
     {
         $this->userId = $userId;
     }
@@ -209,10 +206,8 @@ class Authorization extends CastHelper
     /**
      * @return mixed
      */
-    public function getUserId()
+    function getUserId()
     {
         return $this->userId;
     }
-
-
 }

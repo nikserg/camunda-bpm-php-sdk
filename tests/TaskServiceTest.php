@@ -1,6 +1,5 @@
 <?php
 
-
 namespace org\camunda\php\tests;
 
 use org\camunda\php\sdk\entity\request\CredentialsRequest;
@@ -11,34 +10,32 @@ use org\camunda\php\sdk\entity\request\IdentityLinksRequest;
 use org\camunda\php\sdk\service\TaskService;
 use org\camunda\php\sdk\service\UserService;
 
-include('../../vendor/autoload.php');
+include('../vendor/autoload.php');
 
 class TaskServiceTest extends \PHPUnit\Framework\TestCase
 {
-    protected static $restApi;
+    /**
+     * @var TaskService
+     */
     protected static $ts;
+    /**
+     * @var UserService
+     */
     protected static $us;
 
     public static function setUpBeforeClass(): void
     {
-        self::$restApi = 'http://localhost:8080/engine-rest';
-        self::$ts = new TaskService(self::$restApi);
-        self::$us = new UserService(self::$restApi);
-        print("\n\nCLASS: " . __CLASS__ . "\n");
-    }
-
-    public static function tearDownAfterClass(): void
-    {
-        self::$restApi = null;
+        self::$ts = new TaskService('http://localhost:8080/engine-rest');
+        self::$us = new UserService('http://localhost:8080/engine-rest');
     }
 
     /**
-     * @test
+     * @throws \Exception
      */
-    public function getSingleTask()
+    function testGetSingleTask()
     {
         $tasks = self::$ts->getTasks(new TaskRequest());
-        foreach ($tasks AS $task) {
+        foreach ($tasks as $task) {
             if (!preg_match('/^waitStates\:.*|^calledProcess:.*/', $task->getProcessDefinitionId())) {
                 $this->assertEquals('demo', self::$ts->getTask($task->getId())->getAssignee());
                 break;
@@ -46,23 +43,19 @@ class TaskServiceTest extends \PHPUnit\Framework\TestCase
         };
     }
 
-    //--------------------------  TEST GET TASKS  ----------------------------------------
-
     /**
-     * @test
+     * @throws \Exception
      */
-    public function getTasks()
+    function testGetTasks()
     {
         $this->assertGreaterThan(0, count(get_object_vars(self::$ts->getTasks(new TaskRequest()))));
         $this->assertGreaterThan(0, count(get_object_vars(self::$ts->getTasks(new TaskRequest(), true))));
-
         $tr = new TaskRequest();
         $tr->setAssignee('demo');
         $this->assertGreaterThan(0, count(get_object_vars(self::$ts->getTasks($tr, true))));
         $this->assertGreaterThan(0, count(get_object_vars(self::$ts->getTasks($tr))));
-
         $tasks = self::$ts->getTasks(new TaskRequest());
-        foreach ($tasks AS $task) {
+        foreach ($tasks as $task) {
             if (!preg_match('/^waitStates\:.*|^calledProcess:.*/', $task->getProcessDefinitionId())) {
                 $this->assertEquals('demo', self::$ts->getTask($task->getId())->getAssignee());
                 break;
@@ -71,13 +64,12 @@ class TaskServiceTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @test
+     * @throws \Exception
      */
-    public function getTaskCount()
+    function testGetTaskCount()
     {
         $this->assertGreaterThan(0, self::$ts->getCount(new TaskRequest()));
         $this->assertGreaterThan(0, self::$ts->getCount(new TaskRequest(), true));
-
         $tr = new TaskRequest();
         $tr->setAssignee('demo');
         $this->assertGreaterThan(0, self::$ts->getCount($tr));
@@ -85,12 +77,12 @@ class TaskServiceTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @test
+     * @throws \Exception
      */
-    public function getFormKey()
+    function testGetFormKey()
     {
         $tasks = self::$ts->getTasks(new TaskRequest());
-        foreach ($tasks AS $task) {
+        foreach ($tasks as $task) {
             if (!preg_match('/^waitStates\:.*|^calledProcess:.*/', $task->getProcessDefinitionId())) {
                 $this->assertEquals('embedded:app:forms/assign-approver.html',
                     self::$ts->getFormKey($task->getId())->getKey());
@@ -100,9 +92,9 @@ class TaskServiceTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @test
+     * @throws \Exception
      */
-    public function claimTask()
+    function testClaimTask()
     {
         $ur = new UserRequest();
         $up = new ProfileRequest();
@@ -114,13 +106,11 @@ class TaskServiceTest extends \PHPUnit\Framework\TestCase
         $uc->setPassword('654321');
         $ur->setProfile($up)->setCredentials($uc);
         self::$us->createUser($ur);
-
-        $task = self::$ts->getTasks(new TaskRequest())->task_1;
+        $task = self::$ts->getTasks(new TaskRequest())[1];
         $tr = new TaskRequest();
         $tr->setUserId('shentschel');
         self::$ts->unclaimTask($task->getId());
         self::$ts->claimTask($task->getId(), $tr);
-
         $this->assertEquals('shentschel', self::$ts->getTask($task->getId())->getAssignee());
         self::$ts->unclaimTask($task->getId());
         self::$ts->getTask($task->getId())->getAssignee();
@@ -128,13 +118,12 @@ class TaskServiceTest extends \PHPUnit\Framework\TestCase
         self::$ts->claimTask($task->getId(), $tr);
         self::$ts->getTask($task->getId())->getAssignee();
         self::$us->deleteUser('shentschel');
-
     }
 
     /**
-     * @test
+     * @throws \Exception
      */
-    public function unclaimTask()
+    function testUnclaimTask()
     {
         $ur = new UserRequest();
         $up = new ProfileRequest();
@@ -146,49 +135,34 @@ class TaskServiceTest extends \PHPUnit\Framework\TestCase
         $uc->setPassword('654321');
         $ur->setProfile($up)->setCredentials($uc);
         self::$us->createUser($ur);
-
-        $task = self::$ts->getTasks(new TaskRequest())->task_1;
+        $task = self::$ts->getTasks(new TaskRequest())[1];
         $tr = new TaskRequest();
         $tr->setUserId('shentschel');
         self::$ts->unclaimTask($task->getId());
-
         $this->assertNull(self::$ts->getTask($task->getId())->getAssignee());
         $tr->setUserId('demo');
         self::$ts->claimTask($task->getId(), $tr);
         self::$us->deleteUser('shentschel');
-
     }
 
-    /**
-     * TODO: Needs a good method to deploy processes on the fly with the engine
-     *
-     * @test
-     */
-    public function completeTask()
+    function testCompleteTask()
     {
         $this->markTestIncomplete(
-            'This test has not been implemented yet.'
+            'Needs a good method to deploy processes on the fly with the engine'
         );
-
     }
 
-    /**
-     * TODO: Needs a good method to deploy processes on the fly with the engine
-     *
-     * @test
-     */
-    public function resolveTask()
+    function testResolveTask()
     {
         $this->markTestIncomplete(
-            'This test has not been implemented yet.'
+            'Needs a good method to deploy processes on the fly with the engine'
         );
-
     }
 
     /**
-     * @test
+     * @throws \Exception
      */
-    public function delegateTask()
+    function testDelegateTask()
     {
         $ur = new UserRequest();
         $up = new ProfileRequest();
@@ -200,29 +174,26 @@ class TaskServiceTest extends \PHPUnit\Framework\TestCase
         $uc->setPassword('654321');
         $ur->setProfile($up)->setCredentials($uc);
         self::$us->createUser($ur);
-
         $tasks = self::$ts->getTasks(new TaskRequest());
         $tr = new TaskRequest();
         $tr->setUserId('shentschel');
-
-        foreach ($tasks AS $task) {
+        foreach ($tasks as $task) {
             if (!preg_match('/^waitStates\:.*/', $task->getProcessDefinitionId())) {
                 self::$ts->delegateTask($task->getId(), $tr);
                 $this->assertEquals('PENDING', self::$ts->getTask($task->getId())->getDelegationState());
-                self::$ts->unclaimTask($task->getId(), $tr);
+                self::$ts->unclaimTask($task->getId());
                 $tr->setUserId('demo');
                 self::$ts->claimTask($task->getId(), $tr);
                 break;
             }
         };
-
         self::$us->deleteUser('shentschel');
     }
 
     /**
-     * @test
+     * @throws \Exception
      */
-    public function setAssignee()
+    function testSetAssignee()
     {
         $ur = new UserRequest();
         $up = new ProfileRequest();
@@ -234,60 +205,53 @@ class TaskServiceTest extends \PHPUnit\Framework\TestCase
         $uc->setPassword('654321');
         $ur->setProfile($up)->setCredentials($uc);
         self::$us->createUser($ur);
-
-        $task = self::$ts->getTasks(new TaskRequest())->task_1;
+        $task = self::$ts->getTasks(new TaskRequest())[1];
         $tr = new TaskRequest();
         $tr->setUserId('shentschel');
         self::$ts->setAssignee($task->getId(), $tr);
-
         $this->assertEquals('shentschel', self::$ts->getTask($task->getId())->getAssignee());
-
         $tr = new TaskRequest();
         $tr->setUserId('demo');
         self::$ts->setAssignee($task->getId(), $tr);
-
         self::$us->deleteUser($up->getId());
     }
 
     /**
-     * @test
+     * @throws \Exception
      */
-    public function getIdentityLinks()
+    function testGetIdentityLinks()
     {
-        $task = self::$ts->getTasks(new TaskRequest())->task_0;
+        $task = self::$ts->getTasks(new TaskRequest())[0];
         $ilr = new IdentityLinksRequest();
         $ilr->setType('assignee');
         $ilr->setUserId('demo');
-
-        $il = self::$ts->getIdentityLinks($task->getId(), $ilr)->identityLink_0;
+        $il = self::$ts->getIdentityLinks($task->getId(), $ilr)[0];
         $this->assertEquals('assignee', $il->getType());
         $this->assertEquals('demo', $il->getUserId());
     }
 
     /**
-     * @test
+     * @throws \Exception
      */
-    public function addIdentityLinks()
+    function testAddIdentityLinks()
     {
-        $task = self::$ts->getTasks(new TaskRequest())->task_0;
+        $task = self::$ts->getTasks(new TaskRequest())[0];
         $ilr = new IdentityLinksRequest();
         $ilr->setType('candidate');
         $ilr->setGroupId('demo');
-
         self::$ts->addIdentityLink($task->getId(), $ilr);
         $this->assertGreaterThan(0, count(get_object_vars(self::$ts->getIdentityLinks($task->getId(), $ilr))));
     }
 
     /**
-     * @test
+     * @throws \Exception
      */
-    public function deleteIdentityLinks()
+    function testDeleteIdentityLinks()
     {
-        $task = self::$ts->getTasks(new TaskRequest())->task_0;
+        $task = self::$ts->getTasks(new TaskRequest())[0];
         $ilr = new IdentityLinksRequest();
         $ilr->setType('candidate');
         $ilr->setGroupId('demo');
-
         self::$ts->deleteIdentityLink($task->getId(), $ilr);
         $this->assertEquals(0, count(get_object_vars(self::$ts->getIdentityLinks($task->getId(), $ilr))));
     }

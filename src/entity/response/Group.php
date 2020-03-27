@@ -1,8 +1,6 @@
 <?php
 
-
 namespace org\camunda\php\sdk\entity\response;
-
 
 use org\camunda\php\sdk\helper\CastHelper;
 
@@ -15,7 +13,7 @@ class Group extends CastHelper
     /**
      * @param mixed $id
      */
-    public function setId($id)
+    function setId($id)
     {
         $this->id = $id;
     }
@@ -23,7 +21,7 @@ class Group extends CastHelper
     /**
      * @return mixed
      */
-    public function getId()
+    function getId()
     {
         return $this->id;
     }
@@ -31,7 +29,7 @@ class Group extends CastHelper
     /**
      * @param mixed $name
      */
-    public function setName($name)
+    function setName($name)
     {
         $this->name = $name;
     }
@@ -39,7 +37,7 @@ class Group extends CastHelper
     /**
      * @return mixed
      */
-    public function getName()
+    function getName()
     {
         return $this->name;
     }
@@ -47,7 +45,7 @@ class Group extends CastHelper
     /**
      * @param mixed $type
      */
-    public function setType($type)
+    function setType($type)
     {
         $this->type = $type;
     }
@@ -55,10 +53,8 @@ class Group extends CastHelper
     /**
      * @return mixed
      */
-    public function getType()
+    function getType()
     {
         return $this->type;
     }
-
-
 }

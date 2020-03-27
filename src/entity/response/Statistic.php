@@ -1,6 +1,5 @@
 <?php
 
-
 namespace org\camunda\php\sdk\entity\response;
 
 use org\camunda\php\sdk\helper\CastHelper;
@@ -16,7 +15,7 @@ class Statistic extends CastHelper
     /**
      * @param mixed $definition
      */
-    public function setDefinition($definition)
+    function setDefinition($definition)
     {
         $this->definition = $definition;
     }
@@ -24,7 +23,7 @@ class Statistic extends CastHelper
     /**
      * @return mixed
      */
-    public function getDefinition()
+    function getDefinition()
     {
         return $this->definition;
     }
@@ -32,7 +31,7 @@ class Statistic extends CastHelper
     /**
      * @param mixed $failedJobs
      */
-    public function setFailedJobs($failedJobs)
+    function setFailedJobs($failedJobs)
     {
         $this->failedJobs = $failedJobs;
     }
@@ -40,7 +39,7 @@ class Statistic extends CastHelper
     /**
      * @return mixed
      */
-    public function getFailedJobs()
+    function getFailedJobs()
     {
         return $this->failedJobs;
     }
@@ -48,7 +47,7 @@ class Statistic extends CastHelper
     /**
      * @param mixed $id
      */
-    public function setId($id)
+    function setId($id)
     {
         $this->id = $id;
     }
@@ -56,7 +55,7 @@ class Statistic extends CastHelper
     /**
      * @return mixed
      */
-    public function getId()
+    function getId()
     {
         return $this->id;
     }
@@ -64,7 +63,7 @@ class Statistic extends CastHelper
     /**
      * @param mixed $incidents
      */
-    public function setIncidents($incidents)
+    function setIncidents($incidents)
     {
         $this->incidents = $incidents;
     }
@@ -72,7 +71,7 @@ class Statistic extends CastHelper
     /**
      * @return mixed
      */
-    public function getIncidents()
+    function getIncidents()
     {
         return $this->incidents;
     }
@@ -80,7 +79,7 @@ class Statistic extends CastHelper
     /**
      * @param mixed $instances
      */
-    public function setInstances($instances)
+    function setInstances($instances)
     {
         $this->instances = $instances;
     }
@@ -88,10 +87,8 @@ class Statistic extends CastHelper
     /**
      * @return mixed
      */
-    public function getInstances()
+    function getInstances()
     {
         return $this->instances;
     }
-
-
 }

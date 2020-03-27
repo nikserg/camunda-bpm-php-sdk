@@ -1,6 +1,5 @@
 <?php
 
-
 namespace org\camunda\php\sdk\entity\response;
 
 use org\camunda\php\sdk\helper\CastHelper;
@@ -26,7 +25,7 @@ class Task extends CastHelper
     /**
      * @param mixed $assignee
      */
-    public function setAssignee($assignee)
+    function setAssignee($assignee)
     {
         $this->assignee = $assignee;
     }
@@ -34,7 +33,7 @@ class Task extends CastHelper
     /**
      * @return mixed
      */
-    public function getAssignee()
+    function getAssignee()
     {
         return $this->assignee;
     }
@@ -42,7 +41,7 @@ class Task extends CastHelper
     /**
      * @param mixed $created
      */
-    public function setCreated($created)
+    function setCreated($created)
     {
         $this->created = $created;
     }
@@ -50,7 +49,7 @@ class Task extends CastHelper
     /**
      * @return mixed
      */
-    public function getCreated()
+    function getCreated()
     {
         return $this->created;
     }
@@ -58,7 +57,7 @@ class Task extends CastHelper
     /**
      * @param mixed $delegationState
      */
-    public function setDelegationState($delegationState)
+    function setDelegationState($delegationState)
     {
         $this->delegationState = $delegationState;
     }
@@ -66,7 +65,7 @@ class Task extends CastHelper
     /**
      * @return mixed
      */
-    public function getDelegationState()
+    function getDelegationState()
     {
         return $this->delegationState;
     }
@@ -74,7 +73,7 @@ class Task extends CastHelper
     /**
      * @param mixed $description
      */
-    public function setDescription($description)
+    function setDescription($description)
     {
         $this->description = $description;
     }
@@ -82,7 +81,7 @@ class Task extends CastHelper
     /**
      * @return mixed
      */
-    public function getDescription()
+    function getDescription()
     {
         return $this->description;
     }
@@ -90,7 +89,7 @@ class Task extends CastHelper
     /**
      * @param mixed $due
      */
-    public function setDue($due)
+    function setDue($due)
     {
         $this->due = $due;
     }
@@ -98,7 +97,7 @@ class Task extends CastHelper
     /**
      * @return mixed
      */
-    public function getDue()
+    function getDue()
     {
         return $this->due;
     }
@@ -106,7 +105,7 @@ class Task extends CastHelper
     /**
      * @param mixed $executionId
      */
-    public function setExecutionId($executionId)
+    function setExecutionId($executionId)
     {
         $this->executionId = $executionId;
     }
@@ -114,7 +113,7 @@ class Task extends CastHelper
     /**
      * @return mixed
      */
-    public function getExecutionId()
+    function getExecutionId()
     {
         return $this->executionId;
     }
@@ -122,7 +121,7 @@ class Task extends CastHelper
     /**
      * @param mixed $id
      */
-    public function setId($id)
+    function setId($id)
     {
         $this->id = $id;
     }
@@ -130,7 +129,7 @@ class Task extends CastHelper
     /**
      * @return mixed
      */
-    public function getId()
+    function getId()
     {
         return $this->id;
     }
@@ -138,7 +137,7 @@ class Task extends CastHelper
     /**
      * @param mixed $key
      */
-    public function setKey($key)
+    function setKey($key)
     {
         $this->key = $key;
     }
@@ -146,7 +145,7 @@ class Task extends CastHelper
     /**
      * @return mixed
      */
-    public function getKey()
+    function getKey()
     {
         return $this->key;
     }
@@ -154,7 +153,7 @@ class Task extends CastHelper
     /**
      * @param mixed $name
      */
-    public function setName($name)
+    function setName($name)
     {
         $this->name = $name;
     }
@@ -162,7 +161,7 @@ class Task extends CastHelper
     /**
      * @return mixed
      */
-    public function getName()
+    function getName()
     {
         return $this->name;
     }
@@ -170,7 +169,7 @@ class Task extends CastHelper
     /**
      * @param mixed $owner
      */
-    public function setOwner($owner)
+    function setOwner($owner)
     {
         $this->owner = $owner;
     }
@@ -178,7 +177,7 @@ class Task extends CastHelper
     /**
      * @return mixed
      */
-    public function getOwner()
+    function getOwner()
     {
         return $this->owner;
     }
@@ -186,7 +185,7 @@ class Task extends CastHelper
     /**
      * @param mixed $parentTaskId
      */
-    public function setParentTaskId($parentTaskId)
+    function setParentTaskId($parentTaskId)
     {
         $this->parentTaskId = $parentTaskId;
     }
@@ -194,7 +193,7 @@ class Task extends CastHelper
     /**
      * @return mixed
      */
-    public function getParentTaskId()
+    function getParentTaskId()
     {
         return $this->parentTaskId;
     }
@@ -202,7 +201,7 @@ class Task extends CastHelper
     /**
      * @param mixed $priority
      */
-    public function setPriority($priority)
+    function setPriority($priority)
     {
         $this->priority = $priority;
     }
@@ -210,7 +209,7 @@ class Task extends CastHelper
     /**
      * @return mixed
      */
-    public function getPriority()
+    function getPriority()
     {
         return $this->priority;
     }
@@ -218,7 +217,7 @@ class Task extends CastHelper
     /**
      * @param mixed $processDefinitionId
      */
-    public function setProcessDefinitionId($processDefinitionId)
+    function setProcessDefinitionId($processDefinitionId)
     {
         $this->processDefinitionId = $processDefinitionId;
     }
@@ -226,7 +225,7 @@ class Task extends CastHelper
     /**
      * @return mixed
      */
-    public function getProcessDefinitionId()
+    function getProcessDefinitionId()
     {
         return $this->processDefinitionId;
     }
@@ -234,7 +233,7 @@ class Task extends CastHelper
     /**
      * @param mixed $processInstanceId
      */
-    public function setProcessInstanceId($processInstanceId)
+    function setProcessInstanceId($processInstanceId)
     {
         $this->processInstanceId = $processInstanceId;
     }
@@ -242,7 +241,7 @@ class Task extends CastHelper
     /**
      * @return mixed
      */
-    public function getProcessInstanceId()
+    function getProcessInstanceId()
     {
         return $this->processInstanceId;
     }
@@ -250,7 +249,7 @@ class Task extends CastHelper
     /**
      * @param mixed $taskDefinitionId
      */
-    public function setTaskDefinitionId($taskDefinitionId)
+    function setTaskDefinitionId($taskDefinitionId)
     {
         $this->taskDefinitionId = $taskDefinitionId;
     }
@@ -258,10 +257,8 @@ class Task extends CastHelper
     /**
      * @return mixed
      */
-    public function getTaskDefinitionId()
+    function getTaskDefinitionId()
     {
         return $this->taskDefinitionId;
     }
-
-
 }

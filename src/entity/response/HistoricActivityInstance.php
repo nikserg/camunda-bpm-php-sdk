@@ -1,8 +1,6 @@
 <?php
 
-
 namespace org\camunda\php\sdk\entity\response;
-
 
 use org\camunda\php\sdk\helper\CastHelper;
 
@@ -26,7 +24,7 @@ class HistoricActivityInstance extends CastHelper
     /**
      * @param mixed $activityId
      */
-    public function setActivityId($activityId)
+    function setActivityId($activityId)
     {
         $this->activityId = $activityId;
     }
@@ -34,7 +32,7 @@ class HistoricActivityInstance extends CastHelper
     /**
      * @return mixed
      */
-    public function getActivityId()
+    function getActivityId()
     {
         return $this->activityId;
     }
@@ -42,7 +40,7 @@ class HistoricActivityInstance extends CastHelper
     /**
      * @param mixed $activityName
      */
-    public function setActivityName($activityName)
+    function setActivityName($activityName)
     {
         $this->activityName = $activityName;
     }
@@ -50,7 +48,7 @@ class HistoricActivityInstance extends CastHelper
     /**
      * @return mixed
      */
-    public function getActivityName()
+    function getActivityName()
     {
         return $this->activityName;
     }
@@ -58,7 +56,7 @@ class HistoricActivityInstance extends CastHelper
     /**
      * @param mixed $activityType
      */
-    public function setActivityType($activityType)
+    function setActivityType($activityType)
     {
         $this->activityType = $activityType;
     }
@@ -66,7 +64,7 @@ class HistoricActivityInstance extends CastHelper
     /**
      * @return mixed
      */
-    public function getActivityType()
+    function getActivityType()
     {
         return $this->activityType;
     }
@@ -74,7 +72,7 @@ class HistoricActivityInstance extends CastHelper
     /**
      * @param mixed $assignee
      */
-    public function setAssignee($assignee)
+    function setAssignee($assignee)
     {
         $this->assignee = $assignee;
     }
@@ -82,7 +80,7 @@ class HistoricActivityInstance extends CastHelper
     /**
      * @return mixed
      */
-    public function getAssignee()
+    function getAssignee()
     {
         return $this->assignee;
     }
@@ -90,7 +88,7 @@ class HistoricActivityInstance extends CastHelper
     /**
      * @param mixed $calledProcessInstanceId
      */
-    public function setCalledProcessInstanceId($calledProcessInstanceId)
+    function setCalledProcessInstanceId($calledProcessInstanceId)
     {
         $this->calledProcessInstanceId = $calledProcessInstanceId;
     }
@@ -98,7 +96,7 @@ class HistoricActivityInstance extends CastHelper
     /**
      * @return mixed
      */
-    public function getCalledProcessInstanceId()
+    function getCalledProcessInstanceId()
     {
         return $this->calledProcessInstanceId;
     }
@@ -106,7 +104,7 @@ class HistoricActivityInstance extends CastHelper
     /**
      * @param mixed $durationInMillis
      */
-    public function setDurationInMillis($durationInMillis)
+    function setDurationInMillis($durationInMillis)
     {
         $this->durationInMillis = $durationInMillis;
     }
@@ -114,7 +112,7 @@ class HistoricActivityInstance extends CastHelper
     /**
      * @return mixed
      */
-    public function getDurationInMillis()
+    function getDurationInMillis()
     {
         return $this->durationInMillis;
     }
@@ -122,7 +120,7 @@ class HistoricActivityInstance extends CastHelper
     /**
      * @param mixed $endTime
      */
-    public function setEndTime($endTime)
+    function setEndTime($endTime)
     {
         $this->endTime = $endTime;
     }
@@ -130,7 +128,7 @@ class HistoricActivityInstance extends CastHelper
     /**
      * @return mixed
      */
-    public function getEndTime()
+    function getEndTime()
     {
         return $this->endTime;
     }
@@ -138,7 +136,7 @@ class HistoricActivityInstance extends CastHelper
     /**
      * @param mixed $executionId
      */
-    public function setExecutionId($executionId)
+    function setExecutionId($executionId)
     {
         $this->executionId = $executionId;
     }
@@ -146,7 +144,7 @@ class HistoricActivityInstance extends CastHelper
     /**
      * @return mixed
      */
-    public function getExecutionId()
+    function getExecutionId()
     {
         return $this->executionId;
     }
@@ -154,7 +152,7 @@ class HistoricActivityInstance extends CastHelper
     /**
      * @param mixed $id
      */
-    public function setId($id)
+    function setId($id)
     {
         $this->id = $id;
     }
@@ -162,7 +160,7 @@ class HistoricActivityInstance extends CastHelper
     /**
      * @return mixed
      */
-    public function getId()
+    function getId()
     {
         return $this->id;
     }
@@ -170,7 +168,7 @@ class HistoricActivityInstance extends CastHelper
     /**
      * @param mixed $parentActivityInstanceId
      */
-    public function setParentActivityInstanceId($parentActivityInstanceId)
+    function setParentActivityInstanceId($parentActivityInstanceId)
     {
         $this->parentActivityInstanceId = $parentActivityInstanceId;
     }
@@ -178,7 +176,7 @@ class HistoricActivityInstance extends CastHelper
     /**
      * @return mixed
      */
-    public function getParentActivityInstanceId()
+    function getParentActivityInstanceId()
     {
         return $this->parentActivityInstanceId;
     }
@@ -186,7 +184,7 @@ class HistoricActivityInstance extends CastHelper
     /**
      * @param mixed $processDefinitionId
      */
-    public function setProcessDefinitionId($processDefinitionId)
+    function setProcessDefinitionId($processDefinitionId)
     {
         $this->processDefinitionId = $processDefinitionId;
     }
@@ -194,7 +192,7 @@ class HistoricActivityInstance extends CastHelper
     /**
      * @return mixed
      */
-    public function getProcessDefinitionId()
+    function getProcessDefinitionId()
     {
         return $this->processDefinitionId;
     }
@@ -202,7 +200,7 @@ class HistoricActivityInstance extends CastHelper
     /**
      * @param mixed $processInstanceId
      */
-    public function setProcessInstanceId($processInstanceId)
+    function setProcessInstanceId($processInstanceId)
     {
         $this->processInstanceId = $processInstanceId;
     }
@@ -210,7 +208,7 @@ class HistoricActivityInstance extends CastHelper
     /**
      * @return mixed
      */
-    public function getProcessInstanceId()
+    function getProcessInstanceId()
     {
         return $this->processInstanceId;
     }
@@ -218,7 +216,7 @@ class HistoricActivityInstance extends CastHelper
     /**
      * @param mixed $startTime
      */
-    public function setStartTime($startTime)
+    function setStartTime($startTime)
     {
         $this->startTime = $startTime;
     }
@@ -226,7 +224,7 @@ class HistoricActivityInstance extends CastHelper
     /**
      * @return mixed
      */
-    public function getStartTime()
+    function getStartTime()
     {
         return $this->startTime;
     }
@@ -234,7 +232,7 @@ class HistoricActivityInstance extends CastHelper
     /**
      * @param mixed $taskId
      */
-    public function setTaskId($taskId)
+    function setTaskId($taskId)
     {
         $this->taskId = $taskId;
     }
@@ -242,9 +240,8 @@ class HistoricActivityInstance extends CastHelper
     /**
      * @return mixed
      */
-    public function getTaskId()
+    function getTaskId()
     {
         return $this->taskId;
     }
-
 }

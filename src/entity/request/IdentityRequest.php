@@ -1,8 +1,6 @@
 <?php
 
-
 namespace org\camunda\php\sdk\entity\request;
-
 
 class IdentityRequest extends Request
 {
@@ -11,7 +9,7 @@ class IdentityRequest extends Request
     /**
      * @param mixed $userId
      */
-    public function setUserId($userId)
+    function setUserId($userId)
     {
         $this->userId = $userId;
     }
@@ -19,7 +17,7 @@ class IdentityRequest extends Request
     /**
      * @return mixed
      */
-    public function getUserId()
+    function getUserId()
     {
         return $this->userId;
     }

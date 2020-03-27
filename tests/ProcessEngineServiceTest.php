@@ -1,34 +1,28 @@
 <?php
 
-
 namespace org\camunda\php\tests;
 
 use org\camunda\php\sdk\service\ProcessEngineService;
 
-include('../../vendor/autoload.php');
+include('../vendor/autoload.php');
 
 class ProcessEngineServiceTest extends \PHPUnit\Framework\TestCase
 {
-    protected static $restApi;
+    /**
+     * @var ProcessEngineService
+     */
     protected static $pes;
 
     public static function setUpBeforeClass(): void
     {
-        self::$restApi = 'http://localhost:8080/engine-rest';
-        print("\n\nCLASS: " . __CLASS__ . "\n");
-        self::$pes = new ProcessEngineService(self::$restApi);
-    }
-
-    public static function tearDownAfterClass(): void
-    {
-        self::$restApi = null;
+        self::$pes = new ProcessEngineService('http://localhost:8080/engine-rest');
     }
 
     /**
-     * @test
+     * @throws \Exception
      */
-    public function getEngineNames()
+    function testGetEngineNames()
     {
-        $this->assertEquals('default', self::$pes->getEngineNames()->engine_0->name);
+        $this->assertEquals('default', self::$pes->getEngineNames()[0]->name);
     }
 }

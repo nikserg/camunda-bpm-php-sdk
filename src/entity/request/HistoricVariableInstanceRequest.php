@@ -1,8 +1,6 @@
 <?php
 
-
 namespace org\camunda\php\sdk\entity\request;
-
 
 class HistoricVariableInstanceRequest extends Request
 {
@@ -18,7 +16,7 @@ class HistoricVariableInstanceRequest extends Request
     /**
      * @param mixed $firstResult
      */
-    public function setFirstResult($firstResult)
+    function setFirstResult($firstResult)
     {
         $this->firstResult = $firstResult;
     }
@@ -26,7 +24,7 @@ class HistoricVariableInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getFirstResult()
+    function getFirstResult()
     {
         return $this->firstResult;
     }
@@ -34,7 +32,7 @@ class HistoricVariableInstanceRequest extends Request
     /**
      * @param mixed $maxResults
      */
-    public function setMaxResults($maxResults)
+    function setMaxResults($maxResults)
     {
         $this->maxResults = $maxResults;
     }
@@ -42,7 +40,7 @@ class HistoricVariableInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getMaxResults()
+    function getMaxResults()
     {
         return $this->maxResults;
     }
@@ -50,7 +48,7 @@ class HistoricVariableInstanceRequest extends Request
     /**
      * @param mixed $processInstanceId
      */
-    public function setProcessInstanceId($processInstanceId)
+    function setProcessInstanceId($processInstanceId)
     {
         $this->processInstanceId = $processInstanceId;
     }
@@ -58,7 +56,7 @@ class HistoricVariableInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getProcessInstanceId()
+    function getProcessInstanceId()
     {
         return $this->processInstanceId;
     }
@@ -66,7 +64,7 @@ class HistoricVariableInstanceRequest extends Request
     /**
      * @param mixed $sortBy
      */
-    public function setSortBy($sortBy)
+    function setSortBy($sortBy)
     {
         $this->sortBy = $sortBy;
     }
@@ -74,7 +72,7 @@ class HistoricVariableInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getSortBy()
+    function getSortBy()
     {
         return $this->sortBy;
     }
@@ -82,7 +80,7 @@ class HistoricVariableInstanceRequest extends Request
     /**
      * @param mixed $sortOrder
      */
-    public function setSortOrder($sortOrder)
+    function setSortOrder($sortOrder)
     {
         $this->sortOrder = $sortOrder;
     }
@@ -90,7 +88,7 @@ class HistoricVariableInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getSortOrder()
+    function getSortOrder()
     {
         return $this->sortOrder;
     }
@@ -98,7 +96,7 @@ class HistoricVariableInstanceRequest extends Request
     /**
      * @param mixed $variableName
      */
-    public function setVariableName($variableName)
+    function setVariableName($variableName)
     {
         $this->variableName = $variableName;
     }
@@ -106,7 +104,7 @@ class HistoricVariableInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getVariableName()
+    function getVariableName()
     {
         return $this->variableName;
     }
@@ -114,7 +112,7 @@ class HistoricVariableInstanceRequest extends Request
     /**
      * @param mixed $variableNameLike
      */
-    public function setVariableNameLike($variableNameLike)
+    function setVariableNameLike($variableNameLike)
     {
         $this->variableNameLike = $variableNameLike;
     }
@@ -122,7 +120,7 @@ class HistoricVariableInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getVariableNameLike()
+    function getVariableNameLike()
     {
         return $this->variableNameLike;
     }
@@ -130,7 +128,7 @@ class HistoricVariableInstanceRequest extends Request
     /**
      * @param mixed $variableValue
      */
-    public function setVariableValue($variableValue)
+    function setVariableValue($variableValue)
     {
         $this->variableValue = $variableValue;
     }
@@ -138,7 +136,7 @@ class HistoricVariableInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getVariableValue()
+    function getVariableValue()
     {
         return $this->variableValue;
     }

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace org\camunda\php\sdk\entity\response;
-
 
 use org\camunda\php\sdk\helper\CastHelper;
 
@@ -15,7 +13,7 @@ class IdentityLink extends CastHelper
     /**
      * @param mixed $groupId
      */
-    public function setGroupId($groupId)
+    function setGroupId($groupId)
     {
         $this->groupId = $groupId;
     }
@@ -23,7 +21,7 @@ class IdentityLink extends CastHelper
     /**
      * @return mixed
      */
-    public function getGroupId()
+    function getGroupId()
     {
         return $this->groupId;
     }
@@ -31,7 +29,7 @@ class IdentityLink extends CastHelper
     /**
      * @param mixed $type
      */
-    public function setType($type)
+    function setType($type)
     {
         $this->type = $type;
     }
@@ -39,7 +37,7 @@ class IdentityLink extends CastHelper
     /**
      * @return mixed
      */
-    public function getType()
+    function getType()
     {
         return $this->type;
     }
@@ -47,7 +45,7 @@ class IdentityLink extends CastHelper
     /**
      * @param mixed $userId
      */
-    public function setUserId($userId)
+    function setUserId($userId)
     {
         $this->userId = $userId;
     }
@@ -55,10 +53,8 @@ class IdentityLink extends CastHelper
     /**
      * @return mixed
      */
-    public function getUserId()
+    function getUserId()
     {
         return $this->userId;
     }
-
-
 }

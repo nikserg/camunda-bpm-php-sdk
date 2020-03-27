@@ -1,8 +1,6 @@
 <?php
 
-
 namespace org\camunda\php\sdk\entity\request;
-
 
 class HistoricActivityInstanceRequest extends Request
 {
@@ -25,7 +23,7 @@ class HistoricActivityInstanceRequest extends Request
     /**
      * @param mixed $activityId
      */
-    public function setActivityId($activityId)
+    function setActivityId($activityId)
     {
         $this->activityId = $activityId;
     }
@@ -33,7 +31,7 @@ class HistoricActivityInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getActivityId()
+    function getActivityId()
     {
         return $this->activityId;
     }
@@ -41,7 +39,7 @@ class HistoricActivityInstanceRequest extends Request
     /**
      * @param mixed $activityInstanceId
      */
-    public function setActivityInstanceId($activityInstanceId)
+    function setActivityInstanceId($activityInstanceId)
     {
         $this->activityInstanceId = $activityInstanceId;
     }
@@ -49,7 +47,7 @@ class HistoricActivityInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getActivityInstanceId()
+    function getActivityInstanceId()
     {
         return $this->activityInstanceId;
     }
@@ -57,7 +55,7 @@ class HistoricActivityInstanceRequest extends Request
     /**
      * @param mixed $activityName
      */
-    public function setActivityName($activityName)
+    function setActivityName($activityName)
     {
         $this->activityName = $activityName;
     }
@@ -65,7 +63,7 @@ class HistoricActivityInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getActivityName()
+    function getActivityName()
     {
         return $this->activityName;
     }
@@ -73,7 +71,7 @@ class HistoricActivityInstanceRequest extends Request
     /**
      * @param mixed $activityType
      */
-    public function setActivityType($activityType)
+    function setActivityType($activityType)
     {
         $this->activityType = $activityType;
     }
@@ -81,7 +79,7 @@ class HistoricActivityInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getActivityType()
+    function getActivityType()
     {
         return $this->activityType;
     }
@@ -89,7 +87,7 @@ class HistoricActivityInstanceRequest extends Request
     /**
      * @param mixed $executionId
      */
-    public function setExecutionId($executionId)
+    function setExecutionId($executionId)
     {
         $this->executionId = $executionId;
     }
@@ -97,7 +95,7 @@ class HistoricActivityInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getExecutionId()
+    function getExecutionId()
     {
         return $this->executionId;
     }
@@ -105,7 +103,7 @@ class HistoricActivityInstanceRequest extends Request
     /**
      * @param mixed $finished
      */
-    public function setFinished($finished)
+    function setFinished($finished)
     {
         $this->finished = $finished;
     }
@@ -113,7 +111,7 @@ class HistoricActivityInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getFinished()
+    function getFinished()
     {
         return $this->finished;
     }
@@ -121,7 +119,7 @@ class HistoricActivityInstanceRequest extends Request
     /**
      * @param mixed $firstResult
      */
-    public function setFirstResult($firstResult)
+    function setFirstResult($firstResult)
     {
         $this->firstResult = $firstResult;
     }
@@ -129,7 +127,7 @@ class HistoricActivityInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getFirstResult()
+    function getFirstResult()
     {
         return $this->firstResult;
     }
@@ -137,7 +135,7 @@ class HistoricActivityInstanceRequest extends Request
     /**
      * @param mixed $maxResults
      */
-    public function setMaxResults($maxResults)
+    function setMaxResults($maxResults)
     {
         $this->maxResults = $maxResults;
     }
@@ -145,7 +143,7 @@ class HistoricActivityInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getMaxResults()
+    function getMaxResults()
     {
         return $this->maxResults;
     }
@@ -153,7 +151,7 @@ class HistoricActivityInstanceRequest extends Request
     /**
      * @param mixed $processDefinitionId
      */
-    public function setProcessDefinitionId($processDefinitionId)
+    function setProcessDefinitionId($processDefinitionId)
     {
         $this->processDefinitionId = $processDefinitionId;
     }
@@ -161,7 +159,7 @@ class HistoricActivityInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getProcessDefinitionId()
+    function getProcessDefinitionId()
     {
         return $this->processDefinitionId;
     }
@@ -169,7 +167,7 @@ class HistoricActivityInstanceRequest extends Request
     /**
      * @param mixed $processInstanceId
      */
-    public function setProcessInstanceId($processInstanceId)
+    function setProcessInstanceId($processInstanceId)
     {
         $this->processInstanceId = $processInstanceId;
     }
@@ -177,7 +175,7 @@ class HistoricActivityInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getProcessInstanceId()
+    function getProcessInstanceId()
     {
         return $this->processInstanceId;
     }
@@ -185,7 +183,7 @@ class HistoricActivityInstanceRequest extends Request
     /**
      * @param mixed $sortBy
      */
-    public function setSortBy($sortBy)
+    function setSortBy($sortBy)
     {
         $this->sortBy = $sortBy;
     }
@@ -193,7 +191,7 @@ class HistoricActivityInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getSortBy()
+    function getSortBy()
     {
         return $this->sortBy;
     }
@@ -201,7 +199,7 @@ class HistoricActivityInstanceRequest extends Request
     /**
      * @param mixed $sortOrder
      */
-    public function setSortOrder($sortOrder)
+    function setSortOrder($sortOrder)
     {
         $this->sortOrder = $sortOrder;
     }
@@ -209,7 +207,7 @@ class HistoricActivityInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getSortOrder()
+    function getSortOrder()
     {
         return $this->sortOrder;
     }
@@ -217,7 +215,7 @@ class HistoricActivityInstanceRequest extends Request
     /**
      * @param mixed $taskAssignee
      */
-    public function setTaskAssignee($taskAssignee)
+    function setTaskAssignee($taskAssignee)
     {
         $this->taskAssignee = $taskAssignee;
     }
@@ -225,7 +223,7 @@ class HistoricActivityInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getTaskAssignee()
+    function getTaskAssignee()
     {
         return $this->taskAssignee;
     }
@@ -233,7 +231,7 @@ class HistoricActivityInstanceRequest extends Request
     /**
      * @param mixed $unfinished
      */
-    public function setUnfinished($unfinished)
+    function setUnfinished($unfinished)
     {
         $this->unfinished = $unfinished;
     }
@@ -241,7 +239,7 @@ class HistoricActivityInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getUnfinished()
+    function getUnfinished()
     {
         return $this->unfinished;
     }

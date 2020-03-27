@@ -1,8 +1,6 @@
 <?php
 
-
 namespace org\camunda\php\sdk\entity\response;
-
 
 use org\camunda\php\sdk\helper\CastHelper;
 
@@ -19,7 +17,7 @@ class VariableInstance extends CastHelper
     /**
      * @param mixed $activityInstanceId
      */
-    public function setActivityInstanceId($activityInstanceId)
+    function setActivityInstanceId($activityInstanceId)
     {
         $this->activityInstanceId = $activityInstanceId;
     }
@@ -27,7 +25,7 @@ class VariableInstance extends CastHelper
     /**
      * @return mixed
      */
-    public function getActivityInstanceId()
+    function getActivityInstanceId()
     {
         return $this->activityInstanceId;
     }
@@ -35,7 +33,7 @@ class VariableInstance extends CastHelper
     /**
      * @param mixed $executionId
      */
-    public function setExecutionId($executionId)
+    function setExecutionId($executionId)
     {
         $this->executionId = $executionId;
     }
@@ -43,7 +41,7 @@ class VariableInstance extends CastHelper
     /**
      * @return mixed
      */
-    public function getExecutionId()
+    function getExecutionId()
     {
         return $this->executionId;
     }
@@ -51,7 +49,7 @@ class VariableInstance extends CastHelper
     /**
      * @param mixed $name
      */
-    public function setName($name)
+    function setName($name)
     {
         $this->name = $name;
     }
@@ -59,7 +57,7 @@ class VariableInstance extends CastHelper
     /**
      * @return mixed
      */
-    public function getName()
+    function getName()
     {
         return $this->name;
     }
@@ -67,7 +65,7 @@ class VariableInstance extends CastHelper
     /**
      * @param mixed $processInstanceId
      */
-    public function setProcessInstanceId($processInstanceId)
+    function setProcessInstanceId($processInstanceId)
     {
         $this->processInstanceId = $processInstanceId;
     }
@@ -75,7 +73,7 @@ class VariableInstance extends CastHelper
     /**
      * @return mixed
      */
-    public function getProcessInstanceId()
+    function getProcessInstanceId()
     {
         return $this->processInstanceId;
     }
@@ -83,7 +81,7 @@ class VariableInstance extends CastHelper
     /**
      * @param mixed $taskId
      */
-    public function setTaskId($taskId)
+    function setTaskId($taskId)
     {
         $this->taskId = $taskId;
     }
@@ -91,7 +89,7 @@ class VariableInstance extends CastHelper
     /**
      * @return mixed
      */
-    public function getTaskId()
+    function getTaskId()
     {
         return $this->taskId;
     }
@@ -99,7 +97,7 @@ class VariableInstance extends CastHelper
     /**
      * @param mixed $type
      */
-    public function setType($type)
+    function setType($type)
     {
         $this->type = $type;
     }
@@ -107,7 +105,7 @@ class VariableInstance extends CastHelper
     /**
      * @return mixed
      */
-    public function getType()
+    function getType()
     {
         return $this->type;
     }
@@ -115,7 +113,7 @@ class VariableInstance extends CastHelper
     /**
      * @param mixed $value
      */
-    public function setValue($value)
+    function setValue($value)
     {
         $this->value = $value;
     }
@@ -123,10 +121,8 @@ class VariableInstance extends CastHelper
     /**
      * @return mixed
      */
-    public function getValue()
+    function getValue()
     {
         return $this->value;
     }
-
-
 }

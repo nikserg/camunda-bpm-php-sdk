@@ -1,16 +1,13 @@
 <?php
 
-
 namespace org\camunda\php\sdk\service;
 
-use Exception;
 use org\camunda\php\sdk\entity\request\GroupRequest;
 use org\camunda\php\sdk\entity\response\Group;
 use org\camunda\php\sdk\entity\response\ResourceOption;
 
 class GroupService extends RequestService
 {
-
     /**
      * Create a new group
      *
@@ -19,12 +16,11 @@ class GroupService extends RequestService
      * @param GroupRequest $request request body
      * @throws \Exception
      */
-    public function createGroup(GroupRequest $request)
+    function createGroup(GroupRequest $request)
     {
         $this->setRequestUrl('/group/create');
         $this->setRequestObject($request);
         $this->setRequestMethod('POST');
-
         $this->execute();
     }
 
@@ -33,16 +29,15 @@ class GroupService extends RequestService
      *
      * @link http://docs.camunda.org/api-references/rest/#!/group/members/put
      *
-     * @param String $id Group ID
-     * @param String $userId User ID
+     * @param string $id Group ID
+     * @param string $userId User ID
      * @throws \Exception
      */
-    public function addMember($id, $userId)
+    function addMember($id, $userId)
     {
         $this->setRequestUrl('/group/' . $id . '/members/' . $userId);
         $this->setRequestObject(null);
         $this->setRequestMethod('PUT');
-
         $this->execute();
     }
 
@@ -51,15 +46,14 @@ class GroupService extends RequestService
      *
      * @link http://docs.camunda.org/api-references/rest/#!/group/delete
      *
-     * @param String $id Group ID
+     * @param string $id Group ID
      * @throws \Exception
      */
-    public function deleteGroup($id)
+    function deleteGroup($id)
     {
         $this->setRequestUrl('/group/' . $id);
         $this->setRequestObject(null);
         $this->setRequestMethod('DELETE');
-
         $this->execute();
     }
 
@@ -68,16 +62,15 @@ class GroupService extends RequestService
      *
      * @link http://docs.camunda.org/api-references/rest/#!/group/members/delete
      *
-     * @param String $id Group ID
-     * @param String $userId Member ID
+     * @param string $id Group ID
+     * @param string $userId Member ID
      * @throws \Exception
      */
-    public function removeMember($id, $userId)
+    function removeMember($id, $userId)
     {
         $this->setRequestUrl('/group/' . $id . '/members/' . $userId);
         $this->setRequestObject(null);
         $this->setRequestMethod('DELETE');
-
         $this->execute();
     }
 
@@ -86,22 +79,15 @@ class GroupService extends RequestService
      *
      * @link http://docs.camunda.org/api-references/rest/#!/group/get
      *
-     * @param String $id Group ID
+     * @param string $id Group ID
      * @throws \Exception
      * @return Group $this Requested group
      */
-    public function getGroup($id)
+    function getGroup($id)
     {
         $this->setRequestUrl('/group/' . $id);
         $this->setRequestObject(null);
-        $this->setRequestMethod('GET');
-
-        $group = new Group();
-        try {
-            return $group->cast($this->execute());
-        } catch (Exception $e) {
-            throw $e;
-        }
+        return Group::cast($this->execute());
     }
 
     /**
@@ -111,25 +97,13 @@ class GroupService extends RequestService
      *
      * @param GroupRequest $request Filter parameters
      * @throws \Exception
-     * @return object List of groups
+     * @return Group[] List of groups
      */
-    public function getGroups(GroupRequest $request)
+    function getGroups(GroupRequest $request)
     {
         $this->setRequestUrl('/group/');
         $this->setRequestObject($request);
-        $this->setRequestMethod('GET');
-
-        try {
-            $prepare = $this->execute();
-            $response = [];
-            foreach ($prepare AS $index => $data) {
-                $group = new Group();
-                $response['group_' . $index] = $group->cast($data);
-            }
-            return (object)$response;
-        } catch (Exception $e) {
-            throw $e;
-        }
+        return Group::castList($this->execute());
     }
 
     /**
@@ -141,12 +115,10 @@ class GroupService extends RequestService
      * @throws \Exception
      * @return int Amount of groups
      */
-    public function getCount(GroupRequest $request)
+    function getCount(GroupRequest $request)
     {
         $this->setRequestUrl('/group/count');
         $this->setRequestObject($request);
-        $this->setRequestMethod('GET');
-
         return $this->execute()->count;
     }
 
@@ -155,16 +127,15 @@ class GroupService extends RequestService
      *
      * @link http://docs.camunda.org/api-references/rest/#!/group/put-update
      *
-     * @param String       $id Group Id
+     * @param string       $id Group Id
      * @param GroupRequest $request update parameters
      * @throws \Exception
      */
-    public function updateGroup($id, GroupRequest $request)
+    function updateGroup($id, GroupRequest $request)
     {
         $this->setRequestUrl('/group/' . $id);
         $this->setRequestObject($request);
         $this->setRequestMethod('PUT');
-
         $this->execute();
     }
 
@@ -177,18 +148,12 @@ class GroupService extends RequestService
      * @throws \Exception
      * @return ResourceOption $this
      */
-    public function getResourceOption()
+    function getResourceOption()
     {
-        $resourceOption = new ResourceOption();
         $this->setRequestUrl('/group');
         $this->setRequestObject(null);
         $this->setRequestMethod('OPTIONS');
-
-        try {
-            return $resourceOption->cast($this->execute());
-        } catch (Exception $e) {
-            throw $e;
-        }
+        return ResourceOption::cast($this->execute());
     }
 
     /**
@@ -197,21 +162,15 @@ class GroupService extends RequestService
      *
      * @link http://docs.camunda.org/latest/api-references/rest/#group-group-resource-options
      *
-     * @param String $id group ID
+     * @param string $id group ID
      * @throws \Exception
      * @return ResourceOption $this
      */
-    public function getResourceInstanceOption($id)
+    function getResourceInstanceOption($id)
     {
-        $resourceOption = new ResourceOption();
         $this->setRequestUrl('/group/' . $id);
         $this->setRequestObject(null);
         $this->setRequestMethod('OPTIONS');
-
-        try {
-            return $resourceOption->cast($this->execute());
-        } catch (Exception $e) {
-            throw $e;
-        }
+        return ResourceOption::cast($this->execute());
     }
 }

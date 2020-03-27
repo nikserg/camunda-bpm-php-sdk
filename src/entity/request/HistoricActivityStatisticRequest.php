@@ -14,7 +14,7 @@ class HistoricActivityStatisticRequest extends Request
      * @param mixed $canceled
      * @return $this
      */
-    public function setCanceled($canceled)
+    function setCanceled($canceled)
     {
         $this->canceled = $canceled;
         return $this;
@@ -23,7 +23,7 @@ class HistoricActivityStatisticRequest extends Request
     /**
      * @return mixed
      */
-    public function getCanceled()
+    function getCanceled()
     {
         return $this->canceled;
     }
@@ -32,7 +32,7 @@ class HistoricActivityStatisticRequest extends Request
      * @param mixed $finished
      * @return $this
      */
-    public function setFinished($finished)
+    function setFinished($finished)
     {
         $this->finished = $finished;
         return $this;
@@ -41,7 +41,7 @@ class HistoricActivityStatisticRequest extends Request
     /**
      * @return mixed
      */
-    public function getFinished()
+    function getFinished()
     {
         return $this->finished;
     }
@@ -50,7 +50,7 @@ class HistoricActivityStatisticRequest extends Request
      * @param mixed $completeScope
      * @return $this
      */
-    public function setCompleteScope($completeScope)
+    function setCompleteScope($completeScope)
     {
         $this->completeScope = $completeScope;
         return $this;
@@ -59,7 +59,7 @@ class HistoricActivityStatisticRequest extends Request
     /**
      * @return mixed
      */
-    public function getCompleteScope()
+    function getCompleteScope()
     {
         return $this->completeScope;
     }
@@ -68,7 +68,7 @@ class HistoricActivityStatisticRequest extends Request
      * @param mixed $sortBy
      * @return $this
      */
-    public function setSortBy($sortBy)
+    function setSortBy($sortBy)
     {
         $this->sortBy = $sortBy;
         return $this;
@@ -77,7 +77,7 @@ class HistoricActivityStatisticRequest extends Request
     /**
      * @return mixed
      */
-    public function getSortBy()
+    function getSortBy()
     {
         return $this->sortBy;
     }
@@ -86,7 +86,7 @@ class HistoricActivityStatisticRequest extends Request
      * @param mixed $sortOrder
      * @return $this
      */
-    public function setSortOrder($sortOrder)
+    function setSortOrder($sortOrder)
     {
         $this->sortOrder = $sortOrder;
         return $this;
@@ -95,7 +95,7 @@ class HistoricActivityStatisticRequest extends Request
     /**
      * @return mixed
      */
-    public function getSortOrder()
+    function getSortOrder()
     {
         return $this->sortOrder;
     }

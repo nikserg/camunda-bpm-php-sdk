@@ -1,8 +1,6 @@
 <?php
 
-
 namespace org\camunda\php\sdk\entity\request;
-
 
 class IdentityLinksRequest extends Request
 {
@@ -14,7 +12,7 @@ class IdentityLinksRequest extends Request
      * @param mixed $userId
      * @return $this
      */
-    public function setUserId($userId)
+    function setUserId($userId)
     {
         $this->userId = $userId;
         return $this;
@@ -23,7 +21,7 @@ class IdentityLinksRequest extends Request
     /**
      * @return mixed
      */
-    public function getUserId()
+    function getUserId()
     {
         return $this->userId;
     }
@@ -32,7 +30,7 @@ class IdentityLinksRequest extends Request
      * @param mixed $groupId
      * @return $this
      */
-    public function setGroupId($groupId)
+    function setGroupId($groupId)
     {
         $this->groupId = $groupId;
         return $this;
@@ -41,7 +39,7 @@ class IdentityLinksRequest extends Request
     /**
      * @return mixed
      */
-    public function getGroupId()
+    function getGroupId()
     {
         return $this->groupId;
     }
@@ -50,7 +48,7 @@ class IdentityLinksRequest extends Request
      * @param mixed $type
      * @return $this
      */
-    public function setType($type)
+    function setType($type)
     {
         $this->type = $type;
         return $this;
@@ -59,7 +57,7 @@ class IdentityLinksRequest extends Request
     /**
      * @return mixed
      */
-    public function getType()
+    function getType()
     {
         return $this->type;
     }

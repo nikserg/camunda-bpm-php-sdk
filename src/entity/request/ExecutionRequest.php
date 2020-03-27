@@ -1,6 +1,5 @@
 <?php
 
-
 namespace org\camunda\php\sdk\entity\request;
 
 class ExecutionRequest extends Request
@@ -25,7 +24,7 @@ class ExecutionRequest extends Request
      * @param mixed $active
      * @return $this
      */
-    public function setActive($active)
+    function setActive($active)
     {
         $this->active = $active;
         return $this;
@@ -34,7 +33,7 @@ class ExecutionRequest extends Request
     /**
      * @return mixed
      */
-    public function getActive()
+    function getActive()
     {
         return $this->active;
     }
@@ -43,7 +42,7 @@ class ExecutionRequest extends Request
      * @param mixed $suspended
      * @return $this
      */
-    public function setSuspended($suspended)
+    function setSuspended($suspended)
     {
         $this->suspended = $suspended;
         return $this;
@@ -52,7 +51,7 @@ class ExecutionRequest extends Request
     /**
      * @return mixed
      */
-    public function getSuspended()
+    function getSuspended()
     {
         return $this->suspended;
     }
@@ -61,7 +60,7 @@ class ExecutionRequest extends Request
      * @param mixed $activityId
      * @return $this
      */
-    public function setActivityId($activityId)
+    function setActivityId($activityId)
     {
         $this->activityId = $activityId;
         return $this;
@@ -70,7 +69,7 @@ class ExecutionRequest extends Request
     /**
      * @return mixed
      */
-    public function getActivityId()
+    function getActivityId()
     {
         return $this->activityId;
     }
@@ -79,7 +78,7 @@ class ExecutionRequest extends Request
      * @param mixed $businessKey
      * @return $this
      */
-    public function setBusinessKey($businessKey)
+    function setBusinessKey($businessKey)
     {
         $this->businessKey = $businessKey;
         return $this;
@@ -88,7 +87,7 @@ class ExecutionRequest extends Request
     /**
      * @return mixed
      */
-    public function getBusinessKey()
+    function getBusinessKey()
     {
         return $this->businessKey;
     }
@@ -97,7 +96,7 @@ class ExecutionRequest extends Request
      * @param mixed $firstResult
      * @return $this
      */
-    public function setFirstResult($firstResult)
+    function setFirstResult($firstResult)
     {
         $this->firstResult = $firstResult;
         return $this;
@@ -106,7 +105,7 @@ class ExecutionRequest extends Request
     /**
      * @return mixed
      */
-    public function getFirstResult()
+    function getFirstResult()
     {
         return $this->firstResult;
     }
@@ -115,7 +114,7 @@ class ExecutionRequest extends Request
      * @param mixed $maxResults
      * @return $this
      */
-    public function setMaxResults($maxResults)
+    function setMaxResults($maxResults)
     {
         $this->maxResults = $maxResults;
         return $this;
@@ -124,7 +123,7 @@ class ExecutionRequest extends Request
     /**
      * @return mixed
      */
-    public function getMaxResults()
+    function getMaxResults()
     {
         return $this->maxResults;
     }
@@ -133,7 +132,7 @@ class ExecutionRequest extends Request
      * @param mixed $messageEventSubscriptionName
      * @return $this
      */
-    public function setMessageEventSubscriptionName($messageEventSubscriptionName)
+    function setMessageEventSubscriptionName($messageEventSubscriptionName)
     {
         $this->messageEventSubscriptionName = $messageEventSubscriptionName;
         return $this;
@@ -142,7 +141,7 @@ class ExecutionRequest extends Request
     /**
      * @return mixed
      */
-    public function getMessageEventSubscriptionName()
+    function getMessageEventSubscriptionName()
     {
         return $this->messageEventSubscriptionName;
     }
@@ -151,7 +150,7 @@ class ExecutionRequest extends Request
      * @param mixed $processDefinitionId
      * @return $this
      */
-    public function setProcessDefinitionId($processDefinitionId)
+    function setProcessDefinitionId($processDefinitionId)
     {
         $this->processDefinitionId = $processDefinitionId;
         return $this;
@@ -160,7 +159,7 @@ class ExecutionRequest extends Request
     /**
      * @return mixed
      */
-    public function getProcessDefinitionId()
+    function getProcessDefinitionId()
     {
         return $this->processDefinitionId;
     }
@@ -169,7 +168,7 @@ class ExecutionRequest extends Request
      * @param mixed $processDefinitionKey
      * @return $this
      */
-    public function setProcessDefinitionKey($processDefinitionKey)
+    function setProcessDefinitionKey($processDefinitionKey)
     {
         $this->processDefinitionKey = $processDefinitionKey;
         return $this;
@@ -178,7 +177,7 @@ class ExecutionRequest extends Request
     /**
      * @return mixed
      */
-    public function getProcessDefinitionKey()
+    function getProcessDefinitionKey()
     {
         return $this->processDefinitionKey;
     }
@@ -187,7 +186,7 @@ class ExecutionRequest extends Request
      * @param mixed $processInstanceId
      * @return $this
      */
-    public function setProcessInstanceId($processInstanceId)
+    function setProcessInstanceId($processInstanceId)
     {
         $this->processInstanceId = $processInstanceId;
         return $this;
@@ -196,7 +195,7 @@ class ExecutionRequest extends Request
     /**
      * @return mixed
      */
-    public function getProcessInstanceId()
+    function getProcessInstanceId()
     {
         return $this->processInstanceId;
     }
@@ -205,7 +204,7 @@ class ExecutionRequest extends Request
      * @param mixed $processVariables
      * @return $this
      */
-    public function setProcessVariables($processVariables)
+    function setProcessVariables($processVariables)
     {
         $this->processVariables = $processVariables;
         return $this;
@@ -214,7 +213,7 @@ class ExecutionRequest extends Request
     /**
      * @return mixed
      */
-    public function getProcessVariables()
+    function getProcessVariables()
     {
         return $this->processVariables;
     }
@@ -223,7 +222,7 @@ class ExecutionRequest extends Request
      * @param mixed $signalEventSubscriptionName
      * @return $this
      */
-    public function setSignalEventSubscriptionName($signalEventSubscriptionName)
+    function setSignalEventSubscriptionName($signalEventSubscriptionName)
     {
         $this->signalEventSubscriptionName = $signalEventSubscriptionName;
         return $this;
@@ -232,7 +231,7 @@ class ExecutionRequest extends Request
     /**
      * @return mixed
      */
-    public function getSignalEventSubscriptionName()
+    function getSignalEventSubscriptionName()
     {
         return $this->signalEventSubscriptionName;
     }
@@ -241,7 +240,7 @@ class ExecutionRequest extends Request
      * @param mixed $sortBy
      * @return $this
      */
-    public function setSortBy($sortBy)
+    function setSortBy($sortBy)
     {
         $this->sortBy = $sortBy;
         return $this;
@@ -250,7 +249,7 @@ class ExecutionRequest extends Request
     /**
      * @return mixed
      */
-    public function getSortBy()
+    function getSortBy()
     {
         return $this->sortBy;
     }
@@ -259,7 +258,7 @@ class ExecutionRequest extends Request
      * @param mixed $sortOrder
      * @return $this
      */
-    public function setSortOrder($sortOrder)
+    function setSortOrder($sortOrder)
     {
         $this->sortOrder = $sortOrder;
         return $this;
@@ -268,7 +267,7 @@ class ExecutionRequest extends Request
     /**
      * @return mixed
      */
-    public function getSortOrder()
+    function getSortOrder()
     {
         return $this->sortOrder;
     }
@@ -277,7 +276,7 @@ class ExecutionRequest extends Request
      * @param mixed $variables
      * @return $this
      */
-    public function setVariables($variables)
+    function setVariables($variables)
     {
         $this->variables = $variables;
         return $this;
@@ -286,9 +285,8 @@ class ExecutionRequest extends Request
     /**
      * @return mixed
      */
-    public function getVariables()
+    function getVariables()
     {
         return $this->variables;
     }
-
 }

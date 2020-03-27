@@ -1,37 +1,26 @@
 <?php
 
-
 namespace org\camunda\php\sdk\service;
 
-
-use Exception;
 use org\camunda\php\sdk\entity\request\JobRequest;
 use org\camunda\php\sdk\entity\response\Job;
 
 class JobService extends RequestService
 {
-
     /**
      * Retrieves a job with given id.
      *
      * @link http://docs.camunda.org/api-references/rest/#!/job/get
      *
-     * @param String $id Job ID
+     * @param string $id Job ID
      * @throws \Exception
      * @return \org\camunda\php\sdk\entity\response\Job $this requested job
      */
-    public function getJob($id)
+    function getJob($id)
     {
         $this->setRequestUrl('/job/' . $id);
         $this->setRequestObject(null);
-        $this->setRequestMethod('GET');
-
-        $job = new Job();
-        try {
-            return $job->cast($this->execute());
-        } catch (Exception $e) {
-            throw $e;
-        }
+        return Job::cast($this->execute());
     }
 
     /**
@@ -43,30 +32,16 @@ class JobService extends RequestService
      * @param JobRequest $request Filter parameters
      * @param bool       $isPostRequest switch for GET/POST request
      * @throws \Exception
-     * @return object List of available jobs
+     * @return Job[] List of available jobs
      */
-    public function getJobs(JobRequest $request, $isPostRequest = false)
+    function getJobs(JobRequest $request, $isPostRequest = false)
     {
         $this->setRequestUrl('/job');
         $this->setRequestObject($request);
         if ($isPostRequest == true) {
             $this->setRequestMethod('POST');
-        } else {
-            $this->setRequestMethod('GET');
         }
-
-        try {
-            $prepare = $this->execute();
-            $response = [];
-
-            foreach ($prepare AS $index => $data) {
-                $job = new Job();
-                $response['job_' . $index] = $job->cast($data);
-            }
-            return (object)$response;
-        } catch (Exception $e) {
-            throw $e;
-        }
+        return Job::castList($this->execute());
     }
 
     /**
@@ -80,16 +55,13 @@ class JobService extends RequestService
      * @throws \Exception
      * @return int Amount of jobs
      */
-    public function getCount(JobRequest $request, $isPostRequest = false)
+    function getCount(JobRequest $request, $isPostRequest = false)
     {
         $this->setRequestUrl('/job/count');
         $this->setRequestObject($request);
         if ($isPostRequest == true) {
             $this->setRequestMethod('POST');
-        } else {
-            $this->setRequestMethod('GET');
         }
-
         return $this->execute()->count;
     }
 
@@ -98,16 +70,15 @@ class JobService extends RequestService
      *
      * @link http://docs.camunda.org/api-references/rest/#!/job/put-set-job-retries
      *
-     * @param String     $id job ID
+     * @param string     $id job ID
      * @param JobRequest $request amount of retries
      * @throws \Exception
      */
-    public function setRetries($id, JobRequest $request)
+    function setRetries($id, JobRequest $request)
     {
         $this->setRequestUrl('/job/' . $id . '/retries');
         $this->setRequestObject($request);
         $this->setRequestMethod('PUT');
-
         $this->execute();
     }
 
@@ -116,15 +87,14 @@ class JobService extends RequestService
      *
      * @link http://docs.camunda.org/api-references/rest/#!/job/post-execute-job
      *
-     * @param String $id job ID
+     * @param string $id job ID
      * @throws \Exception
      */
-    public function executeJob($id)
+    function executeJob($id)
     {
         $this->setRequestUrl('/job/' . $id . '/execute');
         $this->setRequestObject(null);
         $this->setRequestMethod('POST');
-
         $this->execute();
     }
 
@@ -134,21 +104,15 @@ class JobService extends RequestService
      *
      * @link http://docs.camunda.org/latest/api-references/rest/#job-get-exception-stacktrace
      *
-     * @param String $id job ID
+     * @param string $id job ID
      * @throws \Exception
      * @return String
      */
-    public function getExceptionStacktrace($id)
+    function getExceptionStacktrace($id)
     {
         $this->setRequestUrl('job/' . $id . '/stacktrace');
         $this->setRequestObject(null);
-        $this->setRequestMethod('GET');
-
-        try {
-            return $this->execute();
-        } catch (Exception $e) {
-            throw $e;
-        }
+        return $this->execute();
     }
 
     /**
@@ -156,16 +120,15 @@ class JobService extends RequestService
      *
      * @link http://docs.camunda.org/latest/api-references/rest/#job-set-job-due-date
      *
-     * @param String     $id job ID
+     * @param string     $id job ID
      * @param JobRequest $request
      * @throws \Exception
      */
-    public function setDueDate($id, JobRequest $request)
+    function setDueDate($id, JobRequest $request)
     {
         $this->setRequestUrl('/job/' . $id . '/duedate');
         $this->setRequestObject($request);
         $this->setRequestMethod('PUT');
-
         $this->execute();
     }
 }

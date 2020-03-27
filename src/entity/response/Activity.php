@@ -1,6 +1,5 @@
 <?php
 
-
 namespace org\camunda\php\sdk\entity\response;
 
 use org\camunda\php\sdk\helper\CastHelper;
@@ -18,7 +17,7 @@ class Activity extends CastHelper
     /**
      * @param mixed $activityId
      */
-    public function setActivityId($activityId)
+    function setActivityId($activityId)
     {
         $this->activityId = $activityId;
     }
@@ -26,7 +25,7 @@ class Activity extends CastHelper
     /**
      * @return mixed
      */
-    public function getActivityId()
+    function getActivityId()
     {
         return $this->activityId;
     }
@@ -34,7 +33,7 @@ class Activity extends CastHelper
     /**
      * @param mixed $childActivityInstances
      */
-    public function setChildActivityInstances($childActivityInstances)
+    function setChildActivityInstances($childActivityInstances)
     {
         $this->childActivityInstances = $childActivityInstances;
     }
@@ -42,7 +41,7 @@ class Activity extends CastHelper
     /**
      * @return mixed
      */
-    public function getChildActivityInstances()
+    function getChildActivityInstances()
     {
         return $this->childActivityInstances;
     }
@@ -50,7 +49,7 @@ class Activity extends CastHelper
     /**
      * @param mixed $childTransitionInstances
      */
-    public function setChildTransitionInstances($childTransitionInstances)
+    function setChildTransitionInstances($childTransitionInstances)
     {
         $this->childTransitionInstances = $childTransitionInstances;
     }
@@ -58,7 +57,7 @@ class Activity extends CastHelper
     /**
      * @return mixed
      */
-    public function getChildTransitionInstances()
+    function getChildTransitionInstances()
     {
         return $this->childTransitionInstances;
     }
@@ -66,7 +65,7 @@ class Activity extends CastHelper
     /**
      * @param mixed $executionIds
      */
-    public function setExecutionIds($executionIds)
+    function setExecutionIds($executionIds)
     {
         $this->executionIds = $executionIds;
     }
@@ -74,7 +73,7 @@ class Activity extends CastHelper
     /**
      * @return mixed
      */
-    public function getExecutionIds()
+    function getExecutionIds()
     {
         return $this->executionIds;
     }
@@ -82,7 +81,7 @@ class Activity extends CastHelper
     /**
      * @param mixed $id
      */
-    public function setId($id)
+    function setId($id)
     {
         $this->id = $id;
     }
@@ -90,7 +89,7 @@ class Activity extends CastHelper
     /**
      * @return mixed
      */
-    public function getId()
+    function getId()
     {
         return $this->id;
     }
@@ -98,7 +97,7 @@ class Activity extends CastHelper
     /**
      * @param mixed $processDefinitionId
      */
-    public function setProcessDefinitionId($processDefinitionId)
+    function setProcessDefinitionId($processDefinitionId)
     {
         $this->processDefinitionId = $processDefinitionId;
     }
@@ -106,7 +105,7 @@ class Activity extends CastHelper
     /**
      * @return mixed
      */
-    public function getProcessDefinitionId()
+    function getProcessDefinitionId()
     {
         return $this->processDefinitionId;
     }
@@ -114,7 +113,7 @@ class Activity extends CastHelper
     /**
      * @param mixed $processInstanceId
      */
-    public function setProcessInstanceId($processInstanceId)
+    function setProcessInstanceId($processInstanceId)
     {
         $this->processInstanceId = $processInstanceId;
     }
@@ -122,10 +121,8 @@ class Activity extends CastHelper
     /**
      * @return mixed
      */
-    public function getProcessInstanceId()
+    function getProcessInstanceId()
     {
         return $this->processInstanceId;
     }
-
-
 }

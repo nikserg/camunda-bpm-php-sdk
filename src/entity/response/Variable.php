@@ -1,27 +1,30 @@
 <?php
 
-
 namespace org\camunda\php\sdk\entity\response;
 
 use org\camunda\php\sdk\helper\CastHelper;
 
 class Variable extends CastHelper
 {
-    protected $value;
+    /**
+     * @var string
+     */
     protected $type;
+    protected $value;
+    protected $valueInfo;
 
     /**
      * @param mixed $type
      */
-    public function setType($type)
+    function setType($type): void
     {
         $this->type = $type;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getType()
+    function getType()
     {
         return $this->type;
     }
@@ -29,7 +32,7 @@ class Variable extends CastHelper
     /**
      * @param mixed $value
      */
-    public function setValue($value)
+    function setValue($value): void
     {
         $this->value = $value;
     }
@@ -37,10 +40,24 @@ class Variable extends CastHelper
     /**
      * @return mixed
      */
-    public function getValue()
+    function getValue()
     {
         return $this->value;
     }
 
+    /**
+     * @param mixed $valueInfo
+     */
+    public function setValueInfo($valueInfo): void
+    {
+        $this->valueInfo = $valueInfo;
+    }
 
+    /**
+     * @return mixed
+     */
+    public function getValueInfo()
+    {
+        return $this->valueInfo;
+    }
 }

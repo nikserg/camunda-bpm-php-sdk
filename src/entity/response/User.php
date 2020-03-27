@@ -1,8 +1,6 @@
 <?php
 
-
 namespace org\camunda\php\sdk\entity\response;
-
 
 use org\camunda\php\sdk\helper\CastHelper;
 
@@ -16,7 +14,7 @@ class User extends CastHelper
     /**
      * @param mixed $email
      */
-    public function setEmail($email)
+    function setEmail($email)
     {
         $this->email = $email;
     }
@@ -24,7 +22,7 @@ class User extends CastHelper
     /**
      * @return mixed
      */
-    public function getEmail()
+    function getEmail()
     {
         return $this->email;
     }
@@ -32,7 +30,7 @@ class User extends CastHelper
     /**
      * @param mixed $firstName
      */
-    public function setFirstName($firstName)
+    function setFirstName($firstName)
     {
         $this->firstName = $firstName;
     }
@@ -40,7 +38,7 @@ class User extends CastHelper
     /**
      * @return mixed
      */
-    public function getFirstName()
+    function getFirstName()
     {
         return $this->firstName;
     }
@@ -48,7 +46,7 @@ class User extends CastHelper
     /**
      * @param mixed $id
      */
-    public function setId($id)
+    function setId($id)
     {
         $this->id = $id;
     }
@@ -56,7 +54,7 @@ class User extends CastHelper
     /**
      * @return mixed
      */
-    public function getId()
+    function getId()
     {
         return $this->id;
     }
@@ -64,7 +62,7 @@ class User extends CastHelper
     /**
      * @param mixed $lastName
      */
-    public function setLastName($lastName)
+    function setLastName($lastName)
     {
         $this->lastName = $lastName;
     }
@@ -72,10 +70,8 @@ class User extends CastHelper
     /**
      * @return mixed
      */
-    public function getLastName()
+    function getLastName()
     {
         return $this->lastName;
     }
-
-
 }

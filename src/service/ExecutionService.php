@@ -1,35 +1,30 @@
 <?php
 
-
 namespace org\camunda\php\sdk\service;
 
-use Exception;
 use org\camunda\php\sdk\entity\request\ExecutionRequest;
-use org\camunda\php\sdk\entity\request\VariableRequest;
 use org\camunda\php\sdk\entity\request\MessageSubscriptionRequest;
+use org\camunda\php\sdk\entity\request\VariableRequest;
 use org\camunda\php\sdk\entity\response\Execution;
-use org\camunda\php\sdk\entity\response\Variable;
 use org\camunda\php\sdk\entity\response\MessageSubscription;
+use org\camunda\php\sdk\entity\response\Variable;
 
 class ExecutionService extends RequestService
 {
-
     /**
      * Requests a single execution with a given ID
      *
      * @link http://docs.camunda.org/api-references/rest/#!/execution/get
      *
-     * @param String $id ID of requested execution
+     * @param string $id ID of requested execution
      * @throws \Exception
      * @return Execution $this requested execution
      */
-    public function getExecution($id)
+    function getExecution($id)
     {
-        $execution = new Execution();
         $this->setRequestUrl('/execution/' . $id);
         $this->setRequestObject(null);
-        $this->setRequestMethod('GET');
-        return $execution->cast($this->execute());
+        return Execution::cast($this->execute());
     }
 
     /**
@@ -41,29 +36,16 @@ class ExecutionService extends RequestService
      * @param \org\camunda\php\sdk\entity\request\ExecutionRequest $request Filter parameters
      * @param bool                                                 $isPostRequest Switch for POST/GET request
      * @throws \Exception
-     * @return object List of all executions
+     * @return Execution[] List of all executions
      */
-    public function getExecutions(ExecutionRequest $request, $isPostRequest = false)
+    function getExecutions(ExecutionRequest $request, $isPostRequest = false)
     {
         $this->setRequestUrl('/execution/');
         $this->setRequestObject($request);
         if ($isPostRequest == true) {
             $this->setRequestMethod('POST');
-        } else {
-            $this->setRequestMethod('GET');
         }
-
-        try {
-            $prepare = $this->execute();
-            $response = [];
-            foreach ($prepare AS $index => $data) {
-                $execution = new Execution();
-                $response['execution_' . $index] = $execution->cast($data);
-            }
-            return (object)$response;
-        } catch (Exception $e) {
-            throw $e;
-        }
+        return Execution::castList($this->execute());
     }
 
     /**
@@ -77,14 +59,12 @@ class ExecutionService extends RequestService
      * @throws \Exception
      * @return int count of the executions
      */
-    public function getCount(ExecutionRequest $request, $isPostRequest = false)
+    function getCount(ExecutionRequest $request, $isPostRequest = false)
     {
         $this->setRequestUrl('/execution/count/');
         $this->setRequestObject($request);
         if ($isPostRequest == true) {
             $this->setRequestMethod('POST');
-        } else {
-            $this->setRequestMethod('GET');
         }
         return $this->execute()->count;
     }
@@ -94,18 +74,16 @@ class ExecutionService extends RequestService
      *
      * @link http://docs.camunda.org/api-references/rest/#!/execution/get-local-variable
      *
-     * @param String $id ID of the execution which contains the requested variable
-     * @param String $variableId ID of the requested variable
+     * @param string $id ID of the execution which contains the requested variable
+     * @param string $variableId ID of the requested variable
      * @throws \Exception
      * @return \org\camunda\php\sdk\entity\response\Variable $this Requested variable
      */
-    public function getExecutionVariable($id, $variableId)
+    function getExecutionVariable($id, $variableId)
     {
-        $variable = new Variable();
         $this->setRequestUrl('/execution/' . $id . '/localVariables/' . $variableId);
         $this->setRequestObject(null);
-        $this->setRequestMethod('GET');
-        return $variable->cast($this->execute());
+        return Variable::cast($this->execute());
     }
 
     /**
@@ -113,12 +91,12 @@ class ExecutionService extends RequestService
      *
      * @link http://docs.camunda.org/api-references/rest/#!/execution/put-local-variable
      *
-     * @param String          $id The id of the execution to set the variable for.
-     * @param String          $variableId The name of the variable to set.
+     * @param string          $id The id of the execution to set the variable for.
+     * @param string          $variableId The name of the variable to set.
      * @param VariableRequest $request request body
      * @throws \Exception
      */
-    public function putExecutionVariable($id, $variableId, VariableRequest $request)
+    function putExecutionVariable($id, $variableId, VariableRequest $request)
     {
         $this->setRequestUrl('/execution/' . $id . '/localVariables/' . $variableId);
         $this->setRequestObject($request);
@@ -131,11 +109,11 @@ class ExecutionService extends RequestService
      *
      * @link http://docs.camunda.org/api-references/rest/#!/execution/delete-local-variable
      *
-     * @param String $id Execution ID
-     * @param String $variableId Variable ID
+     * @param string $id Execution ID
+     * @param string $variableId Variable ID
      * @throws \Exception
      */
-    public function deleteExecutionVariable($id, $variableId)
+    function deleteExecutionVariable($id, $variableId)
     {
         $this->setRequestUrl('/execution/' . $id . '/localVariables/' . $variableId);
         $this->setRequestObject(null);
@@ -148,26 +126,15 @@ class ExecutionService extends RequestService
      *
      * @link http://docs.camunda.org/api-references/rest/#!/execution/get-local-variables
      *
-     * @param String $id Execution ID
+     * @param string $id Execution ID
      * @throws \Exception
-     * @return object List of variables
+     * @return Variable[] List of variables
      */
-    public function getExecutionVariables($id)
+    function getExecutionVariables($id)
     {
         $this->setRequestUrl('/execution/' . $id . '/localVariables');
         $this->setRequestObject(null);
-        $this->setRequestMethod('GET');
-        try {
-            $prepare = $this->execute();
-            $response = [];
-            foreach ($prepare AS $index => $data) {
-                $variable = new Variable();
-                $response['variable_' . $index] = $variable->cast($data);
-            }
-            return (object)$response;
-        } catch (Exception $e) {
-            throw $e;
-        }
+        return Variable::castMap($this->execute());
     }
 
     /**
@@ -177,11 +144,11 @@ class ExecutionService extends RequestService
      *
      * @link http://docs.camunda.org/api-references/rest/#!/execution/post-local-variables
      *
-     * @param String          $id execution ID
+     * @param string          $id execution ID
      * @param VariableRequest $request request body with modifications and/or deletions
      * @throws \Exception
      */
-    public function updateOrDeleteExecutionVariables($id, VariableRequest $request)
+    function updateOrDeleteExecutionVariables($id, VariableRequest $request)
     {
         $this->setRequestUrl('/execution/' . $id . '/localVariables');
         $this->setRequestObject($request);
@@ -195,10 +162,10 @@ class ExecutionService extends RequestService
      *
      * @link http://docs.camunda.org/api-references/rest/#!/execution/post-signal
      *
-     * @param String $id id of the execution
+     * @param string $id id of the execution
      * @throws \Exception
      */
-    public function triggerExecution($id)
+    function triggerExecution($id)
     {
         $this->setRequestUrl('/execution/' . $id . '/signal');
         $this->setRequestMethod('POST');
@@ -211,18 +178,16 @@ class ExecutionService extends RequestService
      *
      * @link http://docs.camunda.org/api-references/rest/#!/execution/get-message-subscription
      *
-     * @param String $id Execution ID
-     * @param String $messageName The name of the message that the subscription corresponds to.
+     * @param string $id Execution ID
+     * @param string $messageName The name of the message that the subscription corresponds to.
      * @throws \Exception
      * @return \org\camunda\php\sdk\entity\response\MessageSubscription $this requested MessageSubscription
      */
-    public function getMessageEventSubscription($id, $messageName)
+    function getMessageEventSubscription($id, $messageName)
     {
-        $messageSubscription = new MessageSubscription();
         $this->setRequestUrl('/execution/' . $id . '/messageSubscriptions/' . $messageName);
-        $this->setRequestMethod('GET');
         $this->setRequestObject(null);
-        return $messageSubscription->cast($this->execute());
+        return MessageSubscription::cast($this->execute());
     }
 
     /**
@@ -231,13 +196,13 @@ class ExecutionService extends RequestService
      *
      * @link http://docs.camunda.org/api-references/rest/#!/execution/post-message
      *
-     * @param String                     $id The id of the execution to submit the message to.
-     * @param String                     $messageName The name of the message that the addressed subscription
+     * @param string                     $id The id of the execution to submit the message to.
+     * @param string                     $messageName The name of the message that the addressed subscription
      *     corresponds to.
      * @param MessageSubscriptionRequest $request request body
      * @throws \Exception
      */
-    public function triggerMessageSubscription($id, $messageName, MessageSubscriptionRequest $request)
+    function triggerMessageSubscription($id, $messageName, MessageSubscriptionRequest $request)
     {
         $this->setRequestUrl('/execution/' . $id . '/messageSubscriptions/' . $messageName . '/trigger');
         $this->setRequestMethod('POST');

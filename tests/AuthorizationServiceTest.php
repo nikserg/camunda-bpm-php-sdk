@@ -9,44 +9,38 @@ include("../vendor/autoload.php");
 
 class AuthorizationServiceTest extends \PHPUnit\Framework\TestCase
 {
-    protected static $restApi;
+    /**
+     * @var AuthorizationService
+     */
     protected static $as;
 
     public static function setUpBeforeClass(): void
     {
-        self::$restApi = 'http://localhost:8080/engine-rest';
-        print("\n\nCLASS: " . __CLASS__ . "\n");
-        self::$as = new AuthorizationService(self::$restApi);
-    }
-
-    public static function tearDownAfterClass(): void
-    {
-        self::$restApi = null;
+        self::$as = new AuthorizationService('http://localhost:8080/engine-rest');
     }
 
     /**
-     * @test
+     * @throws \Exception
      */
-    public function getAuthorizations()
+    function testGetAuthorizations()
     {
         $authorizations = self::$as->getAuthorizations(new AuthorizationRequest());
         $this->assertNotEmpty($authorizations);
     }
 
     /**
-     * @test
+     * @throws \Exception
      */
-    public function getSingleAuthorization()
+    function testGetSingleAuthorization()
     {
         $authorizations = self::$as->getAuthorizations(new AuthorizationRequest());
-        $singleAuthorization = $authorizations->authorization_0;
-        $this->assertEquals('demo', $singleAuthorization->getUserId());
+        $this->assertEquals('demo', $authorizations[0]->getUserId());
     }
 
     /**
-     * @test
+     * @throws \Exception
      */
-    public function createAuthorization()
+    function testCreateAuthorization()
     {
         $createRequest = new AuthorizationRequest();
         $createRequest->setType(1);
@@ -62,9 +56,9 @@ class AuthorizationServiceTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @test
+     * @throws \Exception
      */
-    public function updateAuthorization()
+    function testUpdateAuthorization()
     {
         $createRequest = new AuthorizationRequest();
         $createRequest->setType(1);
@@ -86,9 +80,9 @@ class AuthorizationServiceTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @test
+     * @throws \Exception
      */
-    public function deleteAuthorization()
+    function testDeleteAuthorization()
     {
         $createRequest = new AuthorizationRequest();
         $createRequest->setType(1);
@@ -104,22 +98,17 @@ class AuthorizationServiceTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($initialCount, self::$as->getCount($countRequest));
     }
 
-    /**
-     * TODO: Find a way to test this with a properly authentication. I can't get the basic authentication to work with apache Tomcat :-(
-     *
-     * @test
-     */
-    public function performAuthorizationCheck()
+    function testPerformAuthorizationCheck()
     {
         $this->markTestIncomplete(
-            'This test has not been implemented yet.'
+            'Find a way to test this with a properly authentication. I can\'t get the basic authentication to work with apache Tomcat'
         );
     }
 
     /**
-     * @test
+     * @throws \Exception
      */
-    public function getAuthorizationResourceOptions()
+    function testGetAuthorizationResourceOptions()
     {
         $createRequest = new AuthorizationRequest();
         $createRequest->setType(1);
@@ -136,9 +125,9 @@ class AuthorizationServiceTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @test
+     * @throws \Exception
      */
-    public function getAuthorizationCount()
+    function testGetAuthorizationCount()
     {
         $createRequest = new AuthorizationRequest();
         $createRequest->setType(1);

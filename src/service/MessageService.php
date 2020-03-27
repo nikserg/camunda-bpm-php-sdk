@@ -1,9 +1,7 @@
 <?php
 
-
 namespace org\camunda\php\sdk\service;
 
-use Exception;
 use org\camunda\php\sdk\entity\request\MessageRequest;
 
 class MessageService extends RequestService
@@ -17,12 +15,11 @@ class MessageService extends RequestService
      * @param MessageRequest $request request body
      * @throws \Exception
      */
-    public function deliverMessage(MessageRequest $request)
+    function deliverMessage(MessageRequest $request)
     {
         $this->setRequestUrl('/message');
         $this->setRequestMethod('POST');
         $this->setRequestObject($request);
-
         $this->execute();
     }
 }

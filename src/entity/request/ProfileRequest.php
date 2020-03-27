@@ -1,8 +1,6 @@
 <?php
 
-
 namespace org\camunda\php\sdk\entity\request;
-
 
 class ProfileRequest extends Request
 {
@@ -15,7 +13,7 @@ class ProfileRequest extends Request
      * @param mixed $email
      * @return $this
      */
-    public function setEmail($email)
+    function setEmail($email)
     {
         $this->email = $email;
         return $this;
@@ -24,7 +22,7 @@ class ProfileRequest extends Request
     /**
      * @return mixed
      */
-    public function getEmail()
+    function getEmail()
     {
         return $this->email;
     }
@@ -33,7 +31,7 @@ class ProfileRequest extends Request
      * @param mixed $firstName
      * @return $this
      */
-    public function setFirstName($firstName)
+    function setFirstName($firstName)
     {
         $this->firstName = $firstName;
         return $this;
@@ -42,7 +40,7 @@ class ProfileRequest extends Request
     /**
      * @return mixed
      */
-    public function getFirstName()
+    function getFirstName()
     {
         return $this->firstName;
     }
@@ -51,7 +49,7 @@ class ProfileRequest extends Request
      * @param mixed $id
      * @return $this
      */
-    public function setId($id)
+    function setId($id)
     {
         $this->id = $id;
         return $this;
@@ -60,7 +58,7 @@ class ProfileRequest extends Request
     /**
      * @return mixed
      */
-    public function getId()
+    function getId()
     {
         return $this->id;
     }
@@ -69,7 +67,7 @@ class ProfileRequest extends Request
      * @param mixed $lastName
      * @return $this
      */
-    public function setLastName($lastName)
+    function setLastName($lastName)
     {
         $this->lastName = $lastName;
         return $this;
@@ -78,10 +76,8 @@ class ProfileRequest extends Request
     /**
      * @return mixed
      */
-    public function getLastName()
+    function getLastName()
     {
         return $this->lastName;
     }
-
-
 }

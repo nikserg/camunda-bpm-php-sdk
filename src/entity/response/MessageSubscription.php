@@ -1,6 +1,5 @@
 <?php
 
-
 namespace org\camunda\php\sdk\entity\response;
 
 use org\camunda\php\sdk\helper\CastHelper;
@@ -17,7 +16,7 @@ class MessageSubscription extends CastHelper
     /**
      * @param mixed $activityId
      */
-    public function setActivityId($activityId)
+    function setActivityId($activityId)
     {
         $this->activityId = $activityId;
     }
@@ -25,7 +24,7 @@ class MessageSubscription extends CastHelper
     /**
      * @return mixed
      */
-    public function getActivityId()
+    function getActivityId()
     {
         return $this->activityId;
     }
@@ -33,7 +32,7 @@ class MessageSubscription extends CastHelper
     /**
      * @param mixed $eventName
      */
-    public function setEventName($eventName)
+    function setEventName($eventName)
     {
         $this->eventName = $eventName;
     }
@@ -41,7 +40,7 @@ class MessageSubscription extends CastHelper
     /**
      * @return mixed
      */
-    public function getEventName()
+    function getEventName()
     {
         return $this->eventName;
     }
@@ -49,7 +48,7 @@ class MessageSubscription extends CastHelper
     /**
      * @param mixed $eventType
      */
-    public function setEventType($eventType)
+    function setEventType($eventType)
     {
         $this->eventType = $eventType;
     }
@@ -57,7 +56,7 @@ class MessageSubscription extends CastHelper
     /**
      * @return mixed
      */
-    public function getEventType()
+    function getEventType()
     {
         return $this->eventType;
     }
@@ -65,7 +64,7 @@ class MessageSubscription extends CastHelper
     /**
      * @param mixed $executionId
      */
-    public function setExecutionId($executionId)
+    function setExecutionId($executionId)
     {
         $this->executionId = $executionId;
     }
@@ -73,7 +72,7 @@ class MessageSubscription extends CastHelper
     /**
      * @return mixed
      */
-    public function getExecutionId()
+    function getExecutionId()
     {
         return $this->executionId;
     }
@@ -81,7 +80,7 @@ class MessageSubscription extends CastHelper
     /**
      * @param mixed $id
      */
-    public function setId($id)
+    function setId($id)
     {
         $this->id = $id;
     }
@@ -89,7 +88,7 @@ class MessageSubscription extends CastHelper
     /**
      * @return mixed
      */
-    public function getId()
+    function getId()
     {
         return $this->id;
     }
@@ -97,7 +96,7 @@ class MessageSubscription extends CastHelper
     /**
      * @param mixed $processInstanceId
      */
-    public function setProcessInstanceId($processInstanceId)
+    function setProcessInstanceId($processInstanceId)
     {
         $this->processInstanceId = $processInstanceId;
     }
@@ -105,10 +104,8 @@ class MessageSubscription extends CastHelper
     /**
      * @return mixed
      */
-    public function getProcessInstanceId()
+    function getProcessInstanceId()
     {
         return $this->processInstanceId;
     }
-
-
 }

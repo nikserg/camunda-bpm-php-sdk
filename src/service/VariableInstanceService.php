@@ -1,15 +1,12 @@
 <?php
 
-
 namespace org\camunda\php\sdk\service;
 
-use Exception;
 use org\camunda\php\sdk\entity\request\VariableInstanceRequest;
 use org\camunda\php\sdk\entity\response\VariableInstance;
 
 class VariableInstanceService extends RequestService
 {
-
     /**
      * Retrieves all variable instances within given context
      *
@@ -19,29 +16,16 @@ class VariableInstanceService extends RequestService
      * @param VariableInstanceRequest $request filter parameters
      * @param bool                    $isPostRequest switch for GET/POST request
      * @throws \Exception
-     * @return object list of variable instances
+     * @return VariableInstance[] list of variable instances
      */
-    public function getInstances(VariableInstanceRequest $request, $isPostRequest = false)
+    function getInstances(VariableInstanceRequest $request, $isPostRequest = false)
     {
         $this->setRequestUrl('/variable-instance');
         $this->setRequestObject($request);
         if ($isPostRequest == true) {
             $this->setRequestMethod('POST');
-        } else {
-            $this->setRequestMethod('GET');
         }
-
-        try {
-            $prepare = $this->execute();
-            $response = [];
-            $variableInstance = new VariableInstance();
-            foreach ($prepare AS $index => $data) {
-                $response['instance_' . $index] = $variableInstance->cast($data);
-            }
-            return (object)$response;
-        } catch (Exception $e) {
-            throw $e;
-        }
+        return VariableInstance::castList($this->execute());
     }
 
     /**
@@ -55,16 +39,13 @@ class VariableInstanceService extends RequestService
      * @throws \Exception
      * @return int Amount of variable instances
      */
-    public function getCount(VariableInstanceRequest $request, $isPostRequest = false)
+    function getCount(VariableInstanceRequest $request, $isPostRequest = false)
     {
         $this->setRequestUrl('/variable-instance/count');
         $this->setRequestObject($request);
         if ($isPostRequest == true) {
             $this->setRequestMethod('POST');
-        } else {
-            $this->setRequestMethod('GET');
         }
-
         return $this->execute()->count;
     }
 }

@@ -1,11 +1,9 @@
 <?php
 
-
 namespace org\camunda\php\sdk\helper;
 
 class DiagramHelper
 {
-
     /**
      * saves the bpmn diagram as file.
      *
@@ -13,19 +11,17 @@ class DiagramHelper
      * @param $savePath
      * @return string
      */
-    public function saveAsFile($diagram, $savePath)
+    function saveAsFile($diagram, $savePath)
     {
         if (is_dir($savePath)) {
             $filePath = $savePath . '/' . $this->cleanFileName($diagram->id) . '.bpmn';
         } else {
             $filePath = './' . $this->cleanFileName($diagram->id) . '.bpmn';
         }
-
         $handle = fopen($filePath, 'c+');
         ftruncate($handle, filesize($filePath));
         fwrite($handle, $diagram->bpmn20Xml);
         fclose($handle);
-
         return $filePath;
     }
 

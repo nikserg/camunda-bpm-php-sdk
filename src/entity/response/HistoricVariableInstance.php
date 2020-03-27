@@ -1,8 +1,6 @@
 <?php
 
-
 namespace org\camunda\php\sdk\entity\response;
-
 
 use org\camunda\php\sdk\helper\CastHelper;
 
@@ -16,7 +14,7 @@ class HistoricVariableInstance extends CastHelper
     /**
      * @param mixed $name
      */
-    public function setName($name)
+    function setName($name)
     {
         $this->name = $name;
     }
@@ -24,7 +22,7 @@ class HistoricVariableInstance extends CastHelper
     /**
      * @return mixed
      */
-    public function getName()
+    function getName()
     {
         return $this->name;
     }
@@ -32,7 +30,7 @@ class HistoricVariableInstance extends CastHelper
     /**
      * @param mixed $processInstanceId
      */
-    public function setProcessInstanceId($processInstanceId)
+    function setProcessInstanceId($processInstanceId)
     {
         $this->processInstanceId = $processInstanceId;
     }
@@ -40,7 +38,7 @@ class HistoricVariableInstance extends CastHelper
     /**
      * @return mixed
      */
-    public function getProcessInstanceId()
+    function getProcessInstanceId()
     {
         return $this->processInstanceId;
     }
@@ -48,7 +46,7 @@ class HistoricVariableInstance extends CastHelper
     /**
      * @param mixed $type
      */
-    public function setType($type)
+    function setType($type)
     {
         $this->type = $type;
     }
@@ -56,7 +54,7 @@ class HistoricVariableInstance extends CastHelper
     /**
      * @return mixed
      */
-    public function getType()
+    function getType()
     {
         return $this->type;
     }
@@ -64,7 +62,7 @@ class HistoricVariableInstance extends CastHelper
     /**
      * @param mixed $value
      */
-    public function setValue($value)
+    function setValue($value)
     {
         $this->value = $value;
     }
@@ -72,10 +70,8 @@ class HistoricVariableInstance extends CastHelper
     /**
      * @return mixed
      */
-    public function getValue()
+    function getValue()
     {
         return $this->value;
     }
-
-
 }

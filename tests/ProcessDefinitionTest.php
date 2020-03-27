@@ -1,6 +1,5 @@
 <?php
 
-
 namespace org\camunda\php\tests;
 
 use org\camunda\php\sdk\entity\request\ProcessDefinitionRequest;
@@ -9,91 +8,107 @@ use org\camunda\php\sdk\entity\request\StatisticRequest;
 use org\camunda\php\sdk\service\ProcessDefinitionService;
 use org\camunda\php\sdk\service\ProcessInstanceService;
 
-include('../../vendor/autoload.php');
+include('../vendor/autoload.php');
 
 class ProcessDefinitionTest extends \PHPUnit\Framework\TestCase
 {
-    protected static $restApi;
+    /**
+     * @var ProcessDefinitionService
+     */
     protected static $pds;
+    /**
+     * @var ProcessInstanceService
+     */
+    protected static $pis;
 
     public static function setUpBeforeClass(): void
     {
-        self::$restApi = 'http://localhost:8080/engine-rest';
-        print("\n\nCLASS: " . __CLASS__ . "\n");
-        self::$pds = new ProcessDefinitionService(self::$restApi);
+        self::$pds = new ProcessDefinitionService('http://localhost:8080/engine-rest');
+        self::$pis = new ProcessInstanceService('http://localhost:8080/engine-rest');
     }
 
-    public static function tearDownAfterClass(): void
+    /**
+     * @throws \Exception
+     */
+    function testGetSingleProcessDefinition()
     {
-        self::$restApi = null;
-    }
-
-    public function testGetSingleProcessDefinition()
-    {
-        $pdi = self::$pds->getDefinitions(new ProcessDefinitionRequest())->definition_0->getId();
+        $pdi = self::$pds->getDefinitions(new ProcessDefinitionRequest())[0]->getId();
         $this->assertEquals(false, self::$pds->getDefinition($pdi)->getSuspended());
     }
 
     /**
-     * TODO: Create a better version of this test if we get a rest-service which can deploy some files :)
+     * @throws \Exception
      */
-    public function testGetProcessDefinitions()
+    function testGetProcessDefinitions()
     {
         $this->assertEquals(false,
-            self::$pds->getDefinitions(new ProcessDefinitionRequest())->definition_0->getSuspended());
+            self::$pds->getDefinitions(new ProcessDefinitionRequest())[0]->getSuspended());
+        $this->markTestIncomplete("Create a better version of this test if we get a rest-service which can deploy some files :)");
     }
 
-    public function testGetProcessDefinitionCount()
+    /**
+     * @throws \Exception
+     */
+    function testGetProcessDefinitionCount()
     {
         $this->assertGreaterThan(0, self::$pds->getCount(new ProcessDefinitionRequest()));
     }
 
-    public function testGetBpmnXml()
+    /**
+     * @throws \Exception
+     */
+    function testGetBpmnXml()
     {
-        $pdi = self::$pds->getDefinitions(new ProcessDefinitionRequest())->definition_0->getId();
+        $pdi = self::$pds->getDefinitions(new ProcessDefinitionRequest())[0]->getId();
         $processXml = self::$pds->getBpmn20Xml($pdi);
-
         $this->assertEquals($pdi, $processXml->id);
         $this->assertGreaterThan(50, strlen($processXml->bpmn20Xml));
     }
 
-    public function testStartProcessInstance()
+    /**
+     * @throws \Exception
+     */
+    function testStartProcessInstance()
     {
-        $pis = new ProcessInstanceService(self::$restApi);
-
-        $countPreStart = $pis->getCount(new ProcessInstanceRequest());
-        foreach (self::$pds->getDefinitions(new ProcessDefinitionRequest()) AS $data) {
+        $countPreStart = self::$pis->getCount(new ProcessInstanceRequest());
+        foreach (self::$pds->getDefinitions(new ProcessDefinitionRequest()) as $data) {
             if ($data->getKey() == 'invoice') {
                 self::$pds->startInstance($data->getId(), new ProcessDefinitionRequest());
             }
         }
-        $this->assertGreaterThan($countPreStart, $pis->getCount(new ProcessInstanceRequest()));
+        $this->assertGreaterThan($countPreStart, self::$pis->getCount(new ProcessInstanceRequest()));
     }
 
-    public function testGetProcessInstanceStatistics()
+    /**
+     * @throws \Exception
+     */
+    function testGetProcessInstanceStatistics()
     {
         $is = self::$pds->getProcessInstanceStatistic(new StatisticRequest());
-        $this->assertEquals(false, $is->statistic_0->getDefinition()->suspended);
+        $this->assertEquals(false, $is[0]->getDefinition()->suspended);
     }
 
-    public function testGetActivityInstanceStatistics()
+    /**
+     * @throws \Exception
+     */
+    function testGetActivityInstanceStatistics()
     {
-        $pdi = self::$pds->getDefinitions(new ProcessDefinitionRequest())->definition_0->getId();
-        $asi = self::$pds->getActivityInstanceStatistic($pdi, new StatisticRequest())->statistic_0->getId();
+        $pdi = self::$pds->getDefinitions(new ProcessDefinitionRequest())[0]->getId();
+        $asi = self::$pds->getActivityInstanceStatistic($pdi, new StatisticRequest())[0]->getId();
         $this->assertEquals('UserTask_1', $asi);
     }
 
     /**
-     * TODO: Write a more accurate test!
-     * embedded:app:forms/start-form.html - invoice start form in distro
+     * @throws \Exception
      */
-    public function testGetStartFormKey()
+    function testGetStartFormKey()
     {
-        foreach (self::$pds->getDefinitions(new ProcessDefinitionRequest()) AS $data) {
+        foreach (self::$pds->getDefinitions(new ProcessDefinitionRequest()) as $data) {
             if ($data->getKey() == 'invoice') {
-                $this->assertEquals('embedded:app:forms/start-form.html',
+                $this->assertEquals('embedded:app:forms/start-form.html', // invoice start form in distro
                     self::$pds->getStartFormKey($data->getId())->getKey());
             }
         }
+        $this->markTestIncomplete("Write a more accurate test!");
     }
 }

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace org\camunda\php\sdk\entity\request;
 
 class TaskRequest extends Request
@@ -48,7 +47,7 @@ class TaskRequest extends Request
      * @param mixed $assignee
      * @return $this
      */
-    public function setAssignee($assignee)
+    function setAssignee($assignee)
     {
         $this->assignee = $assignee;
         return $this;
@@ -57,7 +56,7 @@ class TaskRequest extends Request
     /**
      * @return mixed
      */
-    public function getAssignee()
+    function getAssignee()
     {
         return $this->assignee;
     }
@@ -66,7 +65,7 @@ class TaskRequest extends Request
      * @param mixed $candidateGroup
      * @return $this
      */
-    public function setCandidateGroup($candidateGroup)
+    function setCandidateGroup($candidateGroup)
     {
         $this->candidateGroup = $candidateGroup;
         return $this;
@@ -75,7 +74,7 @@ class TaskRequest extends Request
     /**
      * @return mixed
      */
-    public function getCandidateGroup()
+    function getCandidateGroup()
     {
         return $this->candidateGroup;
     }
@@ -84,7 +83,7 @@ class TaskRequest extends Request
      * @param mixed $candidateGroups
      * @return $this
      */
-    public function setCandidateGroups($candidateGroups)
+    function setCandidateGroups($candidateGroups)
     {
         $this->candidateGroups = $candidateGroups;
         return $this;
@@ -93,7 +92,7 @@ class TaskRequest extends Request
     /**
      * @return mixed
      */
-    public function getCandidateGroups()
+    function getCandidateGroups()
     {
         return $this->candidateGroups;
     }
@@ -102,7 +101,7 @@ class TaskRequest extends Request
      * @param mixed $candidateUser
      * @return $this
      */
-    public function setCandidateUser($candidateUser)
+    function setCandidateUser($candidateUser)
     {
         $this->candidateUser = $candidateUser;
         return $this;
@@ -111,7 +110,7 @@ class TaskRequest extends Request
     /**
      * @return mixed
      */
-    public function getCandidateUser()
+    function getCandidateUser()
     {
         return $this->candidateUser;
     }
@@ -120,7 +119,7 @@ class TaskRequest extends Request
      * @param mixed $created
      * @return $this
      */
-    public function setCreated($created)
+    function setCreated($created)
     {
         $this->created = $created;
         return $this;
@@ -129,7 +128,7 @@ class TaskRequest extends Request
     /**
      * @return mixed
      */
-    public function getCreated()
+    function getCreated()
     {
         return $this->created;
     }
@@ -138,7 +137,7 @@ class TaskRequest extends Request
      * @param mixed $createdAfter
      * @return $this
      */
-    public function setCreatedAfter($createdAfter)
+    function setCreatedAfter($createdAfter)
     {
         $this->createdAfter = $createdAfter;
         return $this;
@@ -147,7 +146,7 @@ class TaskRequest extends Request
     /**
      * @return mixed
      */
-    public function getCreatedAfter()
+    function getCreatedAfter()
     {
         return $this->createdAfter;
     }
@@ -156,7 +155,7 @@ class TaskRequest extends Request
      * @param mixed $createdBefore
      * @return $this
      */
-    public function setCreatedBefore($createdBefore)
+    function setCreatedBefore($createdBefore)
     {
         $this->createdBefore = $createdBefore;
         return $this;
@@ -165,7 +164,7 @@ class TaskRequest extends Request
     /**
      * @return mixed
      */
-    public function getCreatedBefore()
+    function getCreatedBefore()
     {
         return $this->createdBefore;
     }
@@ -174,7 +173,7 @@ class TaskRequest extends Request
      * @param mixed $delegationState
      * @return $this
      */
-    public function setDelegationState($delegationState)
+    function setDelegationState($delegationState)
     {
         $this->delegationState = $delegationState;
         return $this;
@@ -183,7 +182,7 @@ class TaskRequest extends Request
     /**
      * @return mixed
      */
-    public function getDelegationState()
+    function getDelegationState()
     {
         return $this->delegationState;
     }
@@ -192,7 +191,7 @@ class TaskRequest extends Request
      * @param mixed $description
      * @return $this
      */
-    public function setDescription($description)
+    function setDescription($description)
     {
         $this->description = $description;
         return $this;
@@ -201,7 +200,7 @@ class TaskRequest extends Request
     /**
      * @return mixed
      */
-    public function getDescription()
+    function getDescription()
     {
         return $this->description;
     }
@@ -210,7 +209,7 @@ class TaskRequest extends Request
      * @param mixed $descriptionLike
      * @return $this
      */
-    public function setDescriptionLike($descriptionLike)
+    function setDescriptionLike($descriptionLike)
     {
         $this->descriptionLike = $descriptionLike;
         return $this;
@@ -219,7 +218,7 @@ class TaskRequest extends Request
     /**
      * @return mixed
      */
-    public function getDescriptionLike()
+    function getDescriptionLike()
     {
         return $this->descriptionLike;
     }
@@ -228,7 +227,7 @@ class TaskRequest extends Request
      * @param mixed $due
      * @return $this
      */
-    public function setDue($due)
+    function setDue($due)
     {
         $this->due = $due;
         return $this;
@@ -237,7 +236,7 @@ class TaskRequest extends Request
     /**
      * @return mixed
      */
-    public function getDue()
+    function getDue()
     {
         return $this->due;
     }
@@ -246,7 +245,7 @@ class TaskRequest extends Request
      * @param mixed $dueAfter
      * @return $this
      */
-    public function setDueAfter($dueAfter)
+    function setDueAfter($dueAfter)
     {
         $this->dueAfter = $dueAfter;
         return $this;
@@ -255,7 +254,7 @@ class TaskRequest extends Request
     /**
      * @return mixed
      */
-    public function getDueAfter()
+    function getDueAfter()
     {
         return $this->dueAfter;
     }
@@ -264,7 +263,7 @@ class TaskRequest extends Request
      * @param mixed $dueBefore
      * @return $this
      */
-    public function setDueBefore($dueBefore)
+    function setDueBefore($dueBefore)
     {
         $this->dueBefore = $dueBefore;
         return $this;
@@ -273,7 +272,7 @@ class TaskRequest extends Request
     /**
      * @return mixed
      */
-    public function getDueBefore()
+    function getDueBefore()
     {
         return $this->dueBefore;
     }
@@ -282,7 +281,7 @@ class TaskRequest extends Request
      * @param mixed $executionId
      * @return $this
      */
-    public function setExecutionId($executionId)
+    function setExecutionId($executionId)
     {
         $this->executionId = $executionId;
         return $this;
@@ -291,7 +290,7 @@ class TaskRequest extends Request
     /**
      * @return mixed
      */
-    public function getExecutionId()
+    function getExecutionId()
     {
         return $this->executionId;
     }
@@ -300,7 +299,7 @@ class TaskRequest extends Request
      * @param mixed $firstResult
      * @return $this
      */
-    public function setFirstResult($firstResult)
+    function setFirstResult($firstResult)
     {
         $this->firstResult = $firstResult;
         return $this;
@@ -309,7 +308,7 @@ class TaskRequest extends Request
     /**
      * @return mixed
      */
-    public function getFirstResult()
+    function getFirstResult()
     {
         return $this->firstResult;
     }
@@ -318,7 +317,7 @@ class TaskRequest extends Request
      * @param mixed $involvedUser
      * @return $this
      */
-    public function setInvolvedUser($involvedUser)
+    function setInvolvedUser($involvedUser)
     {
         $this->involvedUser = $involvedUser;
         return $this;
@@ -327,7 +326,7 @@ class TaskRequest extends Request
     /**
      * @return mixed
      */
-    public function getInvolvedUser()
+    function getInvolvedUser()
     {
         return $this->involvedUser;
     }
@@ -336,7 +335,7 @@ class TaskRequest extends Request
      * @param mixed $maxPriority
      * @return $this
      */
-    public function setMaxPriority($maxPriority)
+    function setMaxPriority($maxPriority)
     {
         $this->maxPriority = $maxPriority;
         return $this;
@@ -345,7 +344,7 @@ class TaskRequest extends Request
     /**
      * @return mixed
      */
-    public function getMaxPriority()
+    function getMaxPriority()
     {
         return $this->maxPriority;
     }
@@ -354,7 +353,7 @@ class TaskRequest extends Request
      * @param mixed $maxResults
      * @return $this
      */
-    public function setMaxResults($maxResults)
+    function setMaxResults($maxResults)
     {
         $this->maxResults = $maxResults;
         return $this;
@@ -363,7 +362,7 @@ class TaskRequest extends Request
     /**
      * @return mixed
      */
-    public function getMaxResults()
+    function getMaxResults()
     {
         return $this->maxResults;
     }
@@ -372,7 +371,7 @@ class TaskRequest extends Request
      * @param mixed $minPriority
      * @return $this
      */
-    public function setMinPriority($minPriority)
+    function setMinPriority($minPriority)
     {
         $this->minPriority = $minPriority;
         return $this;
@@ -381,7 +380,7 @@ class TaskRequest extends Request
     /**
      * @return mixed
      */
-    public function getMinPriority()
+    function getMinPriority()
     {
         return $this->minPriority;
     }
@@ -390,7 +389,7 @@ class TaskRequest extends Request
      * @param mixed $name
      * @return $this
      */
-    public function setName($name)
+    function setName($name)
     {
         $this->name = $name;
         return $this;
@@ -399,7 +398,7 @@ class TaskRequest extends Request
     /**
      * @return mixed
      */
-    public function getName()
+    function getName()
     {
         return $this->name;
     }
@@ -408,7 +407,7 @@ class TaskRequest extends Request
      * @param mixed $nameLike
      * @return $this
      */
-    public function setNameLike($nameLike)
+    function setNameLike($nameLike)
     {
         $this->nameLike = $nameLike;
         return $this;
@@ -417,7 +416,7 @@ class TaskRequest extends Request
     /**
      * @return mixed
      */
-    public function getNameLike()
+    function getNameLike()
     {
         return $this->nameLike;
     }
@@ -426,7 +425,7 @@ class TaskRequest extends Request
      * @param mixed $owner
      * @return $this
      */
-    public function setOwner($owner)
+    function setOwner($owner)
     {
         $this->owner = $owner;
         return $this;
@@ -435,7 +434,7 @@ class TaskRequest extends Request
     /**
      * @return mixed
      */
-    public function getOwner()
+    function getOwner()
     {
         return $this->owner;
     }
@@ -444,7 +443,7 @@ class TaskRequest extends Request
      * @param mixed $priority
      * @return $this
      */
-    public function setPriority($priority)
+    function setPriority($priority)
     {
         $this->priority = $priority;
         return $this;
@@ -453,7 +452,7 @@ class TaskRequest extends Request
     /**
      * @return mixed
      */
-    public function getPriority()
+    function getPriority()
     {
         return $this->priority;
     }
@@ -462,7 +461,7 @@ class TaskRequest extends Request
      * @param mixed $processDefinitionId
      * @return $this
      */
-    public function setProcessDefinitionId($processDefinitionId)
+    function setProcessDefinitionId($processDefinitionId)
     {
         $this->processDefinitionId = $processDefinitionId;
         return $this;
@@ -471,7 +470,7 @@ class TaskRequest extends Request
     /**
      * @return mixed
      */
-    public function getProcessDefinitionId()
+    function getProcessDefinitionId()
     {
         return $this->processDefinitionId;
     }
@@ -480,7 +479,7 @@ class TaskRequest extends Request
      * @param mixed $processDefinitionKey
      * @return $this
      */
-    public function setProcessDefinitionKey($processDefinitionKey)
+    function setProcessDefinitionKey($processDefinitionKey)
     {
         $this->processDefinitionKey = $processDefinitionKey;
         return $this;
@@ -489,7 +488,7 @@ class TaskRequest extends Request
     /**
      * @return mixed
      */
-    public function getProcessDefinitionKey()
+    function getProcessDefinitionKey()
     {
         return $this->processDefinitionKey;
     }
@@ -498,7 +497,7 @@ class TaskRequest extends Request
      * @param mixed $processDefinitionName
      * @return $this
      */
-    public function setProcessDefinitionName($processDefinitionName)
+    function setProcessDefinitionName($processDefinitionName)
     {
         $this->processDefinitionName = $processDefinitionName;
         return $this;
@@ -507,7 +506,7 @@ class TaskRequest extends Request
     /**
      * @return mixed
      */
-    public function getProcessDefinitionName()
+    function getProcessDefinitionName()
     {
         return $this->processDefinitionName;
     }
@@ -516,7 +515,7 @@ class TaskRequest extends Request
      * @param mixed $processInstanceBusinessKey
      * @return $this
      */
-    public function setProcessInstanceBusinessKey($processInstanceBusinessKey)
+    function setProcessInstanceBusinessKey($processInstanceBusinessKey)
     {
         $this->processInstanceBusinessKey = $processInstanceBusinessKey;
         return $this;
@@ -525,7 +524,7 @@ class TaskRequest extends Request
     /**
      * @return mixed
      */
-    public function getProcessInstanceBusinessKey()
+    function getProcessInstanceBusinessKey()
     {
         return $this->processInstanceBusinessKey;
     }
@@ -534,7 +533,7 @@ class TaskRequest extends Request
      * @param mixed $processInstanceId
      * @return $this
      */
-    public function setProcessInstanceId($processInstanceId)
+    function setProcessInstanceId($processInstanceId)
     {
         $this->processInstanceId = $processInstanceId;
         return $this;
@@ -543,7 +542,7 @@ class TaskRequest extends Request
     /**
      * @return mixed
      */
-    public function getProcessInstanceId()
+    function getProcessInstanceId()
     {
         return $this->processInstanceId;
     }
@@ -552,7 +551,7 @@ class TaskRequest extends Request
      * @param mixed $processVariables
      * @return $this
      */
-    public function setProcessVariables($processVariables)
+    function setProcessVariables($processVariables)
     {
         $this->processVariables = $processVariables;
         return $this;
@@ -561,7 +560,7 @@ class TaskRequest extends Request
     /**
      * @return mixed
      */
-    public function getProcessVariables()
+    function getProcessVariables()
     {
         return $this->processVariables;
     }
@@ -570,7 +569,7 @@ class TaskRequest extends Request
      * @param mixed $sortBy
      * @return $this
      */
-    public function setSortBy($sortBy)
+    function setSortBy($sortBy)
     {
         $this->sortBy = $sortBy;
         return $this;
@@ -579,7 +578,7 @@ class TaskRequest extends Request
     /**
      * @return mixed
      */
-    public function getSortBy()
+    function getSortBy()
     {
         return $this->sortBy;
     }
@@ -588,7 +587,7 @@ class TaskRequest extends Request
      * @param mixed $sortOrder
      * @return $this
      */
-    public function setSortOrder($sortOrder)
+    function setSortOrder($sortOrder)
     {
         $this->sortOrder = $sortOrder;
         return $this;
@@ -597,7 +596,7 @@ class TaskRequest extends Request
     /**
      * @return mixed
      */
-    public function getSortOrder()
+    function getSortOrder()
     {
         return $this->sortOrder;
     }
@@ -606,7 +605,7 @@ class TaskRequest extends Request
      * @param mixed $taskDefinitionKey
      * @return $this
      */
-    public function setTaskDefinitionKey($taskDefinitionKey)
+    function setTaskDefinitionKey($taskDefinitionKey)
     {
         $this->taskDefinitionKey = $taskDefinitionKey;
         return $this;
@@ -615,7 +614,7 @@ class TaskRequest extends Request
     /**
      * @return mixed
      */
-    public function getTaskDefinitionKey()
+    function getTaskDefinitionKey()
     {
         return $this->taskDefinitionKey;
     }
@@ -624,7 +623,7 @@ class TaskRequest extends Request
      * @param mixed $taskDefinitionKeyLike
      * @return $this
      */
-    public function setTaskDefinitionKeyLike($taskDefinitionKeyLike)
+    function setTaskDefinitionKeyLike($taskDefinitionKeyLike)
     {
         $this->taskDefinitionKeyLike = $taskDefinitionKeyLike;
         return $this;
@@ -633,7 +632,7 @@ class TaskRequest extends Request
     /**
      * @return mixed
      */
-    public function getTaskDefinitionKeyLike()
+    function getTaskDefinitionKeyLike()
     {
         return $this->taskDefinitionKeyLike;
     }
@@ -642,7 +641,7 @@ class TaskRequest extends Request
      * @param mixed $taskVariables
      * @return $this
      */
-    public function setTaskVariables($taskVariables)
+    function setTaskVariables($taskVariables)
     {
         $this->taskVariables = $taskVariables;
         return $this;
@@ -651,7 +650,7 @@ class TaskRequest extends Request
     /**
      * @return mixed
      */
-    public function getTaskVariables()
+    function getTaskVariables()
     {
         return $this->taskVariables;
     }
@@ -660,7 +659,7 @@ class TaskRequest extends Request
      * @param mixed $unassigned
      * @return $this
      */
-    public function setUnassigned($unassigned)
+    function setUnassigned($unassigned)
     {
         $this->unassigned = $unassigned;
         return $this;
@@ -669,7 +668,7 @@ class TaskRequest extends Request
     /**
      * @return mixed
      */
-    public function getUnassigned()
+    function getUnassigned()
     {
         return $this->unassigned;
     }
@@ -678,7 +677,7 @@ class TaskRequest extends Request
      * @param mixed $userId
      * @return $this
      */
-    public function setUserId($userId)
+    function setUserId($userId)
     {
         $this->userId = $userId;
         return $this;
@@ -687,7 +686,7 @@ class TaskRequest extends Request
     /**
      * @return mixed
      */
-    public function getUserId()
+    function getUserId()
     {
         return $this->userId;
     }
@@ -696,7 +695,7 @@ class TaskRequest extends Request
      * @param mixed $variables
      * @return $this
      */
-    public function setVariables($variables)
+    function setVariables($variables)
     {
         $this->variables = $variables;
         return $this;
@@ -705,7 +704,7 @@ class TaskRequest extends Request
     /**
      * @return mixed
      */
-    public function getVariables()
+    function getVariables()
     {
         return $this->variables;
     }
@@ -714,7 +713,7 @@ class TaskRequest extends Request
      * @param boolean $includeAssignedTasks
      * @return $this
      */
-    public function setIncludeAssignedTasks($includeAssignedTasks)
+    function setIncludeAssignedTasks($includeAssignedTasks)
     {
         $this->includeAssignedTasks = $includeAssignedTasks;
         return $this;
@@ -723,7 +722,7 @@ class TaskRequest extends Request
     /**
      * @return boolean
      */
-    public function getIncludeAssignedTasks()
+    function getIncludeAssignedTasks()
     {
         return $this->includeAssignedTasks;
     }

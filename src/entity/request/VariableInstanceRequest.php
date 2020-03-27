@@ -1,8 +1,6 @@
 <?php
 
-
 namespace org\camunda\php\sdk\entity\request;
-
 
 class VariableInstanceRequest extends Request
 {
@@ -22,7 +20,7 @@ class VariableInstanceRequest extends Request
      * @param mixed $activityInstanceIdIn
      * @return $this
      */
-    public function setActivityInstanceIdIn($activityInstanceIdIn)
+    function setActivityInstanceIdIn($activityInstanceIdIn)
     {
         $this->activityInstanceIdIn = $activityInstanceIdIn;
         return $this;
@@ -31,7 +29,7 @@ class VariableInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getActivityInstanceIdIn()
+    function getActivityInstanceIdIn()
     {
         return $this->activityInstanceIdIn;
     }
@@ -40,7 +38,7 @@ class VariableInstanceRequest extends Request
      * @param mixed $executionIdIn
      * @return $this
      */
-    public function setExecutionIdIn($executionIdIn)
+    function setExecutionIdIn($executionIdIn)
     {
         $this->executionIdIn = $executionIdIn;
         return $this;
@@ -49,7 +47,7 @@ class VariableInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getExecutionIdIn()
+    function getExecutionIdIn()
     {
         return $this->executionIdIn;
     }
@@ -58,7 +56,7 @@ class VariableInstanceRequest extends Request
      * @param mixed $firstResult
      * @return $this
      */
-    public function setFirstResult($firstResult)
+    function setFirstResult($firstResult)
     {
         $this->firstResult = $firstResult;
         return $this;
@@ -67,7 +65,7 @@ class VariableInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getFirstResult()
+    function getFirstResult()
     {
         return $this->firstResult;
     }
@@ -76,7 +74,7 @@ class VariableInstanceRequest extends Request
      * @param mixed $maxResults
      * @return $this
      */
-    public function setMaxResults($maxResults)
+    function setMaxResults($maxResults)
     {
         $this->maxResults = $maxResults;
         return $this;
@@ -85,7 +83,7 @@ class VariableInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getMaxResults()
+    function getMaxResults()
     {
         return $this->maxResults;
     }
@@ -94,7 +92,7 @@ class VariableInstanceRequest extends Request
      * @param mixed $processInstanceIdIn
      * @return $this
      */
-    public function setProcessInstanceIdIn($processInstanceIdIn)
+    function setProcessInstanceIdIn($processInstanceIdIn)
     {
         $this->processInstanceIdIn = $processInstanceIdIn;
         return $this;
@@ -103,7 +101,7 @@ class VariableInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getProcessInstanceIdIn()
+    function getProcessInstanceIdIn()
     {
         return $this->processInstanceIdIn;
     }
@@ -112,7 +110,7 @@ class VariableInstanceRequest extends Request
      * @param mixed $sortBy
      * @return $this
      */
-    public function setSortBy($sortBy)
+    function setSortBy($sortBy)
     {
         $this->sortBy = $sortBy;
         return $this;
@@ -121,7 +119,7 @@ class VariableInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getSortBy()
+    function getSortBy()
     {
         return $this->sortBy;
     }
@@ -130,7 +128,7 @@ class VariableInstanceRequest extends Request
      * @param mixed $sortOrder
      * @return $this
      */
-    public function setSortOrder($sortOrder)
+    function setSortOrder($sortOrder)
     {
         $this->sortOrder = $sortOrder;
         return $this;
@@ -139,7 +137,7 @@ class VariableInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getSortOrder()
+    function getSortOrder()
     {
         return $this->sortOrder;
     }
@@ -148,7 +146,7 @@ class VariableInstanceRequest extends Request
      * @param mixed $taskIdIn
      * @return $this
      */
-    public function setTaskIdIn($taskIdIn)
+    function setTaskIdIn($taskIdIn)
     {
         $this->taskIdIn = $taskIdIn;
         return $this;
@@ -157,7 +155,7 @@ class VariableInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getTaskIdIn()
+    function getTaskIdIn()
     {
         return $this->taskIdIn;
     }
@@ -166,7 +164,7 @@ class VariableInstanceRequest extends Request
      * @param mixed $variableName
      * @return $this
      */
-    public function setVariableName($variableName)
+    function setVariableName($variableName)
     {
         $this->variableName = $variableName;
         return $this;
@@ -175,7 +173,7 @@ class VariableInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getVariableName()
+    function getVariableName()
     {
         return $this->variableName;
     }
@@ -184,7 +182,7 @@ class VariableInstanceRequest extends Request
      * @param mixed $variableNameLike
      * @return $this
      */
-    public function setVariableNameLike($variableNameLike)
+    function setVariableNameLike($variableNameLike)
     {
         $this->variableNameLike = $variableNameLike;
         return $this;
@@ -193,7 +191,7 @@ class VariableInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getVariableNameLike()
+    function getVariableNameLike()
     {
         return $this->variableNameLike;
     }
@@ -202,7 +200,7 @@ class VariableInstanceRequest extends Request
      * @param mixed $variableValues
      * @return $this
      */
-    public function setVariableValues($variableValues)
+    function setVariableValues($variableValues)
     {
         $this->variableValues = $variableValues;
         return $this;
@@ -211,10 +209,8 @@ class VariableInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getVariableValues()
+    function getVariableValues()
     {
         return $this->variableValues;
     }
-
-
 }

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace org\camunda\php\sdk\entity\response;
 
 use org\camunda\php\sdk\helper\CastHelper;
@@ -16,7 +15,7 @@ class HistoricActivityStatistic extends CastHelper
     /**
      * @param mixed $id
      */
-    public function setId($id)
+    function setId($id)
     {
         $this->id = $id;
     }
@@ -24,7 +23,7 @@ class HistoricActivityStatistic extends CastHelper
     /**
      * @return mixed
      */
-    public function getId()
+    function getId()
     {
         return $this->id;
     }
@@ -32,7 +31,7 @@ class HistoricActivityStatistic extends CastHelper
     /**
      * @param mixed $instances
      */
-    public function setInstances($instances)
+    function setInstances($instances)
     {
         $this->instances = $instances;
     }
@@ -40,7 +39,7 @@ class HistoricActivityStatistic extends CastHelper
     /**
      * @return mixed
      */
-    public function getInstances()
+    function getInstances()
     {
         return $this->instances;
     }
@@ -49,7 +48,7 @@ class HistoricActivityStatistic extends CastHelper
      * @param mixed $canceled
      * @return $this
      */
-    public function setCanceled($canceled)
+    function setCanceled($canceled)
     {
         $this->canceled = $canceled;
         return $this;
@@ -58,7 +57,7 @@ class HistoricActivityStatistic extends CastHelper
     /**
      * @return mixed
      */
-    public function getCanceled()
+    function getCanceled()
     {
         return $this->canceled;
     }
@@ -67,7 +66,7 @@ class HistoricActivityStatistic extends CastHelper
      * @param mixed $finished
      * @return $this
      */
-    public function setFinished($finished)
+    function setFinished($finished)
     {
         $this->finished = $finished;
         return $this;
@@ -76,7 +75,7 @@ class HistoricActivityStatistic extends CastHelper
     /**
      * @return mixed
      */
-    public function getFinished()
+    function getFinished()
     {
         return $this->finished;
     }
@@ -85,7 +84,7 @@ class HistoricActivityStatistic extends CastHelper
      * @param mixed $completeScope
      * @return $this
      */
-    public function setCompleteScope($completeScope)
+    function setCompleteScope($completeScope)
     {
         $this->completeScope = $completeScope;
         return $this;
@@ -94,10 +93,8 @@ class HistoricActivityStatistic extends CastHelper
     /**
      * @return mixed
      */
-    public function getCompleteScope()
+    function getCompleteScope()
     {
         return $this->completeScope;
     }
-
-
 }

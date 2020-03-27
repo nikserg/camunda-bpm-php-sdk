@@ -1,6 +1,5 @@
 <?php
 
-
 namespace org\camunda\php\sdk\entity\response;
 
 use org\camunda\php\sdk\helper\CastHelper;
@@ -17,7 +16,7 @@ class Job extends CastHelper
     /**
      * @param mixed $dueDate
      */
-    public function setDueDate($dueDate)
+    function setDueDate($dueDate)
     {
         $this->dueDate = $dueDate;
     }
@@ -25,7 +24,7 @@ class Job extends CastHelper
     /**
      * @return mixed
      */
-    public function getDueDate()
+    function getDueDate()
     {
         return $this->dueDate;
     }
@@ -33,7 +32,7 @@ class Job extends CastHelper
     /**
      * @param mixed $exceptionMessage
      */
-    public function setExceptionMessage($exceptionMessage)
+    function setExceptionMessage($exceptionMessage)
     {
         $this->exceptionMessage = $exceptionMessage;
     }
@@ -41,7 +40,7 @@ class Job extends CastHelper
     /**
      * @return mixed
      */
-    public function getExceptionMessage()
+    function getExceptionMessage()
     {
         return $this->exceptionMessage;
     }
@@ -49,7 +48,7 @@ class Job extends CastHelper
     /**
      * @param mixed $executionId
      */
-    public function setExecutionId($executionId)
+    function setExecutionId($executionId)
     {
         $this->executionId = $executionId;
     }
@@ -57,7 +56,7 @@ class Job extends CastHelper
     /**
      * @return mixed
      */
-    public function getExecutionId()
+    function getExecutionId()
     {
         return $this->executionId;
     }
@@ -65,7 +64,7 @@ class Job extends CastHelper
     /**
      * @param mixed $id
      */
-    public function setId($id)
+    function setId($id)
     {
         $this->id = $id;
     }
@@ -73,7 +72,7 @@ class Job extends CastHelper
     /**
      * @return mixed
      */
-    public function getId()
+    function getId()
     {
         return $this->id;
     }
@@ -81,7 +80,7 @@ class Job extends CastHelper
     /**
      * @param mixed $processInstanceId
      */
-    public function setProcessInstanceId($processInstanceId)
+    function setProcessInstanceId($processInstanceId)
     {
         $this->processInstanceId = $processInstanceId;
     }
@@ -89,7 +88,7 @@ class Job extends CastHelper
     /**
      * @return mixed
      */
-    public function getProcessInstanceId()
+    function getProcessInstanceId()
     {
         return $this->processInstanceId;
     }
@@ -97,7 +96,7 @@ class Job extends CastHelper
     /**
      * @param mixed $retries
      */
-    public function setRetries($retries)
+    function setRetries($retries)
     {
         $this->retries = $retries;
     }
@@ -105,10 +104,8 @@ class Job extends CastHelper
     /**
      * @return mixed
      */
-    public function getRetries()
+    function getRetries()
     {
         return $this->retries;
     }
-
-
 }

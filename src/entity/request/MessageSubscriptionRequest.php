@@ -1,6 +1,5 @@
 <?php
 
-
 namespace org\camunda\php\sdk\entity\request;
 
 class MessageSubscriptionRequest extends Request
@@ -18,7 +17,7 @@ class MessageSubscriptionRequest extends Request
     /**
      * @param mixed $activityId
      */
-    public function setActivityId($activityId)
+    function setActivityId($activityId)
     {
         $this->activityId = $activityId;
     }
@@ -26,7 +25,7 @@ class MessageSubscriptionRequest extends Request
     /**
      * @return mixed
      */
-    public function getActivityId()
+    function getActivityId()
     {
         return $this->activityId;
     }
@@ -35,7 +34,7 @@ class MessageSubscriptionRequest extends Request
      * @param mixed $createdDate
      * @return $this
      */
-    public function setCreatedDate($createdDate)
+    function setCreatedDate($createdDate)
     {
         $this->createdDate = $createdDate;
         return $this;
@@ -44,7 +43,7 @@ class MessageSubscriptionRequest extends Request
     /**
      * @return mixed
      */
-    public function getCreatedDate()
+    function getCreatedDate()
     {
         return $this->createdDate;
     }
@@ -53,7 +52,7 @@ class MessageSubscriptionRequest extends Request
      * @param mixed $eventName
      * @return $this
      */
-    public function setEventName($eventName)
+    function setEventName($eventName)
     {
         $this->eventName = $eventName;
         return $this;
@@ -62,7 +61,7 @@ class MessageSubscriptionRequest extends Request
     /**
      * @return mixed
      */
-    public function getEventName()
+    function getEventName()
     {
         return $this->eventName;
     }
@@ -71,7 +70,7 @@ class MessageSubscriptionRequest extends Request
      * @param mixed $eventType
      * @return $this
      */
-    public function setEventType($eventType)
+    function setEventType($eventType)
     {
         $this->eventType = $eventType;
         return $this;
@@ -80,7 +79,7 @@ class MessageSubscriptionRequest extends Request
     /**
      * @return mixed
      */
-    public function getEventType()
+    function getEventType()
     {
         return $this->eventType;
     }
@@ -89,7 +88,7 @@ class MessageSubscriptionRequest extends Request
      * @param mixed $executionId
      * @return $this
      */
-    public function setExecutionId($executionId)
+    function setExecutionId($executionId)
     {
         $this->executionId = $executionId;
         return $this;
@@ -98,7 +97,7 @@ class MessageSubscriptionRequest extends Request
     /**
      * @return mixed
      */
-    public function getExecutionId()
+    function getExecutionId()
     {
         return $this->executionId;
     }
@@ -107,7 +106,7 @@ class MessageSubscriptionRequest extends Request
      * @param mixed $id
      * @return $this
      */
-    public function setId($id)
+    function setId($id)
     {
         $this->id = $id;
         return $this;
@@ -116,7 +115,7 @@ class MessageSubscriptionRequest extends Request
     /**
      * @return mixed
      */
-    public function getId()
+    function getId()
     {
         return $this->id;
     }
@@ -125,7 +124,7 @@ class MessageSubscriptionRequest extends Request
      * @param mixed $messageName
      * @return $this
      */
-    public function setMessageName($messageName)
+    function setMessageName($messageName)
     {
         $this->messageName = $messageName;
         return $this;
@@ -134,7 +133,7 @@ class MessageSubscriptionRequest extends Request
     /**
      * @return mixed
      */
-    public function getMessageName()
+    function getMessageName()
     {
         return $this->messageName;
     }
@@ -143,7 +142,7 @@ class MessageSubscriptionRequest extends Request
      * @param mixed $processInstanceId
      * @return $this
      */
-    public function setProcessInstanceId($processInstanceId)
+    function setProcessInstanceId($processInstanceId)
     {
         $this->processInstanceId = $processInstanceId;
         return $this;
@@ -152,7 +151,7 @@ class MessageSubscriptionRequest extends Request
     /**
      * @return mixed
      */
-    public function getProcessInstanceId()
+    function getProcessInstanceId()
     {
         return $this->processInstanceId;
     }
@@ -161,7 +160,7 @@ class MessageSubscriptionRequest extends Request
      * @param mixed $variables
      * @return $this
      */
-    public function setVariables($variables)
+    function setVariables($variables)
     {
         $this->variables = $variables;
         return $this;
@@ -170,10 +169,8 @@ class MessageSubscriptionRequest extends Request
     /**
      * @return mixed
      */
-    public function getVariables()
+    function getVariables()
     {
         return $this->variables;
     }
-
-
 }

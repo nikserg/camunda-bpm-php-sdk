@@ -1,9 +1,7 @@
 <?php
 
-
 namespace org\camunda\php\sdk\service;
 
-use Exception;
 use org\camunda\php\sdk\entity\request\IdentityLinksRequest;
 use org\camunda\php\sdk\entity\request\TaskRequest;
 use org\camunda\php\sdk\entity\response\Form;
@@ -12,26 +10,18 @@ use org\camunda\php\sdk\entity\response\Task;
 
 class TaskService extends RequestService
 {
-
     /**
      * Retrieves the task with the given ID
      *
-     * @param String $id task id
+     * @param string $id task id
      * @throws \Exception
      * @return \org\camunda\php\sdk\entity\response\Task $this requested task
      */
-    public function getTask($id)
+    function getTask($id)
     {
-        $task = new Task();
         $this->setRequestUrl('/task/' . $id);
-        $this->setRequestMethod('GET');
         $this->setRequestObject(null);
-
-        try {
-            return $task->cast($this->execute());
-        } catch (Exception $e) {
-            throw $e;
-        }
+        return Task::cast($this->execute());
     }
 
     /**
@@ -43,30 +33,16 @@ class TaskService extends RequestService
      * @param TaskRequest $request filter parameters
      * @param bool        $isPostRequest switch for GET/POST request
      * @throws \Exception
-     * @return object list of all Tasks
+     * @return Task[] list of all Tasks
      */
-    public function getTasks(TaskRequest $request, $isPostRequest = false)
+    function getTasks(TaskRequest $request, $isPostRequest = false)
     {
-
         $this->setRequestUrl('/task/');
         $this->setRequestObject($request);
         if ($isPostRequest == true) {
             $this->setRequestMethod('POST');
-        } else {
-            $this->setRequestMethod('GET');
         }
-
-        try {
-            $prepare = $this->execute();
-            $response = [];
-            foreach ($prepare AS $index => $data) {
-                $task = new Task();
-                $response['task_' . $index] = $task->cast($data);
-            }
-            return (object)$response;
-        } catch (Exception $e) {
-            throw $e;
-        }
+        return Task::castList($this->execute());
     }
 
     /**
@@ -80,16 +56,13 @@ class TaskService extends RequestService
      * @throws \Exception
      * @return int Amount of tasks
      */
-    public function getCount(TaskRequest $request, $isPostRequest = false)
+    function getCount(TaskRequest $request, $isPostRequest = false)
     {
         $this->setRequestUrl('/task/count/');
         $this->setRequestObject($request);
         if ($isPostRequest == true) {
             $this->setRequestMethod('POST');
-        } else {
-            $this->setRequestMethod('GET');
         }
-
         return $this->execute()->count;
     }
 
@@ -98,22 +71,15 @@ class TaskService extends RequestService
      *
      * @link http://docs.camunda.org/api-references/rest/#!/task/get-form-key
      *
-     * @param String $id task ID
+     * @param string $id task ID
      * @throws \Exception
      * @return Form start form object
      */
-    public function getFormKey($id)
+    function getFormKey($id)
     {
-        $form = new Form();
         $this->setRequestUrl('/task/' . $id . '/form');
-        $this->setRequestMethod('GET');
         $this->setRequestObject(null);
-
-        try {
-            return $form->cast($this->execute());
-        } catch (Exception $e) {
-            throw $e;
-        }
+        return Form::cast($this->execute());
     }
 
     /**
@@ -121,16 +87,15 @@ class TaskService extends RequestService
      *
      * @link http://docs.camunda.org/api-references/rest/#!/task/post-claim
      *
-     * @param String                                          $id task id
+     * @param string                                          $id task id
      * @param \org\camunda\php\sdk\entity\request\TaskRequest $request
      * @throws \Exception
      */
-    public function claimTask($id, TaskRequest $request)
+    function claimTask($id, TaskRequest $request)
     {
         $this->setRequestUrl('/task/' . $id . '/claim');
         $this->setRequestObject($request);
         $this->setRequestMethod('POST');
-
         $this->execute();
     }
 
@@ -139,15 +104,14 @@ class TaskService extends RequestService
      *
      * @link http://docs.camunda.org/api-references/rest/#!/task/post-unclaim
      *
-     * @param String $id task id
+     * @param string $id task id
      * @throws \Exception
      */
-    public function unclaimTask($id)
+    function unclaimTask($id)
     {
         $this->setRequestUrl('/task/' . $id . '/unclaim');
         $this->setRequestMethod('POST');
         $this->setRequestObject(null);
-
         $this->execute();
     }
 
@@ -156,16 +120,15 @@ class TaskService extends RequestService
      *
      * @link http://docs.camunda.org/api-references/rest/#!/task/post-complete
      *
-     * @param String      $id task ID
+     * @param string      $id task ID
      * @param TaskRequest $request variable properties
      * @throws \Exception
      */
-    public function completeTask($id, TaskRequest $request)
+    function completeTask($id, TaskRequest $request)
     {
         $this->setRequestUrl('/task/' . $id . '/complete');
         $this->setRequestObject($request);
         $this->setRequestMethod('POST');
-
         $this->execute();
     }
 
@@ -174,16 +137,15 @@ class TaskService extends RequestService
      *
      * @link http://docs.camunda.org/api-references/rest/#!/task/post-resolve
      *
-     * @param String      $id task ID
+     * @param string      $id task ID
      * @param TaskRequest $request variable properties
      * @throws \Exception
      */
-    public function resolveTask($id, TaskRequest $request)
+    function resolveTask($id, TaskRequest $request)
     {
         $this->setRequestUrl('/task/' . $id . '/resolve');
         $this->setRequestObject($request);
         $this->setRequestMethod('POST');
-
         $this->execute();
     }
 
@@ -192,16 +154,15 @@ class TaskService extends RequestService
      *
      * @link http://docs.camunda.org/api-references/rest/#!/task/post-delegate
      *
-     * @param String      $id task ID
+     * @param string      $id task ID
      * @param TaskRequest $request user properties
      * @throws \Exception
      */
-    public function delegateTask($id, TaskRequest $request)
+    function delegateTask($id, TaskRequest $request)
     {
         $this->setRequestUrl('/task/' . $id . '/delegate');
         $this->setRequestObject($request);
         $this->setRequestMethod('POST');
-
         $this->execute();
     }
 
@@ -210,16 +171,15 @@ class TaskService extends RequestService
      *
      * @link http://docs.camunda.org/latest/api-references/rest/#task-set-assignee
      *
-     * @param String      $id Task ID
+     * @param string      $id Task ID
      * @param TaskRequest $request
      * @throws \Exception
      */
-    public function setAssignee($id, TaskRequest $request)
+    function setAssignee($id, TaskRequest $request)
     {
         $this->setRequestUrl('/task/' . $id . '/assignee');
         $this->setRequestObject($request);
         $this->setRequestMethod('POST');
-
         $this->execute();
     }
 
@@ -229,27 +189,16 @@ class TaskService extends RequestService
      *
      * @link http://docs.camunda.org/latest/api-references/rest/#task-get-identity-links
      *
-     * @param String               $id task ID
+     * @param string               $id task ID
      * @param IdentityLinksRequest $request
      * @throws \Exception
      * @return IdentityLink[] $this
      */
-    public function getIdentityLinks($id, IdentityLinksRequest $request)
+    function getIdentityLinks($id, IdentityLinksRequest $request)
     {
         $this->setRequestUrl('/task/' . $id . '/identity-links');
         $this->setRequestObject($request);
-        $this->setRequestMethod('GET');
-        try {
-            $prepare = $this->execute();
-            $response = [];
-            foreach ($prepare AS $index => $data) {
-                $identityLink = new IdentityLink();
-                $response['identityLink_' . $index] = $identityLink->cast($data);
-            }
-            return $response;
-        } catch (Exception $e) {
-            throw $e;
-        }
+        return IdentityLink::castList($this->execute());
     }
 
     /**
@@ -257,16 +206,15 @@ class TaskService extends RequestService
      *
      * @link http://docs.camunda.org/latest/api-references/rest/#task-add-identity-link
      *
-     * @param String               $id task ID
+     * @param string               $id task ID
      * @param IdentityLinksRequest $request
      * @throws \Exception
      */
-    public function addIdentityLink($id, IdentityLinksRequest $request)
+    function addIdentityLink($id, IdentityLinksRequest $request)
     {
         $this->setRequestUrl('/task/' . $id . '/identity-links');
         $this->setRequestObject($request);
         $this->setRequestMethod('POST');
-
         $this->execute();
     }
 
@@ -275,16 +223,15 @@ class TaskService extends RequestService
      *
      * @link http://docs.camunda.org/latest/api-references/rest/#task-delete-identity-link
      *
-     * @param String               $id task ID
+     * @param string               $id task ID
      * @param IdentityLinksRequest $request
      * @throws \Exception
      */
-    public function deleteIdentityLink($id, IdentityLinksRequest $request)
+    function deleteIdentityLink($id, IdentityLinksRequest $request)
     {
         $this->setRequestUrl('/task/' . $id . '/identity-links/delete');
         $this->setRequestObject($request);
         $this->setRequestMethod('POST');
-
         $this->execute();
     }
 
@@ -292,18 +239,14 @@ class TaskService extends RequestService
      * Do a fast takeover of the task. So you don't need first to unclaim
      * a task before you can claim it
      *
-     * @param String      $id task ID
+     * @param string      $id task ID
      * @param TaskRequest $request user properties
      * @throws \Exception
      * @deprecated Use setAssignee() instead
      */
-    public function takeTask($id, TaskRequest $request)
+    function takeTask($id, TaskRequest $request)
     {
-        try {
-            $this->unclaimTask($id);
-            $this->claimTask($id, $request);
-        } catch (Exception $e) {
-            throw $e;
-        }
+        $this->unclaimTask($id);
+        $this->claimTask($id, $request);
     }
 }

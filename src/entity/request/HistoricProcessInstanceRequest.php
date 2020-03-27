@@ -1,8 +1,6 @@
 <?php
 
-
 namespace org\camunda\php\sdk\entity\request;
-
 
 class HistoricProcessInstanceRequest extends Request
 {
@@ -28,7 +26,7 @@ class HistoricProcessInstanceRequest extends Request
     /**
      * @param mixed $finished
      */
-    public function setFinished($finished)
+    function setFinished($finished)
     {
         $this->finished = $finished;
     }
@@ -36,7 +34,7 @@ class HistoricProcessInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getFinished()
+    function getFinished()
     {
         return $this->finished;
     }
@@ -44,7 +42,7 @@ class HistoricProcessInstanceRequest extends Request
     /**
      * @param mixed $finishedAfter
      */
-    public function setFinishedAfter($finishedAfter)
+    function setFinishedAfter($finishedAfter)
     {
         $this->finishedAfter = $finishedAfter;
     }
@@ -52,7 +50,7 @@ class HistoricProcessInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getFinishedAfter()
+    function getFinishedAfter()
     {
         return $this->finishedAfter;
     }
@@ -60,7 +58,7 @@ class HistoricProcessInstanceRequest extends Request
     /**
      * @param mixed $finishedBefore
      */
-    public function setFinishedBefore($finishedBefore)
+    function setFinishedBefore($finishedBefore)
     {
         $this->finishedBefore = $finishedBefore;
     }
@@ -68,7 +66,7 @@ class HistoricProcessInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getFinishedBefore()
+    function getFinishedBefore()
     {
         return $this->finishedBefore;
     }
@@ -76,7 +74,7 @@ class HistoricProcessInstanceRequest extends Request
     /**
      * @param mixed $firstResult
      */
-    public function setFirstResult($firstResult)
+    function setFirstResult($firstResult)
     {
         $this->firstResult = $firstResult;
     }
@@ -84,7 +82,7 @@ class HistoricProcessInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getFirstResult()
+    function getFirstResult()
     {
         return $this->firstResult;
     }
@@ -92,7 +90,7 @@ class HistoricProcessInstanceRequest extends Request
     /**
      * @param mixed $maxResults
      */
-    public function setMaxResults($maxResults)
+    function setMaxResults($maxResults)
     {
         $this->maxResults = $maxResults;
     }
@@ -100,7 +98,7 @@ class HistoricProcessInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getMaxResults()
+    function getMaxResults()
     {
         return $this->maxResults;
     }
@@ -108,7 +106,7 @@ class HistoricProcessInstanceRequest extends Request
     /**
      * @param mixed $processDefinitionId
      */
-    public function setProcessDefinitionId($processDefinitionId)
+    function setProcessDefinitionId($processDefinitionId)
     {
         $this->processDefinitionId = $processDefinitionId;
     }
@@ -116,7 +114,7 @@ class HistoricProcessInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getProcessDefinitionId()
+    function getProcessDefinitionId()
     {
         return $this->processDefinitionId;
     }
@@ -124,7 +122,7 @@ class HistoricProcessInstanceRequest extends Request
     /**
      * @param mixed $processDefinitionKey
      */
-    public function setProcessDefinitionKey($processDefinitionKey)
+    function setProcessDefinitionKey($processDefinitionKey)
     {
         $this->processDefinitionKey = $processDefinitionKey;
     }
@@ -132,7 +130,7 @@ class HistoricProcessInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getProcessDefinitionKey()
+    function getProcessDefinitionKey()
     {
         return $this->processDefinitionKey;
     }
@@ -140,7 +138,7 @@ class HistoricProcessInstanceRequest extends Request
     /**
      * @param mixed $processDefinitionKeyNotIn
      */
-    public function setProcessDefinitionKeyNotIn($processDefinitionKeyNotIn)
+    function setProcessDefinitionKeyNotIn($processDefinitionKeyNotIn)
     {
         $this->processDefinitionKeyNotIn = $processDefinitionKeyNotIn;
     }
@@ -148,7 +146,7 @@ class HistoricProcessInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getProcessDefinitionKeyNotIn()
+    function getProcessDefinitionKeyNotIn()
     {
         return $this->processDefinitionKeyNotIn;
     }
@@ -156,7 +154,7 @@ class HistoricProcessInstanceRequest extends Request
     /**
      * @param mixed $processInstanceBusinessKey
      */
-    public function setProcessInstanceBusinessKey($processInstanceBusinessKey)
+    function setProcessInstanceBusinessKey($processInstanceBusinessKey)
     {
         $this->processInstanceBusinessKey = $processInstanceBusinessKey;
     }
@@ -164,7 +162,7 @@ class HistoricProcessInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getProcessInstanceBusinessKey()
+    function getProcessInstanceBusinessKey()
     {
         return $this->processInstanceBusinessKey;
     }
@@ -172,7 +170,7 @@ class HistoricProcessInstanceRequest extends Request
     /**
      * @param mixed $processInstanceId
      */
-    public function setProcessInstanceId($processInstanceId)
+    function setProcessInstanceId($processInstanceId)
     {
         $this->processInstanceId = $processInstanceId;
     }
@@ -180,7 +178,7 @@ class HistoricProcessInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getProcessInstanceId()
+    function getProcessInstanceId()
     {
         return $this->processInstanceId;
     }
@@ -188,7 +186,7 @@ class HistoricProcessInstanceRequest extends Request
     /**
      * @param mixed $sortBy
      */
-    public function setSortBy($sortBy)
+    function setSortBy($sortBy)
     {
         $this->sortBy = $sortBy;
     }
@@ -196,7 +194,7 @@ class HistoricProcessInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getSortBy()
+    function getSortBy()
     {
         return $this->sortBy;
     }
@@ -204,7 +202,7 @@ class HistoricProcessInstanceRequest extends Request
     /**
      * @param mixed $sortOrder
      */
-    public function setSortOrder($sortOrder)
+    function setSortOrder($sortOrder)
     {
         $this->sortOrder = $sortOrder;
     }
@@ -212,7 +210,7 @@ class HistoricProcessInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getSortOrder()
+    function getSortOrder()
     {
         return $this->sortOrder;
     }
@@ -220,7 +218,7 @@ class HistoricProcessInstanceRequest extends Request
     /**
      * @param mixed $startedAfter
      */
-    public function setStartedAfter($startedAfter)
+    function setStartedAfter($startedAfter)
     {
         $this->startedAfter = $startedAfter;
     }
@@ -228,7 +226,7 @@ class HistoricProcessInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getStartedAfter()
+    function getStartedAfter()
     {
         return $this->startedAfter;
     }
@@ -236,7 +234,7 @@ class HistoricProcessInstanceRequest extends Request
     /**
      * @param mixed $startedBefore
      */
-    public function setStartedBefore($startedBefore)
+    function setStartedBefore($startedBefore)
     {
         $this->startedBefore = $startedBefore;
     }
@@ -244,7 +242,7 @@ class HistoricProcessInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getStartedBefore()
+    function getStartedBefore()
     {
         return $this->startedBefore;
     }
@@ -252,7 +250,7 @@ class HistoricProcessInstanceRequest extends Request
     /**
      * @param mixed $startedBy
      */
-    public function setStartedBy($startedBy)
+    function setStartedBy($startedBy)
     {
         $this->startedBy = $startedBy;
     }
@@ -260,7 +258,7 @@ class HistoricProcessInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getStartedBy()
+    function getStartedBy()
     {
         return $this->startedBy;
     }
@@ -268,7 +266,7 @@ class HistoricProcessInstanceRequest extends Request
     /**
      * @param mixed $superProcessInstanceId
      */
-    public function setSuperProcessInstanceId($superProcessInstanceId)
+    function setSuperProcessInstanceId($superProcessInstanceId)
     {
         $this->superProcessInstanceId = $superProcessInstanceId;
     }
@@ -276,7 +274,7 @@ class HistoricProcessInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getSuperProcessInstanceId()
+    function getSuperProcessInstanceId()
     {
         return $this->superProcessInstanceId;
     }
@@ -284,7 +282,7 @@ class HistoricProcessInstanceRequest extends Request
     /**
      * @param mixed $unfinished
      */
-    public function setUnfinished($unfinished)
+    function setUnfinished($unfinished)
     {
         $this->unfinished = $unfinished;
     }
@@ -292,7 +290,7 @@ class HistoricProcessInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getUnfinished()
+    function getUnfinished()
     {
         return $this->unfinished;
     }
@@ -300,7 +298,7 @@ class HistoricProcessInstanceRequest extends Request
     /**
      * @param mixed $variables
      */
-    public function setVariables($variables)
+    function setVariables($variables)
     {
         $this->variables = $variables;
     }
@@ -308,10 +306,8 @@ class HistoricProcessInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getVariables()
+    function getVariables()
     {
         return $this->variables;
     }
-
-
 }

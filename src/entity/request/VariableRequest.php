@@ -1,15 +1,7 @@
 <?php
 
-
 namespace org\camunda\php\sdk\entity\request;
 
-/**
- * Class VariableRequest
- *
- * @package org\camunda\php\sdk\entity\request
- *
- * TODO: valueInfo
- */
 class VariableRequest extends Request
 {
     protected $value;
@@ -21,7 +13,7 @@ class VariableRequest extends Request
      * @param mixed $deletions
      * @return $this
      */
-    public function setDeletions($deletions)
+    function setDeletions($deletions)
     {
         $this->deletions = $deletions;
         return $this;
@@ -30,7 +22,7 @@ class VariableRequest extends Request
     /**
      * @return mixed
      */
-    public function getDeletions()
+    function getDeletions()
     {
         return $this->deletions;
     }
@@ -39,7 +31,7 @@ class VariableRequest extends Request
      * @param mixed $modifications
      * @return $this
      */
-    public function setModifications($modifications)
+    function setModifications($modifications)
     {
         $this->modifications = $modifications;
         return $this;
@@ -48,7 +40,7 @@ class VariableRequest extends Request
     /**
      * @return mixed
      */
-    public function getModifications()
+    function getModifications()
     {
         return $this->modifications;
     }
@@ -57,7 +49,7 @@ class VariableRequest extends Request
      * @param mixed $type
      * @return $this
      */
-    public function setType($type)
+    function setType($type)
     {
         $this->type = $type;
         return $this;
@@ -66,7 +58,7 @@ class VariableRequest extends Request
     /**
      * @return mixed
      */
-    public function getType()
+    function getType()
     {
         return $this->type;
     }
@@ -75,7 +67,7 @@ class VariableRequest extends Request
      * @param mixed $value
      * @return VariableRequest
      */
-    public function setValue($value)
+    function setValue($value)
     {
         $this->value = $value;
         return $this;
@@ -84,7 +76,7 @@ class VariableRequest extends Request
     /**
      * @return mixed
      */
-    public function getValue()
+    function getValue()
     {
         return $this->value;
     }

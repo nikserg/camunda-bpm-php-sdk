@@ -1,8 +1,6 @@
 <?php
 
-
 namespace org\camunda\php\sdk\entity\request;
-
 
 class JobRequest extends Request
 {
@@ -18,7 +16,7 @@ class JobRequest extends Request
     /**
      * @param mixed $dueDate
      */
-    public function setDueDate($dueDate)
+    function setDueDate($dueDate)
     {
         $this->dueDate = $dueDate;
     }
@@ -26,7 +24,7 @@ class JobRequest extends Request
     /**
      * @return mixed
      */
-    public function getDueDate()
+    function getDueDate()
     {
         return $this->dueDate;
     }
@@ -42,7 +40,7 @@ class JobRequest extends Request
      * @param mixed $dueDates
      * @return $this
      */
-    public function setDueDates($dueDates)
+    function setDueDates($dueDates)
     {
         $this->dueDates = $dueDates;
         return $this;
@@ -51,7 +49,7 @@ class JobRequest extends Request
     /**
      * @return mixed
      */
-    public function getDueDates()
+    function getDueDates()
     {
         return $this->dueDates;
     }
@@ -60,7 +58,7 @@ class JobRequest extends Request
      * @param mixed $executable
      * @return $this
      */
-    public function setExecutable($executable)
+    function setExecutable($executable)
     {
         $this->executable = $executable;
         return $this;
@@ -69,7 +67,7 @@ class JobRequest extends Request
     /**
      * @return mixed
      */
-    public function getExecutable()
+    function getExecutable()
     {
         return $this->executable;
     }
@@ -78,7 +76,7 @@ class JobRequest extends Request
      * @param mixed $executionId
      * @return $this
      */
-    public function setExecutionId($executionId)
+    function setExecutionId($executionId)
     {
         $this->executionId = $executionId;
         return $this;
@@ -87,7 +85,7 @@ class JobRequest extends Request
     /**
      * @return mixed
      */
-    public function getExecutionId()
+    function getExecutionId()
     {
         return $this->executionId;
     }
@@ -96,7 +94,7 @@ class JobRequest extends Request
      * @param mixed $firstResult
      * @return $this
      */
-    public function setFirstResult($firstResult)
+    function setFirstResult($firstResult)
     {
         $this->firstResult = $firstResult;
         return $this;
@@ -105,7 +103,7 @@ class JobRequest extends Request
     /**
      * @return mixed
      */
-    public function getFirstResult()
+    function getFirstResult()
     {
         return $this->firstResult;
     }
@@ -114,7 +112,7 @@ class JobRequest extends Request
      * @param mixed $jobId
      * @return $this
      */
-    public function setJobId($jobId)
+    function setJobId($jobId)
     {
         $this->jobId = $jobId;
         return $this;
@@ -123,7 +121,7 @@ class JobRequest extends Request
     /**
      * @return mixed
      */
-    public function getJobId()
+    function getJobId()
     {
         return $this->jobId;
     }
@@ -132,7 +130,7 @@ class JobRequest extends Request
      * @param mixed $maxResults
      * @return $this
      */
-    public function setMaxResults($maxResults)
+    function setMaxResults($maxResults)
     {
         $this->maxResults = $maxResults;
         return $this;
@@ -141,7 +139,7 @@ class JobRequest extends Request
     /**
      * @return mixed
      */
-    public function getMaxResults()
+    function getMaxResults()
     {
         return $this->maxResults;
     }
@@ -150,7 +148,7 @@ class JobRequest extends Request
      * @param mixed $messages
      * @return $this
      */
-    public function setMessages($messages)
+    function setMessages($messages)
     {
         $this->messages = $messages;
         return $this;
@@ -159,7 +157,7 @@ class JobRequest extends Request
     /**
      * @return mixed
      */
-    public function getMessages()
+    function getMessages()
     {
         return $this->messages;
     }
@@ -168,7 +166,7 @@ class JobRequest extends Request
      * @param mixed $processInstanceId
      * @return $this
      */
-    public function setProcessInstanceId($processInstanceId)
+    function setProcessInstanceId($processInstanceId)
     {
         $this->processInstanceId = $processInstanceId;
         return $this;
@@ -177,7 +175,7 @@ class JobRequest extends Request
     /**
      * @return mixed
      */
-    public function getProcessInstanceId()
+    function getProcessInstanceId()
     {
         return $this->processInstanceId;
     }
@@ -186,7 +184,7 @@ class JobRequest extends Request
      * @param mixed $sortBy
      * @return $this
      */
-    public function setSortBy($sortBy)
+    function setSortBy($sortBy)
     {
         $this->sortBy = $sortBy;
         return $this;
@@ -195,7 +193,7 @@ class JobRequest extends Request
     /**
      * @return mixed
      */
-    public function getSortBy()
+    function getSortBy()
     {
         return $this->sortBy;
     }
@@ -204,7 +202,7 @@ class JobRequest extends Request
      * @param mixed $sortOrder
      * @return $this
      */
-    public function setSortOrder($sortOrder)
+    function setSortOrder($sortOrder)
     {
         $this->sortOrder = $sortOrder;
         return $this;
@@ -213,7 +211,7 @@ class JobRequest extends Request
     /**
      * @return mixed
      */
-    public function getSortOrder()
+    function getSortOrder()
     {
         return $this->sortOrder;
     }
@@ -222,7 +220,7 @@ class JobRequest extends Request
      * @param mixed $timers
      * @return $this
      */
-    public function setTimers($timers)
+    function setTimers($timers)
     {
         $this->timers = $timers;
         return $this;
@@ -231,7 +229,7 @@ class JobRequest extends Request
     /**
      * @return mixed
      */
-    public function getTimers()
+    function getTimers()
     {
         return $this->timers;
     }
@@ -240,7 +238,7 @@ class JobRequest extends Request
      * @param mixed $withException
      * @return $this
      */
-    public function setWithException($withException)
+    function setWithException($withException)
     {
         $this->withException = $withException;
         return $this;
@@ -249,7 +247,7 @@ class JobRequest extends Request
     /**
      * @return mixed
      */
-    public function getWithException()
+    function getWithException()
     {
         return $this->withException;
     }
@@ -258,7 +256,7 @@ class JobRequest extends Request
      * @param mixed $withRetriesLeft
      * @return $this
      */
-    public function setWithRetriesLeft($withRetriesLeft)
+    function setWithRetriesLeft($withRetriesLeft)
     {
         $this->withRetriesLeft = $withRetriesLeft;
         return $this;
@@ -267,7 +265,7 @@ class JobRequest extends Request
     /**
      * @return mixed
      */
-    public function getWithRetriesLeft()
+    function getWithRetriesLeft()
     {
         return $this->withRetriesLeft;
     }

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace org\camunda\php\sdk\entity\response;
-
 
 use org\camunda\php\sdk\helper\CastHelper;
 
@@ -13,7 +11,7 @@ class ResourceOption extends CastHelper
     /**
      * @param mixed $links
      */
-    public function setLinks($links)
+    function setLinks($links)
     {
         $this->links = $links;
     }
@@ -21,7 +19,7 @@ class ResourceOption extends CastHelper
     /**
      * @return mixed
      */
-    public function getLinks()
+    function getLinks()
     {
         return $this->links;
     }

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace org\camunda\php\sdk\entity\request;
 
 class ProcessInstanceRequest extends Request
@@ -23,7 +22,7 @@ class ProcessInstanceRequest extends Request
      * @param mixed $active
      * @return $this
      */
-    public function setActive($active)
+    function setActive($active)
     {
         $this->active = $active;
         return $this;
@@ -32,7 +31,7 @@ class ProcessInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getActive()
+    function getActive()
     {
         return $this->active;
     }
@@ -41,7 +40,7 @@ class ProcessInstanceRequest extends Request
      * @param mixed $businessKey
      * @return $this
      */
-    public function setBusinessKey($businessKey)
+    function setBusinessKey($businessKey)
     {
         $this->businessKey = $businessKey;
         return $this;
@@ -50,7 +49,7 @@ class ProcessInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getBusinessKey()
+    function getBusinessKey()
     {
         return $this->businessKey;
     }
@@ -59,7 +58,7 @@ class ProcessInstanceRequest extends Request
      * @param mixed $deleteReason
      * @return $this
      */
-    public function setDeleteReason($deleteReason)
+    function setDeleteReason($deleteReason)
     {
         $this->deleteReason = $deleteReason;
         return $this;
@@ -68,7 +67,7 @@ class ProcessInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getDeleteReason()
+    function getDeleteReason()
     {
         return $this->deleteReason;
     }
@@ -77,7 +76,7 @@ class ProcessInstanceRequest extends Request
      * @param mixed $firstResult
      * @return $this
      */
-    public function setFirstResult($firstResult)
+    function setFirstResult($firstResult)
     {
         $this->firstResult = $firstResult;
         return $this;
@@ -86,7 +85,7 @@ class ProcessInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getFirstResult()
+    function getFirstResult()
     {
         return $this->firstResult;
     }
@@ -95,7 +94,7 @@ class ProcessInstanceRequest extends Request
      * @param mixed $maxResults
      * @return $this
      */
-    public function setMaxResults($maxResults)
+    function setMaxResults($maxResults)
     {
         $this->maxResults = $maxResults;
         return $this;
@@ -104,7 +103,7 @@ class ProcessInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getMaxResults()
+    function getMaxResults()
     {
         return $this->maxResults;
     }
@@ -113,7 +112,7 @@ class ProcessInstanceRequest extends Request
      * @param mixed $processDefinitionId
      * @return $this
      */
-    public function setProcessDefinitionId($processDefinitionId)
+    function setProcessDefinitionId($processDefinitionId)
     {
         $this->processDefinitionId = $processDefinitionId;
         return $this;
@@ -122,7 +121,7 @@ class ProcessInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getProcessDefinitionId()
+    function getProcessDefinitionId()
     {
         return $this->processDefinitionId;
     }
@@ -131,7 +130,7 @@ class ProcessInstanceRequest extends Request
      * @param mixed $processDefinitionKey
      * @return $this
      */
-    public function setProcessDefinitionKey($processDefinitionKey)
+    function setProcessDefinitionKey($processDefinitionKey)
     {
         $this->processDefinitionKey = $processDefinitionKey;
         return $this;
@@ -140,7 +139,7 @@ class ProcessInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getProcessDefinitionKey()
+    function getProcessDefinitionKey()
     {
         return $this->processDefinitionKey;
     }
@@ -149,7 +148,7 @@ class ProcessInstanceRequest extends Request
      * @param mixed $sortBy
      * @return $this
      */
-    public function setSortBy($sortBy)
+    function setSortBy($sortBy)
     {
         $this->sortBy = $sortBy;
         return $this;
@@ -158,7 +157,7 @@ class ProcessInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getSortBy()
+    function getSortBy()
     {
         return $this->sortBy;
     }
@@ -167,7 +166,7 @@ class ProcessInstanceRequest extends Request
      * @param mixed $sortOrder
      * @return $this
      */
-    public function setSortOrder($sortOrder)
+    function setSortOrder($sortOrder)
     {
         $this->sortOrder = $sortOrder;
         return $this;
@@ -176,7 +175,7 @@ class ProcessInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getSortOrder()
+    function getSortOrder()
     {
         return $this->sortOrder;
     }
@@ -185,7 +184,7 @@ class ProcessInstanceRequest extends Request
      * @param mixed $subProcessInstance
      * @return $this
      */
-    public function setSubProcessInstance($subProcessInstance)
+    function setSubProcessInstance($subProcessInstance)
     {
         $this->subProcessInstance = $subProcessInstance;
         return $this;
@@ -194,7 +193,7 @@ class ProcessInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getSubProcessInstance()
+    function getSubProcessInstance()
     {
         return $this->subProcessInstance;
     }
@@ -203,7 +202,7 @@ class ProcessInstanceRequest extends Request
      * @param mixed $superProcessInstance
      * @return $this
      */
-    public function setSuperProcessInstance($superProcessInstance)
+    function setSuperProcessInstance($superProcessInstance)
     {
         $this->superProcessInstance = $superProcessInstance;
         return $this;
@@ -212,7 +211,7 @@ class ProcessInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getSuperProcessInstance()
+    function getSuperProcessInstance()
     {
         return $this->superProcessInstance;
     }
@@ -221,7 +220,7 @@ class ProcessInstanceRequest extends Request
      * @param mixed $suspended
      * @return $this
      */
-    public function setSuspended($suspended)
+    function setSuspended($suspended)
     {
         $this->suspended = $suspended;
         return $this;
@@ -230,7 +229,7 @@ class ProcessInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getSuspended()
+    function getSuspended()
     {
         return $this->suspended;
     }
@@ -239,7 +238,7 @@ class ProcessInstanceRequest extends Request
      * @param mixed $variables
      * @return $this
      */
-    public function setVariables($variables)
+    function setVariables($variables)
     {
         $this->variables = $variables;
         return $this;
@@ -248,10 +247,8 @@ class ProcessInstanceRequest extends Request
     /**
      * @return mixed
      */
-    public function getVariables()
+    function getVariables()
     {
         return $this->variables;
     }
-
-
 }

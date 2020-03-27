@@ -1,6 +1,5 @@
 <?php
 
-
 namespace org\camunda\php\sdk\entity\request;
 
 class MessageRequest extends Request
@@ -38,7 +37,7 @@ class MessageRequest extends Request
      * @param string $messageName
      * @return MessageRequest
      */
-    public function setMessageName(string $messageName): MessageRequest
+    function setMessageName(string $messageName): MessageRequest
     {
         $this->messageName = $messageName;
         return $this;
@@ -47,7 +46,7 @@ class MessageRequest extends Request
     /**
      * @return string
      */
-    public function getMessageName(): string
+    function getMessageName(): string
     {
         return $this->messageName;
     }
@@ -56,7 +55,7 @@ class MessageRequest extends Request
      * @param string $businessKey
      * @return MessageRequest
      */
-    public function setBusinessKey(string $businessKey): MessageRequest
+    function setBusinessKey(string $businessKey): MessageRequest
     {
         $this->businessKey = $businessKey;
         return $this;
@@ -65,7 +64,7 @@ class MessageRequest extends Request
     /**
      * @return string
      */
-    public function getBusinessKey(): string
+    function getBusinessKey(): string
     {
         return $this->businessKey;
     }
@@ -74,7 +73,7 @@ class MessageRequest extends Request
      * @param array $correlationKeys
      * @return MessageRequest
      */
-    public function setCorrelationKeys(array $correlationKeys): MessageRequest
+    function setCorrelationKeys(array $correlationKeys): MessageRequest
     {
         $this->correlationKeys = $correlationKeys;
         return $this;
@@ -83,7 +82,7 @@ class MessageRequest extends Request
     /**
      * @return array
      */
-    public function getCorrelationKeys(): array
+    function getCorrelationKeys(): array
     {
         return $this->correlationKeys;
     }
@@ -92,7 +91,7 @@ class MessageRequest extends Request
      * @param array $processVariables
      * @return MessageRequest
      */
-    public function setProcessVariables(array $processVariables): MessageRequest
+    function setProcessVariables(array $processVariables): MessageRequest
     {
         $this->processVariables = $processVariables;
         return $this;
@@ -101,7 +100,7 @@ class MessageRequest extends Request
     /**
      * @return array
      */
-    public function getProcessVariables(): array
+    function getProcessVariables(): array
     {
         return $this->processVariables;
     }
@@ -110,7 +109,7 @@ class MessageRequest extends Request
      * @param string $processInstanceId
      * @return MessageRequest
      */
-    public function setProcessInstanceId(string $processInstanceId): MessageRequest
+    function setProcessInstanceId(string $processInstanceId): MessageRequest
     {
         $this->processInstanceId = $processInstanceId;
         return $this;
@@ -119,7 +118,7 @@ class MessageRequest extends Request
     /**
      * @return string
      */
-    public function getProcessInstanceId(): string
+    function getProcessInstanceId(): string
     {
         return $this->processInstanceId;
     }
@@ -128,7 +127,7 @@ class MessageRequest extends Request
      * @param bool $all
      * @return MessageRequest
      */
-    public function setAll(bool $all): MessageRequest
+    function setAll(bool $all): MessageRequest
     {
         $this->all = $all;
         return $this;
@@ -137,7 +136,7 @@ class MessageRequest extends Request
     /**
      * @return bool
      */
-    public function isAll(): bool
+    function isAll(): bool
     {
         return $this->all;
     }
@@ -146,7 +145,7 @@ class MessageRequest extends Request
      * @param bool $resultEnabled
      * @return MessageRequest
      */
-    public function setResultEnabled(bool $resultEnabled): MessageRequest
+    function setResultEnabled(bool $resultEnabled): MessageRequest
     {
         $this->resultEnabled = $resultEnabled;
         return $this;
@@ -155,7 +154,7 @@ class MessageRequest extends Request
     /**
      * @return bool
      */
-    public function isResultEnabled(): bool
+    function isResultEnabled(): bool
     {
         return $this->resultEnabled;
     }

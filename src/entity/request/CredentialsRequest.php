@@ -1,6 +1,5 @@
 <?php
 
-
 namespace org\camunda\php\sdk\entity\request;
 
 class CredentialsRequest extends Request
@@ -11,7 +10,7 @@ class CredentialsRequest extends Request
      * @param mixed $password
      * @return $this
      */
-    public function setPassword($password)
+    function setPassword($password)
     {
         $this->password = $password;
         return $this;
@@ -20,10 +19,8 @@ class CredentialsRequest extends Request
     /**
      * @return mixed
      */
-    public function getPassword()
+    function getPassword()
     {
         return $this->password;
     }
-
-
 }

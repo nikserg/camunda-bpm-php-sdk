@@ -1,8 +1,6 @@
 <?php
 
-
 namespace org\camunda\php\sdk\entity\request;
-
 
 class UserRequest extends Request
 {
@@ -26,7 +24,7 @@ class UserRequest extends Request
      * @param mixed $email
      * @return $this
      */
-    public function setEmail($email)
+    function setEmail($email)
     {
         $this->email = $email;
         return $this;
@@ -35,7 +33,7 @@ class UserRequest extends Request
     /**
      * @return mixed
      */
-    public function getEmail()
+    function getEmail()
     {
         return $this->email;
     }
@@ -44,7 +42,7 @@ class UserRequest extends Request
      * @param mixed $emailLike
      * @return $this
      */
-    public function setEmailLike($emailLike)
+    function setEmailLike($emailLike)
     {
         $this->emailLike = $emailLike;
         return $this;
@@ -53,7 +51,7 @@ class UserRequest extends Request
     /**
      * @return mixed
      */
-    public function getEmailLike()
+    function getEmailLike()
     {
         return $this->emailLike;
     }
@@ -62,7 +60,7 @@ class UserRequest extends Request
      * @param mixed $firstName
      * @return $this
      */
-    public function setFirstName($firstName)
+    function setFirstName($firstName)
     {
         $this->firstName = $firstName;
         return $this;
@@ -71,7 +69,7 @@ class UserRequest extends Request
     /**
      * @return mixed
      */
-    public function getFirstName()
+    function getFirstName()
     {
         return $this->firstName;
     }
@@ -80,7 +78,7 @@ class UserRequest extends Request
      * @param mixed $firstNameLike
      * @return $this
      */
-    public function setFirstNameLike($firstNameLike)
+    function setFirstNameLike($firstNameLike)
     {
         $this->firstNameLike = $firstNameLike;
         return $this;
@@ -89,7 +87,7 @@ class UserRequest extends Request
     /**
      * @return mixed
      */
-    public function getFirstNameLike()
+    function getFirstNameLike()
     {
         return $this->firstNameLike;
     }
@@ -98,7 +96,7 @@ class UserRequest extends Request
      * @param mixed $firstResult
      * @return $this
      */
-    public function setFirstResult($firstResult)
+    function setFirstResult($firstResult)
     {
         $this->firstResult = $firstResult;
         return $this;
@@ -107,7 +105,7 @@ class UserRequest extends Request
     /**
      * @return mixed
      */
-    public function getFirstResult()
+    function getFirstResult()
     {
         return $this->firstResult;
     }
@@ -116,7 +114,7 @@ class UserRequest extends Request
      * @param mixed $id
      * @return $this
      */
-    public function setId($id)
+    function setId($id)
     {
         $this->id = $id;
         return $this;
@@ -125,7 +123,7 @@ class UserRequest extends Request
     /**
      * @return mixed
      */
-    public function getId()
+    function getId()
     {
         return $this->id;
     }
@@ -134,7 +132,7 @@ class UserRequest extends Request
      * @param mixed $lastName
      * @return $this
      */
-    public function setLastName($lastName)
+    function setLastName($lastName)
     {
         $this->lastName = $lastName;
         return $this;
@@ -143,7 +141,7 @@ class UserRequest extends Request
     /**
      * @return mixed
      */
-    public function getLastName()
+    function getLastName()
     {
         return $this->lastName;
     }
@@ -152,7 +150,7 @@ class UserRequest extends Request
      * @param mixed $lastNameLike
      * @return $this
      */
-    public function setLastNameLike($lastNameLike)
+    function setLastNameLike($lastNameLike)
     {
         $this->lastNameLike = $lastNameLike;
         return $this;
@@ -161,7 +159,7 @@ class UserRequest extends Request
     /**
      * @return mixed
      */
-    public function getLastNameLike()
+    function getLastNameLike()
     {
         return $this->lastNameLike;
     }
@@ -170,7 +168,7 @@ class UserRequest extends Request
      * @param mixed $maxResults
      * @return $this
      */
-    public function setMaxResults($maxResults)
+    function setMaxResults($maxResults)
     {
         $this->maxResults = $maxResults;
         return $this;
@@ -179,7 +177,7 @@ class UserRequest extends Request
     /**
      * @return mixed
      */
-    public function getMaxResults()
+    function getMaxResults()
     {
         return $this->maxResults;
     }
@@ -188,7 +186,7 @@ class UserRequest extends Request
      * @param mixed $memberOfGroup
      * @return $this
      */
-    public function setMemberOfGroup($memberOfGroup)
+    function setMemberOfGroup($memberOfGroup)
     {
         $this->memberOfGroup = $memberOfGroup;
         return $this;
@@ -197,7 +195,7 @@ class UserRequest extends Request
     /**
      * @return mixed
      */
-    public function getMemberOfGroup()
+    function getMemberOfGroup()
     {
         return $this->memberOfGroup;
     }
@@ -206,7 +204,7 @@ class UserRequest extends Request
      * @param mixed $password
      * @return $this
      */
-    public function setPassword($password)
+    function setPassword($password)
     {
         $this->password = $password;
         return $this;
@@ -215,7 +213,7 @@ class UserRequest extends Request
     /**
      * @return mixed
      */
-    public function getPassword()
+    function getPassword()
     {
         return $this->password;
     }
@@ -224,7 +222,7 @@ class UserRequest extends Request
      * @param mixed $sortBy
      * @return $this
      */
-    public function setSortBy($sortBy)
+    function setSortBy($sortBy)
     {
         $this->sortBy = $sortBy;
         return $this;
@@ -233,7 +231,7 @@ class UserRequest extends Request
     /**
      * @return mixed
      */
-    public function getSortBy()
+    function getSortBy()
     {
         return $this->sortBy;
     }
@@ -242,7 +240,7 @@ class UserRequest extends Request
      * @param mixed $sortOrder
      * @return $this
      */
-    public function setSortOrder($sortOrder)
+    function setSortOrder($sortOrder)
     {
         $this->sortOrder = $sortOrder;
         return $this;
@@ -251,7 +249,7 @@ class UserRequest extends Request
     /**
      * @return mixed
      */
-    public function getSortOrder()
+    function getSortOrder()
     {
         return $this->sortOrder;
     }
@@ -260,7 +258,7 @@ class UserRequest extends Request
      * @param \org\camunda\php\sdk\entity\request\CredentialsRequest $credentials
      * @return $this
      */
-    public function setCredentials(CredentialsRequest $credentials)
+    function setCredentials(CredentialsRequest $credentials)
     {
         $this->credentials = $credentials;
         return $this;
@@ -269,7 +267,7 @@ class UserRequest extends Request
     /**
      * @return \org\camunda\php\sdk\entity\request\CredentialsRequest
      */
-    public function getCredentials()
+    function getCredentials()
     {
         return $this->credentials;
     }
@@ -278,7 +276,7 @@ class UserRequest extends Request
      * @param \org\camunda\php\sdk\entity\request\ProfileRequest $profile
      * @return $this
      */
-    public function setProfile(ProfileRequest $profile)
+    function setProfile(ProfileRequest $profile)
     {
         $this->profile = $profile;
         return $this;
@@ -287,7 +285,7 @@ class UserRequest extends Request
     /**
      * @return \org\camunda\php\sdk\entity\request\ProfileRequest
      */
-    public function getProfile()
+    function getProfile()
     {
         return $this->profile;
     }

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace org\camunda\php\sdk\entity\request;
 
 class AuthorizationRequest extends Request
@@ -18,7 +17,6 @@ class AuthorizationRequest extends Request
     protected $sortOrder;
     protected $firstResult;
     protected $maxResults;
-
     protected $permissionName;
     protected $permissionValue;
     protected $resourceName;
@@ -26,7 +24,7 @@ class AuthorizationRequest extends Request
     /**
      * @param mixed $firstResult
      */
-    public function setFirstResult($firstResult)
+    function setFirstResult($firstResult)
     {
         $this->firstResult = $firstResult;
     }
@@ -34,7 +32,7 @@ class AuthorizationRequest extends Request
     /**
      * @return mixed
      */
-    public function getFirstResult()
+    function getFirstResult()
     {
         return $this->firstResult;
     }
@@ -42,7 +40,7 @@ class AuthorizationRequest extends Request
     /**
      * @param mixed $groupId
      */
-    public function setGroupId($groupId)
+    function setGroupId($groupId)
     {
         $this->groupId = $groupId;
     }
@@ -50,7 +48,7 @@ class AuthorizationRequest extends Request
     /**
      * @return mixed
      */
-    public function getGroupId()
+    function getGroupId()
     {
         return $this->groupId;
     }
@@ -58,7 +56,7 @@ class AuthorizationRequest extends Request
     /**
      * @param mixed $groupIdIn
      */
-    public function setGroupIdIn($groupIdIn)
+    function setGroupIdIn($groupIdIn)
     {
         $this->groupIdIn = $groupIdIn;
     }
@@ -66,7 +64,7 @@ class AuthorizationRequest extends Request
     /**
      * @return mixed
      */
-    public function getGroupIdIn()
+    function getGroupIdIn()
     {
         return $this->groupIdIn;
     }
@@ -74,7 +72,7 @@ class AuthorizationRequest extends Request
     /**
      * @param mixed $id
      */
-    public function setId($id)
+    function setId($id)
     {
         $this->id = $id;
     }
@@ -82,7 +80,7 @@ class AuthorizationRequest extends Request
     /**
      * @return mixed
      */
-    public function getId()
+    function getId()
     {
         return $this->id;
     }
@@ -90,7 +88,7 @@ class AuthorizationRequest extends Request
     /**
      * @param mixed $maxResults
      */
-    public function setMaxResults($maxResults)
+    function setMaxResults($maxResults)
     {
         $this->maxResults = $maxResults;
     }
@@ -98,7 +96,7 @@ class AuthorizationRequest extends Request
     /**
      * @return mixed
      */
-    public function getMaxResults()
+    function getMaxResults()
     {
         return $this->maxResults;
     }
@@ -106,7 +104,7 @@ class AuthorizationRequest extends Request
     /**
      * @param mixed $permissionName
      */
-    public function setPermissionName($permissionName)
+    function setPermissionName($permissionName)
     {
         $this->permissionName = $permissionName;
     }
@@ -114,7 +112,7 @@ class AuthorizationRequest extends Request
     /**
      * @return mixed
      */
-    public function getPermissionName()
+    function getPermissionName()
     {
         return $this->permissionName;
     }
@@ -122,7 +120,7 @@ class AuthorizationRequest extends Request
     /**
      * @param mixed $permissionValue
      */
-    public function setPermissionValue($permissionValue)
+    function setPermissionValue($permissionValue)
     {
         $this->permissionValue = $permissionValue;
     }
@@ -130,7 +128,7 @@ class AuthorizationRequest extends Request
     /**
      * @return mixed
      */
-    public function getPermissionValue()
+    function getPermissionValue()
     {
         return $this->permissionValue;
     }
@@ -138,7 +136,7 @@ class AuthorizationRequest extends Request
     /**
      * @param mixed $permissions
      */
-    public function setPermissions($permissions)
+    function setPermissions($permissions)
     {
         $this->permissions = $permissions;
     }
@@ -146,7 +144,7 @@ class AuthorizationRequest extends Request
     /**
      * @return mixed
      */
-    public function getPermissions()
+    function getPermissions()
     {
         return $this->permissions;
     }
@@ -154,7 +152,7 @@ class AuthorizationRequest extends Request
     /**
      * @param mixed $resourceId
      */
-    public function setResourceId($resourceId)
+    function setResourceId($resourceId)
     {
         $this->resourceId = $resourceId;
     }
@@ -162,7 +160,7 @@ class AuthorizationRequest extends Request
     /**
      * @return mixed
      */
-    public function getResourceId()
+    function getResourceId()
     {
         return $this->resourceId;
     }
@@ -170,7 +168,7 @@ class AuthorizationRequest extends Request
     /**
      * @param mixed $resourceName
      */
-    public function setResourceName($resourceName)
+    function setResourceName($resourceName)
     {
         $this->resourceName = $resourceName;
     }
@@ -178,7 +176,7 @@ class AuthorizationRequest extends Request
     /**
      * @return mixed
      */
-    public function getResourceName()
+    function getResourceName()
     {
         return $this->resourceName;
     }
@@ -186,7 +184,7 @@ class AuthorizationRequest extends Request
     /**
      * @param mixed $resourceType
      */
-    public function setResourceType($resourceType)
+    function setResourceType($resourceType)
     {
         $this->resourceType = $resourceType;
     }
@@ -194,7 +192,7 @@ class AuthorizationRequest extends Request
     /**
      * @return mixed
      */
-    public function getResourceType()
+    function getResourceType()
     {
         return $this->resourceType;
     }
@@ -202,7 +200,7 @@ class AuthorizationRequest extends Request
     /**
      * @param mixed $sortBy
      */
-    public function setSortBy($sortBy)
+    function setSortBy($sortBy)
     {
         $this->sortBy = $sortBy;
     }
@@ -210,7 +208,7 @@ class AuthorizationRequest extends Request
     /**
      * @return mixed
      */
-    public function getSortBy()
+    function getSortBy()
     {
         return $this->sortBy;
     }
@@ -218,7 +216,7 @@ class AuthorizationRequest extends Request
     /**
      * @param mixed $sortOrder
      */
-    public function setSortOrder($sortOrder)
+    function setSortOrder($sortOrder)
     {
         $this->sortOrder = $sortOrder;
     }
@@ -226,7 +224,7 @@ class AuthorizationRequest extends Request
     /**
      * @return mixed
      */
-    public function getSortOrder()
+    function getSortOrder()
     {
         return $this->sortOrder;
     }
@@ -234,7 +232,7 @@ class AuthorizationRequest extends Request
     /**
      * @param mixed $type
      */
-    public function setType($type)
+    function setType($type)
     {
         $this->type = $type;
     }
@@ -242,7 +240,7 @@ class AuthorizationRequest extends Request
     /**
      * @return mixed
      */
-    public function getType()
+    function getType()
     {
         return $this->type;
     }
@@ -250,7 +248,7 @@ class AuthorizationRequest extends Request
     /**
      * @param mixed $userId
      */
-    public function setUserId($userId)
+    function setUserId($userId)
     {
         $this->userId = $userId;
     }
@@ -258,7 +256,7 @@ class AuthorizationRequest extends Request
     /**
      * @return mixed
      */
-    public function getUserId()
+    function getUserId()
     {
         return $this->userId;
     }
@@ -266,7 +264,7 @@ class AuthorizationRequest extends Request
     /**
      * @param mixed $userIdIn
      */
-    public function setUserIdIn($userIdIn)
+    function setUserIdIn($userIdIn)
     {
         $this->userIdIn = $userIdIn;
     }
@@ -274,10 +272,8 @@ class AuthorizationRequest extends Request
     /**
      * @return mixed
      */
-    public function getUserIdIn()
+    function getUserIdIn()
     {
         return $this->userIdIn;
     }
-
-
 }
