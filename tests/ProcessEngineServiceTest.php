@@ -23,6 +23,6 @@ class ProcessEngineServiceTest extends \PHPUnit\Framework\TestCase
      */
     function testGetEngineNames()
     {
-        $this->assertEquals('default', self::$pes->getEngineNames()[0]->name);
+        $this->assertEquals('default', self::$pes->getEngineNames()[0]->getName());
     }
 }
