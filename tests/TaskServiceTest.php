@@ -82,7 +82,7 @@ class TaskServiceTest extends \PHPUnit\Framework\TestCase
         $tasks = self::$ts->getTasks(new TaskRequest());
         foreach ($tasks as $task) {
             if (!preg_match('/^waitStates\:.*|^calledProcess:.*/', $task->getProcessDefinitionId())) {
-                $this->assertEquals('embedded:app:forms/assign-approver.html',
+                $this->assertEquals('embedded:app:forms/approve-invoice.html',
                     self::$ts->getFormKey($task->getId())->getKey());
                 break;
             }
@@ -95,27 +95,28 @@ class TaskServiceTest extends \PHPUnit\Framework\TestCase
     function testClaimTask()
     {
         $ur = new UserRequest();
-        $up = new ProfileRequest();
-        $uc = new CredentialsRequest();
-        $up->setId('shentschel')
-            ->setFirstName('Stefan')
-            ->setLastName('Hentschel')
-            ->setEmail('stefan.hentschel@camunda.com');
-        $uc->setPassword('654321');
-        $ur->setProfile($up)->setCredentials($uc);
+        $ur
+            ->setProfile(
+                (new ProfileRequest())->setId('phpUnitTesterOne')
+                    ->setFirstName('phpUnitTesterOne')
+                    ->setEmail('php@php.com')
+            )
+            ->setCredentials(
+                (new CredentialsRequest())->setPassword('654321')
+            );
         self::$us->createUser($ur);
         $task = self::$ts->getTasks(new TaskRequest())[1];
         $tr = new TaskRequest();
-        $tr->setUserId('shentschel');
+        $tr->setUserId('phpUnitTesterOne');
         self::$ts->unclaimTask($task->getId());
         self::$ts->claimTask($task->getId(), $tr);
-        $this->assertEquals('shentschel', self::$ts->getTask($task->getId())->getAssignee());
+        $this->assertEquals('phpUnitTesterOne', self::$ts->getTask($task->getId())->getAssignee());
         self::$ts->unclaimTask($task->getId());
         self::$ts->getTask($task->getId())->getAssignee();
         $tr->setUserId('demo');
         self::$ts->claimTask($task->getId(), $tr);
         self::$ts->getTask($task->getId())->getAssignee();
-        self::$us->deleteUser('shentschel');
+        self::$us->deleteUser('phpUnitTesterOne');
     }
 
     /**
@@ -126,21 +127,20 @@ class TaskServiceTest extends \PHPUnit\Framework\TestCase
         $ur = new UserRequest();
         $up = new ProfileRequest();
         $uc = new CredentialsRequest();
-        $up->setId('shentschel')
-            ->setFirstName('Stefan')
-            ->setLastName('Hentschel')
-            ->setEmail('stefan.hentschel@camunda.com');
+        $up->setId('phpUnitTesterOne')
+            ->setFirstName('phpUnitTesterOne')
+            ->setEmail('php@php.com');
         $uc->setPassword('654321');
         $ur->setProfile($up)->setCredentials($uc);
         self::$us->createUser($ur);
         $task = self::$ts->getTasks(new TaskRequest())[1];
         $tr = new TaskRequest();
-        $tr->setUserId('shentschel');
+        $tr->setUserId('phpUnitTesterOne');
         self::$ts->unclaimTask($task->getId());
         $this->assertNull(self::$ts->getTask($task->getId())->getAssignee());
         $tr->setUserId('demo');
         self::$ts->claimTask($task->getId(), $tr);
-        self::$us->deleteUser('shentschel');
+        self::$us->deleteUser('phpUnitTesterOne');
     }
 
     /**
@@ -151,16 +151,15 @@ class TaskServiceTest extends \PHPUnit\Framework\TestCase
         $ur = new UserRequest();
         $up = new ProfileRequest();
         $uc = new CredentialsRequest();
-        $up->setId('shentschel')
-            ->setFirstName('Stefan')
-            ->setLastName('Hentschel')
-            ->setEmail('stefan.hentschel@camunda.com');
+        $up->setId('phpUnitTesterOne')
+            ->setFirstName('phpUnitTesterOne')
+            ->setEmail('php@php.com');
         $uc->setPassword('654321');
         $ur->setProfile($up)->setCredentials($uc);
         self::$us->createUser($ur);
         $tasks = self::$ts->getTasks(new TaskRequest());
         $tr = new TaskRequest();
-        $tr->setUserId('shentschel');
+        $tr->setUserId('phpUnitTesterOne');
         foreach ($tasks as $task) {
             if (!preg_match('/^waitStates\:.*/', $task->getProcessDefinitionId())) {
                 self::$ts->delegateTask($task->getId(), $tr);
@@ -171,7 +170,7 @@ class TaskServiceTest extends \PHPUnit\Framework\TestCase
                 break;
             }
         };
-        self::$us->deleteUser('shentschel');
+        self::$us->deleteUser('phpUnitTesterOne');
     }
 
     /**
@@ -182,18 +181,17 @@ class TaskServiceTest extends \PHPUnit\Framework\TestCase
         $ur = new UserRequest();
         $up = new ProfileRequest();
         $uc = new CredentialsRequest();
-        $up->setId('shentschel')
-            ->setFirstName('Stefan')
-            ->setLastName('Hentschel')
-            ->setEmail('stefan.hentschel@camunda.com');
+        $up->setId('phpUnitTesterOne')
+            ->setFirstName('phpUnitTesterOne')
+            ->setEmail('php@php.com');
         $uc->setPassword('654321');
         $ur->setProfile($up)->setCredentials($uc);
         self::$us->createUser($ur);
         $task = self::$ts->getTasks(new TaskRequest())[1];
         $tr = new TaskRequest();
-        $tr->setUserId('shentschel');
+        $tr->setUserId('phpUnitTesterOne');
         self::$ts->setAssignee($task->getId(), $tr);
-        $this->assertEquals('shentschel', self::$ts->getTask($task->getId())->getAssignee());
+        $this->assertEquals('phpUnitTesterOne', self::$ts->getTask($task->getId())->getAssignee());
         $tr = new TaskRequest();
         $tr->setUserId('demo');
         self::$ts->setAssignee($task->getId(), $tr);
@@ -209,7 +207,8 @@ class TaskServiceTest extends \PHPUnit\Framework\TestCase
         $ilr = new IdentityLinksRequest();
         $ilr->setType('assignee');
         $ilr->setUserId('demo');
-        $il = self::$ts->getIdentityLinks($task->getId(), $ilr)[0];
+        $ila = self::$ts->getIdentityLinks($task->getId(), $ilr);
+        $il = $ila[0];
         $this->assertEquals('assignee', $il->getType());
         $this->assertEquals('demo', $il->getUserId());
     }

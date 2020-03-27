@@ -103,7 +103,7 @@ class ExecutionServiceTest extends \PHPUnit\Framework\TestCase
         try {
             self::$es->getExecutionVariable($ei->getId(), 'testVariable')->getValue();
         } catch (\Exception $ex) {
-            $this->assertStringStartsWith('Error! HTTP Status Code: 404', $ex->getMessage());
+            $this->assertStringStartsWith('HTTP 404 error', $ex->getMessage());
         }
     }
 

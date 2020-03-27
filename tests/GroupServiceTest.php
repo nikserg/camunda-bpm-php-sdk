@@ -55,10 +55,9 @@ class GroupServiceTest extends \PHPUnit\Framework\TestCase
         $user = new UserRequest();
         $userProfile = new ProfileRequest();
         $userCredentials = new CredentialsRequest();
-        $userProfile->setId('shentschel')
-            ->setFirstName('Stefan')
-            ->setLastName('Hentschel')
-            ->setEmail('stefan.hentschel@camunda.com');
+        $userProfile->setId('phpUnitTesterOne')
+            ->setFirstName('phpUnitTesterOne')
+            ->setEmail('php@php.com');
         $userCredentials->setPassword('123456');
         $user->setProfile($userProfile)
             ->setCredentials($userCredentials);
@@ -73,13 +72,13 @@ class GroupServiceTest extends \PHPUnit\Framework\TestCase
             ->setId('phpUnitTestTwo')
             ->setType('Organizational Unit');
         self::$gs->createGroup($groupRequest);
-        self::$gs->addMember('phpUnitTestOne', 'shentschel');
+        self::$gs->addMember('phpUnitTestOne', 'phpUnitTesterOne');
         $filteredGroup = new GroupRequest();
-        $filteredGroup->setMember('shentschel');
+        $filteredGroup->setMember('phpUnitTesterOne');
         $this->assertEquals(1, self::$gs->getCount($filteredGroup));
         self::$gs->deleteGroup('phpUnitTestOne');
         self::$gs->deleteGroup('phpUnitTestTwo');
-        self::$us->deleteUser('shentschel');
+        self::$us->deleteUser('phpUnitTesterOne');
     }
 
     /**
@@ -111,10 +110,9 @@ class GroupServiceTest extends \PHPUnit\Framework\TestCase
         $user = new UserRequest();
         $userProfile = new ProfileRequest();
         $userCredentials = new CredentialsRequest();
-        $userProfile->setId('shentschel')
-            ->setFirstName('Stefan')
-            ->setLastName('Hentschel')
-            ->setEmail('stefan.hentschel@camunda.com');
+        $userProfile->setId('phpUnitTesterOne')
+            ->setFirstName('phpUnitTesterOne')
+            ->setEmail('php@php.com');
         $userCredentials->setPassword('123456');
         $user->setProfile($userProfile)
             ->setCredentials($userCredentials);
@@ -129,15 +127,15 @@ class GroupServiceTest extends \PHPUnit\Framework\TestCase
             ->setId('phpUnitTestTwo')
             ->setType('Organizational Unit');
         self::$gs->createGroup($groupRequest);
-        self::$gs->addMember('phpUnitTestOne', 'shentschel');
+        self::$gs->addMember('phpUnitTestOne', 'phpUnitTesterOne');
         $filteredGroup = new GroupRequest();
-        $filteredGroup->setMember('shentschel');
+        $filteredGroup->setMember('phpUnitTesterOne');
         $this->assertEquals(1, self::$gs->getCount($filteredGroup));
-        self::$gs->removeMember('phpUnitTestOne', 'shentschel');
+        self::$gs->removeMember('phpUnitTestOne', 'phpUnitTesterOne');
         $this->assertEquals(0, self::$gs->getCount($filteredGroup));
         self::$gs->deleteGroup('phpUnitTestOne');
         self::$gs->deleteGroup('phpUnitTestTwo');
-        self::$us->deleteUser('shentschel');
+        self::$us->deleteUser('phpUnitTesterOne');
     }
 
     /**

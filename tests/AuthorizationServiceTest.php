@@ -43,7 +43,7 @@ class AuthorizationServiceTest extends \PHPUnit\Framework\TestCase
         $createRequest = new AuthorizationRequest();
         $createRequest->setType(1);
         $createRequest->setPermissions(['CREATE', 'READ']);
-        $createRequest->setUserId('phpUnitTesterOne');
+        $createRequest->setUserId('phpUnitTesterTwo');
         $createRequest->setResourceId("*");
         $createRequest->setResourceType(1);
         $initialCount = self::$as->getCount(new AuthorizationRequest());
@@ -61,11 +61,11 @@ class AuthorizationServiceTest extends \PHPUnit\Framework\TestCase
         $createRequest = new AuthorizationRequest();
         $createRequest->setType(1);
         $createRequest->setPermissions(['CREATE', 'READ']);
-        $createRequest->setUserId('phpUnitTesterOne');
+        $createRequest->setUserId('phpUnitTesterTwo');
         $createRequest->setResourceId("*");
         $createRequest->setResourceType(1);
         $createdAuthorization = self::$as->createAuthorization($createRequest);
-        $this->assertEquals('phpUnitTesterOne', $createdAuthorization->getUserId());
+        $this->assertEquals('phpUnitTesterTwo', $createdAuthorization->getUserId());
         $updateRequest = new AuthorizationRequest();
         $updateRequest->setUserId('demo');
         $updateRequest->setResourceType($createdAuthorization->getResourceType());
@@ -85,7 +85,7 @@ class AuthorizationServiceTest extends \PHPUnit\Framework\TestCase
         $createRequest = new AuthorizationRequest();
         $createRequest->setType(1);
         $createRequest->setPermissions(['CREATE', 'READ']);
-        $createRequest->setUserId('phpUnitTesterOne');
+        $createRequest->setUserId('phpUnitTesterTwo');
         $createRequest->setResourceId("*");
         $createRequest->setResourceType(1);
         $countRequest = new AuthorizationRequest();
@@ -104,7 +104,7 @@ class AuthorizationServiceTest extends \PHPUnit\Framework\TestCase
         $createRequest = new AuthorizationRequest();
         $createRequest->setType(1);
         $createRequest->setPermissions(['CREATE', 'READ']);
-        $createRequest->setUserId('phpUnitTesterOne');
+        $createRequest->setUserId('phpUnitTesterTwo');
         $createRequest->setResourceId("*");
         $createRequest->setResourceType(1);
         $createdAuthorization = self::$as->createAuthorization($createRequest);
@@ -123,7 +123,7 @@ class AuthorizationServiceTest extends \PHPUnit\Framework\TestCase
         $createRequest = new AuthorizationRequest();
         $createRequest->setType(1);
         $createRequest->setPermissions(['CREATE', 'READ']);
-        $createRequest->setUserId('phpUnitTesterOne');
+        $createRequest->setUserId('phpUnitTesterTwo');
         $createRequest->setResourceId("*");
         $createRequest->setResourceType(1);
         $initialCount = self::$as->getCount(new AuthorizationRequest());

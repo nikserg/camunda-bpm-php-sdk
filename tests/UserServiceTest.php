@@ -28,11 +28,10 @@ class UserServiceTest extends \PHPUnit\Framework\TestCase
         $userProfile = new ProfileRequest();
         $userCredentials = new CredentialsRequest();
         $filteredUser = new UserRequest();
-        $filteredUser->setId('shentschel');
-        $userProfile->setId('shentschel')
-            ->setFirstName('stefan')
-            ->setLastName('hentschel')
-            ->setEmail('stefan.hentschel@camunda.com');
+        $filteredUser->setId('phpUnitTesterOne');
+        $userProfile->setId('phpUnitTesterOne')
+            ->setFirstName('phpUnitTesterOne')
+            ->setEmail('php@php.com');
         $userCredentials->setPassword('123456');
         $user->setProfile($userProfile)->setCredentials($userCredentials);
         $count = self::$us->getCount(new UserRequest());
@@ -40,7 +39,7 @@ class UserServiceTest extends \PHPUnit\Framework\TestCase
         self::$us->createUser($user);
         $this->assertEquals($count + 1, self::$us->getCount(new UserRequest()));
         $this->assertEquals($countFiltered + 1, self::$us->getCount($filteredUser));
-        self::$us->deleteUser('shentschel');
+        self::$us->deleteUser('phpUnitTesterOne');
         $this->assertEquals($count, self::$us->getCount(new UserRequest()));
     }
 
@@ -53,11 +52,10 @@ class UserServiceTest extends \PHPUnit\Framework\TestCase
         $userProfile = new ProfileRequest();
         $userCredentials = new CredentialsRequest();
         $filteredUser = new UserRequest();
-        $filteredUser->setId('shentschel');
-        $userProfile->setId('shentschel')
-            ->setFirstName('stefan')
-            ->setLastName('hentschel')
-            ->setEmail('stefan.hentschel@camunda.com');
+        $filteredUser->setId('phpUnitTesterOne');
+        $userProfile->setId('phpUnitTesterOne')
+            ->setFirstName('phpUnitTesterOne')
+            ->setEmail('php@php.com');
         $userCredentials->setPassword('123456');
         $user->setProfile($userProfile)->setCredentials($userCredentials);
         $count = self::$us->getCount(new UserRequest());
@@ -65,7 +63,7 @@ class UserServiceTest extends \PHPUnit\Framework\TestCase
         self::$us->createUser($user);
         $this->assertEquals($count + 1, self::$us->getCount(new UserRequest()));
         $this->assertEquals($countFiltered + 1, self::$us->getCount($filteredUser));
-        self::$us->deleteUser('shentschel');
+        self::$us->deleteUser('phpUnitTesterOne');
         $this->assertEquals($count, self::$us->getCount(new UserRequest()));
         $this->assertEquals($countFiltered, self::$us->getCount($filteredUser));
     }
@@ -79,16 +77,15 @@ class UserServiceTest extends \PHPUnit\Framework\TestCase
         $userProfile = new ProfileRequest();
         $userCredentials = new CredentialsRequest();
         $filteredUser = new UserRequest();
-        $filteredUser->setId('shentschel');
-        $userProfile->setId('shentschel')
-            ->setFirstName('stefan')
-            ->setLastName('hentschel')
-            ->setEmail('stefan.hentschel@camunda.com');
+        $filteredUser->setId('phpUnitTesterOne');
+        $userProfile->setId('phpUnitTesterOne')
+            ->setFirstName('phpUnitTesterOne')
+            ->setEmail('php@php.com');
         $userCredentials->setPassword('123456');
         $user->setProfile($userProfile)->setCredentials($userCredentials);
         self::$us->createUser($user);
-        $this->assertEquals('stefan', self::$us->getProfile('shentschel')->getFirstName());
-        self::$us->deleteUser('shentschel');
+        $this->assertEquals('phpUnitTesterOne', self::$us->getProfile('phpUnitTesterOne')->getFirstName());
+        self::$us->deleteUser('phpUnitTesterOne');
     }
 
     /**
@@ -97,35 +94,33 @@ class UserServiceTest extends \PHPUnit\Framework\TestCase
     function testGetUsers()
     {
         $filteredUser = new UserRequest();
-        $filteredUser->setFirstName('stefan');
+        $filteredUser->setFirstName('phpUnitTesterOne');
         $userId = self::$us->getCount(new UserRequest());
         $user = new UserRequest();
         $userProfile = new ProfileRequest();
         $userCredentials = new CredentialsRequest();
-        $userProfile->setId('shentschel')
-            ->setFirstName('stefan')
-            ->setLastName('hentschel')
-            ->setEmail('stefan.hentschel@camunda.com');
+        $userProfile->setId('phpUnitTesterOne')
+            ->setFirstName('phpUnitTesterOne')
+            ->setEmail('php@php.com');
         $userCredentials->setPassword('123456');
         $user->setProfile($userProfile)->setCredentials($userCredentials);
         self::$us->createUser($user);
-        $this->assertEquals('shentschel', self::$us->getUsers(new UserRequest())[$userId]->getId());
+        $this->assertEquals('phpUnitTesterOne', self::$us->getUsers(new UserRequest())[$userId]->getId());
         $user = new UserRequest();
         $userProfile = new ProfileRequest();
         $userCredentials = new CredentialsRequest();
-        $userProfile->setId('phpUnitTesterOne')
+        $userProfile->setId('phpUnitTesterTwo')
             ->setFirstName('PHP')
-            ->setLastName('UNIT')
             ->setEmail('PHP_UNIT_SQUAD@CAMUNDA.COM');
         $userCredentials->setPassword('1337-42-23');
         $user->setProfile($userProfile)->setCredentials($userCredentials);
         self::$us->createUser($user);
-        $this->assertEquals('shentschel', self::$us->getUsers(new UserRequest())[$userId + 1]->getId());
-        $this->assertEquals('phpUnitTesterOne', self::$us->getUsers(new UserRequest())[$userId]->getId());
-        $this->assertEquals('shentschel', self::$us->getUsers($filteredUser)[0]->getId());
+        $this->assertEquals('phpUnitTesterOne', self::$us->getUsers(new UserRequest())[$userId + 1]->getId());
+        $this->assertEquals('phpUnitTesterTwo', self::$us->getUsers(new UserRequest())[$userId]->getId());
+        $this->assertEquals('phpUnitTesterOne', self::$us->getUsers($filteredUser)[0]->getId());
         $this->assertObjectNotHasAttribute('user_1', self::$us->getUsers($filteredUser));
-        self::$us->deleteUser('shentschel');
         self::$us->deleteUser('phpUnitTesterOne');
+        self::$us->deleteUser('phpUnitTesterTwo');
     }
 
     /**
@@ -134,16 +129,15 @@ class UserServiceTest extends \PHPUnit\Framework\TestCase
     function testGetUserCount()
     {
         $filteredUser = new UserRequest();
-        $filteredUser->setFirstName('stefan');
+        $filteredUser->setFirstName('phpUnitTesterOne');
         $count = self::$us->getCount(new UserRequest());
         $countFiltered = self::$us->getCount($filteredUser);
         $user = new UserRequest();
         $userProfile = new ProfileRequest();
         $userCredentials = new CredentialsRequest();
-        $userProfile->setId('shentschel')
-            ->setFirstName('stefan')
-            ->setLastName('hentschel')
-            ->setEmail('stefan.hentschel@camunda.com');
+        $userProfile->setId('phpUnitTesterOne')
+            ->setFirstName('phpUnitTesterOne')
+            ->setEmail('php@php.com');
         $userCredentials->setPassword('123456');
         $user->setProfile($userProfile)->setCredentials($userCredentials);
         self::$us->createUser($user);
@@ -153,14 +147,13 @@ class UserServiceTest extends \PHPUnit\Framework\TestCase
         $userCredentials = new CredentialsRequest();
         $userProfile->setId('jonny1')
             ->setFirstName('John')
-            ->setLastName('Doe')
             ->setEmail('john.doe@who.com');
         $userCredentials->setPassword('1337-42-23');
         $user->setProfile($userProfile)->setCredentials($userCredentials);
         self::$us->createUser($user);
         $this->assertEquals($count + 2, self::$us->getCount(new UserRequest()));
         $this->assertEquals($countFiltered + 1, self::$us->getCount($filteredUser));
-        self::$us->deleteUser('shentschel');
+        self::$us->deleteUser('phpUnitTesterOne');
         self::$us->deleteUser('jonny1');
         $this->assertEquals($count, self::$us->getCount(new UserRequest()));
     }
@@ -171,26 +164,20 @@ class UserServiceTest extends \PHPUnit\Framework\TestCase
     function testUpdateUserProfile()
     {
         $filteredUser = new UserRequest();
-        $filteredUser->setFirstName('stefan');
+        $filteredUser->setFirstName('phpUnitTesterOne');
         $user = new UserRequest();
         $userProfile = new ProfileRequest();
-        $userCredentials = new CredentialsRequest();
-        $userProfile->setId('shentschel')
-            ->setFirstName('stefan')
-            ->setLastName('hentschel')
-            ->setEmail('stefan.hentschel@camunda.com');
-        $userCredentials->setPassword('123456');
-        $user->setProfile($userProfile)->setCredentials($userCredentials);
+        $userProfile->setId('phpUnitTesterOne')
+            ->setFirstName('phpUnitTesterOne')
+            ->setEmail('php@php.com');
+        $user->setProfile($userProfile)->setCredentials((new CredentialsRequest())->setPassword('123456'));
         self::$us->createUser($user);
-        $this->assertEquals('stefan', self::$us->getProfile('shentschel')->getFirstName());
-        $userProfile = new ProfileRequest();
-        $userProfile->setId('shentschel')
+        $this->assertEquals('phpUnitTesterOne', self::$us->getProfile('phpUnitTesterOne')->getFirstName());
+        self::$us->updateProfile('phpUnitTesterOne', (new ProfileRequest())->setId('phpUnitTesterOne')
             ->setFirstName('John')
-            ->setLastName('Doe')
-            ->setEmail('john.doe@who.com');
-        self::$us->updateProfile('shentschel', $userProfile);
-        $this->assertEquals('John', self::$us->getProfile('shentschel')->getFirstName());
-        self::$us->deleteUser('shentschel');
+            ->setEmail('john.doe@who.com'));
+        $this->assertEquals('John', self::$us->getProfile('phpUnitTesterOne')->getFirstName());
+        self::$us->deleteUser('phpUnitTesterOne');
     }
 
     /**
