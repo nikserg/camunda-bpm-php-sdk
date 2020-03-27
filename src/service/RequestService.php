@@ -13,16 +13,19 @@ abstract class RequestService
     /**
      * @var string
      */
-    private $requestUrl;
+    private $requestUrl = '';
     /**
      * @var string
      */
     private $restApiUrl;
     /**
-     * @var Request
+     * @var Request|null
      */
     private $requestObject;
-    private $httpStatusCode;
+    /**
+     * @var string
+     */
+    private $httpStatusCode = '0';
 
     function __construct(string $restApiUrl)
     {
@@ -30,7 +33,7 @@ abstract class RequestService
     }
 
     /**
-     * @param Request $requestObject
+     * @param Request|null $requestObject
      */
     protected function setRequestObject(Request $requestObject = null)
     {
@@ -38,7 +41,7 @@ abstract class RequestService
     }
 
     /**
-     * @return mixed
+     * @return Request|null
      */
     protected function getRequestObject()
     {
@@ -78,15 +81,15 @@ abstract class RequestService
     }
 
     /**
-     * @param mixed $httpStatusCode
+     * @param string $httpStatusCode
      */
-    function setHttpStatusCode($httpStatusCode)
+    function setHttpStatusCode(string $httpStatusCode)
     {
         $this->httpStatusCode = $httpStatusCode;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     function getHttpStatusCode()
     {
@@ -138,17 +141,31 @@ abstract class RequestService
         $this->httpStatusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
         $this->reset();
-        if (!preg_match('/^[12]0[0-9]/', $this->httpStatusCode)) {
-            if (empty($response)) {
-                $errorData = new \stdClass();
-                $errorData->type = "Not found!";
-                $errorData->message = "No Message!";
-            } else {
-                $errorData = json_decode($response);
-            }
-            throw new \Exception("HTTP $this->httpStatusCode error type $errorData->type: $errorData->message");
+        if (preg_match('/^[12]0\d/', $this->httpStatusCode)) {
+            return $this->assertiveJsonDecode($response);
         }
-        $responseData = json_decode($response);
-        return $responseData;
+        if (empty($response)) {
+            throw new \Exception("HTTP $this->httpStatusCode with empty response body");
+        }
+        $errorData = $this->assertiveJsonDecode($response);
+        throw new \Exception("HTTP $this->httpStatusCode error type $errorData->type: $errorData->message");
+    }
+
+    /**
+     * @param      $json
+     * @param bool $assoc
+     * @param int  $depth
+     * @param int  $options
+     * @return mixed
+     * @throws \Exception
+     */
+    function assertiveJsonDecode($json, $assoc = false, $depth = 512, $options = 0)
+    {
+        $data = json_decode($json, $assoc, $depth, $options);
+        if (JSON_ERROR_NONE != json_last_error()) {
+            throw new \Exception("Invalid json: " . json_last_error_msg() . "\nSample: $json",
+                json_last_error());
+        }
+        return $data;
     }
 }
