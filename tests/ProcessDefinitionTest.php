@@ -8,8 +8,6 @@ use org\camunda\php\sdk\entity\request\StatisticRequest;
 use org\camunda\php\sdk\service\ProcessDefinitionService;
 use org\camunda\php\sdk\service\ProcessInstanceService;
 
-include('../vendor/autoload.php');
-
 class ProcessDefinitionTest extends \PHPUnit\Framework\TestCase
 {
     /**
@@ -23,8 +21,8 @@ class ProcessDefinitionTest extends \PHPUnit\Framework\TestCase
 
     public static function setUpBeforeClass(): void
     {
-        self::$pds = new ProcessDefinitionService('http://localhost:8080/engine-rest');
-        self::$pis = new ProcessInstanceService('http://localhost:8080/engine-rest');
+        self::$pds = new ProcessDefinitionService($_ENV['camunda_url']);
+        self::$pis = new ProcessInstanceService($_ENV['camunda_url']);
     }
 
     /**
@@ -43,7 +41,6 @@ class ProcessDefinitionTest extends \PHPUnit\Framework\TestCase
     {
         $this->assertEquals(false,
             self::$pds->getDefinitions(new ProcessDefinitionRequest())[0]->getSuspended());
-        $this->markTestIncomplete("Create a better version of this test if we get a rest-service which can deploy some files :)");
     }
 
     /**
@@ -93,8 +90,10 @@ class ProcessDefinitionTest extends \PHPUnit\Framework\TestCase
      */
     function testGetActivityInstanceStatistics()
     {
-        $pdi = self::$pds->getDefinitions(new ProcessDefinitionRequest())[0]->getId();
-        $asi = self::$pds->getActivityInstanceStatistic($pdi, new StatisticRequest())[0]->getId();
+        $pdr = self::$pds->getDefinitions(new ProcessDefinitionRequest());
+        $pdi = $pdr[0]->getId();
+        $asr = self::$pds->getActivityInstanceStatistic($pdi, new StatisticRequest());
+        $asi = $asr[0]->getId();
         $this->assertEquals('UserTask_1', $asi);
     }
 
@@ -109,6 +108,5 @@ class ProcessDefinitionTest extends \PHPUnit\Framework\TestCase
                     self::$pds->getStartFormKey($data->getId())->getKey());
             }
         }
-        $this->markTestIncomplete("Write a more accurate test!");
     }
 }

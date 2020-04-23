@@ -5,8 +5,6 @@ namespace org\camunda\php\tests;
 use org\camunda\php\sdk\entity\request\AuthorizationRequest;
 use org\camunda\php\sdk\service\AuthorizationService;
 
-include("../vendor/autoload.php");
-
 class AuthorizationServiceTest extends \PHPUnit\Framework\TestCase
 {
     /**
@@ -16,7 +14,7 @@ class AuthorizationServiceTest extends \PHPUnit\Framework\TestCase
 
     public static function setUpBeforeClass(): void
     {
-        self::$as = new AuthorizationService('http://localhost:8080/engine-rest');
+        self::$as = new AuthorizationService($_ENV['camunda_url']);
     }
 
     /**
@@ -45,7 +43,7 @@ class AuthorizationServiceTest extends \PHPUnit\Framework\TestCase
         $createRequest = new AuthorizationRequest();
         $createRequest->setType(1);
         $createRequest->setPermissions(['CREATE', 'READ']);
-        $createRequest->setUserId('PHP_UNIT_TESTER_1');
+        $createRequest->setUserId('phpUnitTesterTwo');
         $createRequest->setResourceId("*");
         $createRequest->setResourceType(1);
         $initialCount = self::$as->getCount(new AuthorizationRequest());
@@ -63,11 +61,11 @@ class AuthorizationServiceTest extends \PHPUnit\Framework\TestCase
         $createRequest = new AuthorizationRequest();
         $createRequest->setType(1);
         $createRequest->setPermissions(['CREATE', 'READ']);
-        $createRequest->setUserId('PHP_UNIT_TESTER_1');
+        $createRequest->setUserId('phpUnitTesterTwo');
         $createRequest->setResourceId("*");
         $createRequest->setResourceType(1);
         $createdAuthorization = self::$as->createAuthorization($createRequest);
-        $this->assertEquals('PHP_UNIT_TESTER_1', $createdAuthorization->getUserId());
+        $this->assertEquals('phpUnitTesterTwo', $createdAuthorization->getUserId());
         $updateRequest = new AuthorizationRequest();
         $updateRequest->setUserId('demo');
         $updateRequest->setResourceType($createdAuthorization->getResourceType());
@@ -87,7 +85,7 @@ class AuthorizationServiceTest extends \PHPUnit\Framework\TestCase
         $createRequest = new AuthorizationRequest();
         $createRequest->setType(1);
         $createRequest->setPermissions(['CREATE', 'READ']);
-        $createRequest->setUserId('PHP_UNIT_TESTER_1');
+        $createRequest->setUserId('phpUnitTesterTwo');
         $createRequest->setResourceId("*");
         $createRequest->setResourceType(1);
         $countRequest = new AuthorizationRequest();
@@ -98,13 +96,6 @@ class AuthorizationServiceTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($initialCount, self::$as->getCount($countRequest));
     }
 
-    function testPerformAuthorizationCheck()
-    {
-        $this->markTestIncomplete(
-            'Find a way to test this with a properly authentication. I can\'t get the basic authentication to work with apache Tomcat'
-        );
-    }
-
     /**
      * @throws \Exception
      */
@@ -113,7 +104,7 @@ class AuthorizationServiceTest extends \PHPUnit\Framework\TestCase
         $createRequest = new AuthorizationRequest();
         $createRequest->setType(1);
         $createRequest->setPermissions(['CREATE', 'READ']);
-        $createRequest->setUserId('PHP_UNIT_TESTER_1');
+        $createRequest->setUserId('phpUnitTesterTwo');
         $createRequest->setResourceId("*");
         $createRequest->setResourceType(1);
         $createdAuthorization = self::$as->createAuthorization($createRequest);
@@ -132,7 +123,7 @@ class AuthorizationServiceTest extends \PHPUnit\Framework\TestCase
         $createRequest = new AuthorizationRequest();
         $createRequest->setType(1);
         $createRequest->setPermissions(['CREATE', 'READ']);
-        $createRequest->setUserId('PHP_UNIT_TESTER_1');
+        $createRequest->setUserId('phpUnitTesterTwo');
         $createRequest->setResourceId("*");
         $createRequest->setResourceType(1);
         $initialCount = self::$as->getCount(new AuthorizationRequest());

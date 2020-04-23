@@ -5,8 +5,6 @@ namespace org\camunda\php\tests;
 use org\camunda\php\sdk\entity\request\VariableInstanceRequest;
 use org\camunda\php\sdk\service\VariableInstanceService;
 
-include('../vendor/autoload.php');
-
 class VariableInstanceTest extends \PHPUnit\Framework\TestCase
 {
     /**
@@ -16,7 +14,7 @@ class VariableInstanceTest extends \PHPUnit\Framework\TestCase
 
     public static function setUpBeforeClass(): void
     {
-        self::$vis = new VariableInstanceService('http://localhost:8080/engine-rest');
+        self::$vis = new VariableInstanceService($_ENV['camunda_url']);
     }
 
     /**
@@ -39,7 +37,7 @@ class VariableInstanceTest extends \PHPUnit\Framework\TestCase
         $vir = new VariableInstanceRequest();
         $vir->setVariableName('amount');
         $vi = self::$vis->getInstances($vir, true);
-        $this->assertGreaterThan(0, count(get_object_vars($vi)));
+        $this->assertGreaterThan(0, count($vi));
     }
 
     /**

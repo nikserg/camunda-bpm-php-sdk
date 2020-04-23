@@ -5,8 +5,6 @@ namespace org\camunda\php\tests;
 use org\camunda\php\sdk\entity\request\IdentityRequest;
 use org\camunda\php\sdk\service\IdentityService;
 
-include("../vendor/autoload.php");
-
 class IdentityServiceTest extends \PHPUnit\Framework\TestCase
 {
     /**
@@ -16,7 +14,7 @@ class IdentityServiceTest extends \PHPUnit\Framework\TestCase
 
     public static function setUpBeforeClass(): void
     {
-        self::$is = new IdentityService('http://localhost:8080/engine-rest');
+        self::$is = new IdentityService($_ENV['camunda_url']);
     }
 
     /**

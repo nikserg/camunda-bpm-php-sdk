@@ -119,11 +119,13 @@ abstract class RequestService
             if (isset($this->requestObject)) {
                 $url .= '?' . http_build_query($this->requestObject->fieldsFilled());
             }
+            $ch = curl_init($url);
+            curl_setopt($ch, CURLOPT_COOKIEJAR, './'); // TODO: storing in cwd??
+            curl_setopt($ch, CURLOPT_COOKIEFILE, './');
+        } else {
+            $ch = curl_init($url);
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $this->requestMethod);
         }
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_COOKIEJAR, './'); // TODO: storing in cwd??
-        curl_setopt($ch, CURLOPT_COOKIEFILE, './');
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $this->requestMethod);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         if (in_array($this->requestMethod, ['POST', 'DELETE', 'PUT',])) {
             $data = new \stdClass;
@@ -139,13 +141,20 @@ abstract class RequestService
         }
         $response = curl_exec($ch);
         $this->httpStatusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $errorNumber = curl_errno($ch);
+        $errorMessage = curl_error($ch);
         curl_close($ch);
         $this->reset();
+        if ($errorNumber != 0) {
+            throw new \Exception("HTTP $this->httpStatusCode curl error: " . $errorMessage, $errorNumber);
+        }
+        if ($this->httpStatusCode == '204') {
+            return null;
+        } elseif (empty($response)) {
+            throw new \Exception("HTTP $this->httpStatusCode with empty response body: " . $errorMessage, $errorNumber);
+        }
         if (preg_match('/^[12]0\d/', $this->httpStatusCode)) {
             return $this->assertiveJsonDecode($response);
-        }
-        if (empty($response)) {
-            throw new \Exception("HTTP $this->httpStatusCode with empty response body");
         }
         $errorData = $this->assertiveJsonDecode($response);
         throw new \Exception("HTTP $this->httpStatusCode error type $errorData->type: $errorData->message");

@@ -169,23 +169,6 @@ class ProcessInstanceService extends RequestService
     }
 
     /**
-     * Retrieves all activity instances within a given process instance context
-     * TODO: deserialize response
-     *
-     * @link http://docs.camunda.org/api-references/rest/#!/process-instance/get-activity-instances
-     *
-     * @param string                 $id process instance ID
-     * @param ProcessInstanceRequest $request filter parameters
-     * @throws \Exception
-     */
-    function getActivityInstances($id, ProcessInstanceRequest $request)
-    {
-        $this->setRequestUrl('/process-instance/' . $id . '/activity-instances');
-        $this->setRequestObject($request);
-        throw new \Error("To be implemented.");
-    }
-
-    /**
      * Activate or suspend a given process instance.
      *
      * @link http://docs.camunda.org/latest/api-references/rest/#process-instance-activatesuspend-process-instance

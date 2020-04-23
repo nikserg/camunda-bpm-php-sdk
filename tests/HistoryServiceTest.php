@@ -3,14 +3,12 @@
 namespace org\camunda\php\tests;
 
 use org\camunda\php\sdk\entity\request\HistoricActivityInstanceRequest;
+use org\camunda\php\sdk\entity\request\HistoricActivityStatisticRequest;
 use org\camunda\php\sdk\entity\request\HistoricProcessInstanceRequest;
 use org\camunda\php\sdk\entity\request\HistoricVariableInstanceRequest;
-use org\camunda\php\sdk\entity\request\HistoricActivityStatisticRequest;
 use org\camunda\php\sdk\entity\request\ProcessDefinitionRequest;
 use org\camunda\php\sdk\service\HistoryService;
 use org\camunda\php\sdk\service\ProcessDefinitionService;
-
-include('../vendor/autoload.php');
 
 class HistoryServiceTest extends \PHPUnit\Framework\TestCase
 {
@@ -25,8 +23,8 @@ class HistoryServiceTest extends \PHPUnit\Framework\TestCase
 
     public static function setUpBeforeClass(): void
     {
-        self::$hs = new HistoryService('http://localhost:8080/engine-rest');
-        self::$pds = new ProcessDefinitionService('http://localhost:8080/engine-rest');
+        self::$hs = new HistoryService($_ENV['camunda_url']);
+        self::$pds = new ProcessDefinitionService($_ENV['camunda_url']);
     }
 
     /**
