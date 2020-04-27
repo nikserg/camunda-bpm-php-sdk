@@ -160,14 +160,14 @@ class ProcessInstanceTest extends \PHPUnit\Framework\TestCase
      */
     function testDeleteSingleProcessVariable()
     {
-        $processInstance = self::$pis->getInstances(new ProcessInstanceRequest())[0];
-        $variables = self::$pis->getProcessVariables($processInstance->getId());
-        $this->assertEquals(3, count($variables));
-        self::$pis->deleteProcessVariable($processInstance->getId(), 'value2');
-        $this->assertEquals(2, count(self::$pis->getProcessVariables($processInstance->getId())));
+        $processInstance = self::$pis->getInstances(new ProcessInstanceRequest())[0]->getId();
+        $countBefore = count(self::$pis->getProcessVariables($processInstance));
         $addProcessVariableRequest = new VariableRequest();
         $addProcessVariableRequest->setValue(1000);
         $addProcessVariableRequest->setType("Integer");
-        self::$pis->putProcessVariable($processInstance->getId(), 'value2', $addProcessVariableRequest);
+        self::$pis->putProcessVariable($processInstance, 'testPhpVariable', $addProcessVariableRequest);
+        $this->assertEquals($countBefore + 1, count(self::$pis->getProcessVariables($processInstance)));
+        self::$pis->deleteProcessVariable($processInstance, 'testPhpVariable');
+        $this->assertEquals($countBefore, count(self::$pis->getProcessVariables($processInstance)));
     }
 }
