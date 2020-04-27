@@ -82,11 +82,11 @@ class CastHelper
      *
      * @return array
      */
-    function fieldsFilled()
+    function setFields()
     {
         $list = [];
         foreach ($this as $index => $value) {
-            if (!empty($value)) {
+            if (!is_null($value)) {
                 $list[$index] = $value;
             }
         }
@@ -96,12 +96,12 @@ class CastHelper
     /**
      * Serialize all non-empty fields recursively to a hash map
      *
-     * @return array
+     * @return object
      */
     function serializeToHashMap()
     {
-        $data = [];
-        foreach ($this->fieldsFilled() as $prop => $value) {
+        $data = new \stdClass;
+        foreach ($this->setFields() as $prop => $value) {
             if (is_array($value)) {
                 foreach ($value as $valueIndex => $valueData) {
                     if ($valueData instanceof CastHelper) {
@@ -113,7 +113,7 @@ class CastHelper
             if ($value instanceof CastHelper) {
                 $value = $value->serializeToHashMap();
             }
-            $data[$prop] = $value;
+            $data->$prop = $value;
         }
         return $data;
     }

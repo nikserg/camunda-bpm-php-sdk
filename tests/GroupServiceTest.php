@@ -6,6 +6,7 @@ use org\camunda\php\sdk\entity\request\CredentialsRequest;
 use org\camunda\php\sdk\entity\request\GroupRequest;
 use org\camunda\php\sdk\entity\request\ProfileRequest;
 use org\camunda\php\sdk\entity\request\UserRequest;
+use org\camunda\php\sdk\entity\response\Group;
 use org\camunda\php\sdk\service\GroupService;
 use org\camunda\php\sdk\service\UserService;
 
@@ -26,115 +27,54 @@ class GroupServiceTest extends \PHPUnit\Framework\TestCase
         self::$us = new UserService($_ENV['camunda_url']);
     }
 
-    /**
-     * @throws \Exception
-     */
-    function testCreateGroup()
+    protected function setUp(): void
     {
-        $groupRequest = new GroupRequest();
-        $preCount = self::$gs->getCount($groupRequest);
-        $groupRequest->setName('phpUnitTestOne')
+        self::$gs->createGroup((new GroupRequest())
+            ->setName('phpUnitTestOne')
             ->setId('phpUnitTestOne')
-            ->setType('Organizational Unit');
-        self::$gs->createGroup($groupRequest);
-        $groupRequest = new GroupRequest();
-        $groupRequest->setName('phpUnitTestTwo')
-            ->setId('phpUnitTestTwo')
-            ->setType('Organizational Unit');
-        self::$gs->createGroup($groupRequest);
-        $this->assertEquals($preCount + 2, self::$gs->getCount(new GroupRequest()));
+            ->setType('Organizational Unit'));
+        parent::setUp();
+    }
+
+    function tearDown(): void
+    {
         self::$gs->deleteGroup('phpUnitTestOne');
-        self::$gs->deleteGroup('phpUnitTestTwo');
+        parent::tearDown();
     }
 
     /**
      * @throws \Exception
      */
-    function testAddGroupMember()
+    function testCreateDeleteGroup()
     {
-        $user = new UserRequest();
-        $userProfile = new ProfileRequest();
-        $userCredentials = new CredentialsRequest();
-        $userProfile->setId('phpUnitTesterOne')
-            ->setFirstName('phpUnitTesterOne')
-            ->setEmail('php@php.com');
-        $userCredentials->setPassword('123456');
-        $user->setProfile($userProfile)
-            ->setCredentials($userCredentials);
-        self::$us->createUser($user);
-        $groupRequest = new GroupRequest();
-        $groupRequest->setName('phpUnitTestOne')
-            ->setId('phpUnitTestOne')
-            ->setType('Organizational Unit');
-        self::$gs->createGroup($groupRequest);
-        $groupRequest = new GroupRequest();
-        $groupRequest->setName('phpUnitTestTwo')
-            ->setId('phpUnitTestTwo')
-            ->setType('Organizational Unit');
-        self::$gs->createGroup($groupRequest);
-        self::$gs->addMember('phpUnitTestOne', 'phpUnitTesterOne');
-        $filteredGroup = new GroupRequest();
-        $filteredGroup->setMember('phpUnitTesterOne');
-        $this->assertEquals(1, self::$gs->getCount($filteredGroup));
-        self::$gs->deleteGroup('phpUnitTestOne');
-        self::$gs->deleteGroup('phpUnitTestTwo');
-        self::$us->deleteUser('phpUnitTesterOne');
-    }
-
-    /**
-     * @throws \Exception
-     */
-    function testDeleteGroup()
-    {
-        $groupRequest = new GroupRequest();
-        $groupRequest->setName('phpUnitTestOne')
-            ->setId('phpUnitTestOne')
-            ->setType('Organizational Unit');
-        self::$gs->createGroup($groupRequest);
-        $groupRequest = new GroupRequest();
-        $groupRequest->setName('phpUnitTestTwo')
-            ->setId('phpUnitTestTwo')
-            ->setType('Organizational Unit');
-        self::$gs->createGroup($groupRequest);
         $count = self::$gs->getCount(new GroupRequest());
         self::$gs->deleteGroup('phpUnitTestOne');
-        self::$gs->deleteGroup('phpUnitTestTwo');
-        $this->assertEquals($count - 2, self::$gs->getCount(new GroupRequest()));
+        $this->assertEquals($count - 1, self::$gs->getCount(new GroupRequest()));
+        self::$gs->createGroup((new GroupRequest())
+            ->setName('phpUnitTestOne')
+            ->setId('phpUnitTestOne')
+            ->setType('Organizational Unit'));
+        $this->assertEquals($count, self::$gs->getCount(new GroupRequest()));
     }
 
     /**
      * @throws \Exception
      */
-    function testRemoveGroupMember()
+    function testAddRemoveGroupMember()
     {
-        $user = new UserRequest();
-        $userProfile = new ProfileRequest();
-        $userCredentials = new CredentialsRequest();
-        $userProfile->setId('phpUnitTesterOne')
-            ->setFirstName('phpUnitTesterOne')
-            ->setEmail('php@php.com');
-        $userCredentials->setPassword('123456');
-        $user->setProfile($userProfile)
-            ->setCredentials($userCredentials);
-        self::$us->createUser($user);
-        $groupRequest = new GroupRequest();
-        $groupRequest->setName('phpUnitTestOne')
-            ->setId('phpUnitTestOne')
-            ->setType('Organizational Unit');
-        self::$gs->createGroup($groupRequest);
-        $groupRequest = new GroupRequest();
-        $groupRequest->setName('phpUnitTestTwo')
-            ->setId('phpUnitTestTwo')
-            ->setType('Organizational Unit');
-        self::$gs->createGroup($groupRequest);
+        self::$us->createUser(
+            (new UserRequest())
+                ->setProfile((new ProfileRequest())
+                    ->setId('phpUnitTesterOne')
+                    ->setFirstName('phpUnitTesterOne')
+                    ->setEmail('php@php.com')
+                )
+                ->setCredentials((new CredentialsRequest())->setPassword('123456'))
+        );
         self::$gs->addMember('phpUnitTestOne', 'phpUnitTesterOne');
-        $filteredGroup = new GroupRequest();
-        $filteredGroup->setMember('phpUnitTesterOne');
-        $this->assertEquals(1, self::$gs->getCount($filteredGroup));
+        $this->assertEquals(1, self::$gs->getCount((new GroupRequest())->setMember('phpUnitTesterOne')));
         self::$gs->removeMember('phpUnitTestOne', 'phpUnitTesterOne');
-        $this->assertEquals(0, self::$gs->getCount($filteredGroup));
-        self::$gs->deleteGroup('phpUnitTestOne');
-        self::$gs->deleteGroup('phpUnitTestTwo');
+        $this->assertEquals(0, self::$gs->getCount((new GroupRequest())->setMember('phpUnitTesterOne')));
         self::$us->deleteUser('phpUnitTesterOne');
     }
 
@@ -143,19 +83,7 @@ class GroupServiceTest extends \PHPUnit\Framework\TestCase
      */
     function testGetGroup()
     {
-        $groupRequest = new GroupRequest();
-        $groupRequest->setName('phpUnitTestOne')
-            ->setId('phpUnitTestOne')
-            ->setType('Organizational Unit');
-        self::$gs->createGroup($groupRequest);
-        $groupRequest = new GroupRequest();
-        $groupRequest->setName('phpUnitTestTwo')
-            ->setId('phpUnitTestTwo')
-            ->setType('Organizational Unit');
-        self::$gs->createGroup($groupRequest);
         $this->assertEquals('phpUnitTestOne', self::$gs->getGroup('phpUnitTestOne')->getName());
-        self::$gs->deleteGroup('phpUnitTestTwo');
-        self::$gs->deleteGroup('phpUnitTestOne');
     }
 
     /**
@@ -163,24 +91,12 @@ class GroupServiceTest extends \PHPUnit\Framework\TestCase
      */
     function testGetGroups()
     {
-        $groupRequest = new GroupRequest();
-        $groupRequest->setName('phpUnitTestOne')
-            ->setId('phpUnitTestOne')
-            ->setType('Organizational Unit');
-        self::$gs->createGroup($groupRequest);
-        $this->assertEquals('phpUnitTestOne', self::$gs->getGroups(new GroupRequest())[0]->getId());
-        $groupRequest = new GroupRequest();
-        $groupRequest->setName('phpUnitTestTwo')
-            ->setId('phpUnitTestTwo')
-            ->setType('Organizational Unit');
-        self::$gs->createGroup($groupRequest);
-        $this->assertEquals('phpUnitTestTwo', self::$gs->getGroups(new GroupRequest())[0]->getId());
-        $filteredGroup = new GroupRequest();
-        $filteredGroup->setName('phpUnitTestOne');
-        $this->assertEquals('phpUnitTestOne', self::$gs->getGroups($filteredGroup)[0]->getId());
-        $this->assertObjectNotHasAttribute('group_1', self::$gs->getGroups($filteredGroup));
-        self::$gs->deleteGroup('phpUnitTestTwo');
-        self::$gs->deleteGroup('phpUnitTestOne');
+        $searchResult = self::$gs->getGroups(new GroupRequest());
+        $this->assertIsArray($searchResult);
+        $this->assertNotEmpty($searchResult);
+        self::assertContainsOnlyInstancesOf(Group::class, $searchResult);
+        $searchResult = self::$gs->getGroups((new GroupRequest())->setId('phpUnitTestOne'));
+        $this->assertEquals('phpUnitTestOne', $searchResult[0]->getId());
     }
 
     /**
@@ -188,23 +104,13 @@ class GroupServiceTest extends \PHPUnit\Framework\TestCase
      */
     function testGetGroupCount()
     {
-        $groupRequest = new GroupRequest();
-        $initialCount = self::$gs->getCount($groupRequest);
-        $groupRequest->setName('phpUnitTestOne')
-            ->setId('phpUnitTestOne')
-            ->setType('Organizational Unit');
-        self::$gs->createGroup($groupRequest);
-        $this->assertEquals($initialCount + 1, self::$gs->getCount(new GroupRequest()));
-        $groupRequest = new GroupRequest();
-        $groupRequest->setName('phpUnitTestTwo')
+        $initialCount = self::$gs->getCount(new GroupRequest());
+        self::$gs->createGroup((new GroupRequest())
+            ->setName('phpUnitTestTwo')
             ->setId('phpUnitTestTwo')
-            ->setType('Organizational Unit');
-        self::$gs->createGroup($groupRequest);
-        $this->assertEquals($initialCount + 2, self::$gs->getCount(new GroupRequest()));
-        $filteredGroup = new GroupRequest();
-        $filteredGroup->setName('phpUnitTestOne');
-        $this->assertEquals(1, self::$gs->getCount($filteredGroup));
-        self::$gs->deleteGroup('phpUnitTestOne');
+            ->setType('Organizational Unit'));
+        $this->assertEquals($initialCount + 1, self::$gs->getCount(new GroupRequest()));
+        $this->assertEquals(1, self::$gs->getCount((new GroupRequest())->setName('phpUnitTestTwo')));
         self::$gs->deleteGroup('phpUnitTestTwo');
         $this->assertEquals($initialCount, self::$gs->getCount(new GroupRequest()));
     }
@@ -214,19 +120,11 @@ class GroupServiceTest extends \PHPUnit\Framework\TestCase
      */
     function testUpdateGroup()
     {
-        $groupRequest = new GroupRequest();
-        $groupRequest->setName('phpUnitTestOne')
+        self::$gs->updateGroup('phpUnitTestOne', (new GroupRequest())
             ->setId('phpUnitTestOne')
-            ->setType('Organizational Unit');
-        self::$gs->createGroup($groupRequest);
-        $this->assertEquals('phpUnitTestOne', self::$gs->getGroup('phpUnitTestOne')->getName());
-        $update = new GroupRequest();
-        $update->setName('phpUnitTestTwo')
-            ->setId('phpUnitTestOne')
-            ->setType('Organizational Unit');
-        self::$gs->updateGroup('sales', $update);
-        $this->assertEquals('phpUnitTestTwo', self::$gs->getGroup('phpUnitTestOne')->getName());
-        self::$gs->deleteGroup('phpUnitTestOne');
+            ->setName('phpUnitTestOneUpdated')
+            ->setType('Organizational Unit'));
+        $this->assertEquals('phpUnitTestOneUpdated', self::$gs->getGroup('phpUnitTestOne')->getName());
     }
 
     /**
@@ -234,9 +132,9 @@ class GroupServiceTest extends \PHPUnit\Framework\TestCase
      */
     function testGetGroupResourceOptions()
     {
-        $mainOption = self::$gs->getResourceOption();
-        $this->assertObjectHasAttribute('method', $mainOption->getLinks()[0]);
-        $instanceOption = self::$gs->getResourceInstanceOption('sales');
-        $this->assertObjectHasAttribute('method', $instanceOption->getLinks()[0]);
+        $links = self::$gs->getResourceOption()->getLinks();
+        $this->assertObjectHasAttribute('method', $links[0]);
+        $links = self::$gs->getResourceInstanceOption('sales')->getLinks();
+        $this->assertObjectHasAttribute('method', $links[0]);
     }
 }

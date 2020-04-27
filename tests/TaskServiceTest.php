@@ -231,11 +231,12 @@ class TaskServiceTest extends \PHPUnit\Framework\TestCase
      */
     function testDeleteIdentityLinks()
     {
-        $task = self::$ts->getTasks(new TaskRequest())[0];
-        $ilr = new IdentityLinksRequest();
-        $ilr->setType('candidate');
-        $ilr->setGroupId('demo');
-        self::$ts->deleteIdentityLink($task->getId(), $ilr);
-        $this->assertEquals(0, count(self::$ts->getIdentityLinks($task->getId(), $ilr)));
+        $task = self::$ts->getTasks(new TaskRequest())[0]->getId();
+        $ilr = (new IdentityLinksRequest())
+            ->setType('candidate')
+            ->setGroupId('demo');
+        $countBefore = count(self::$ts->getIdentityLinks($task, $ilr));
+        self::$ts->deleteIdentityLink($task, $ilr);
+        $this->assertEquals($countBefore - 1, count(self::$ts->getIdentityLinks($task, $ilr)));
     }
 }

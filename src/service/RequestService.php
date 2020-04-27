@@ -117,7 +117,7 @@ abstract class RequestService
         $url = $this->restApiUrl . $this->requestUrl;
         if ($this->requestMethod == 'GET') {
             if (isset($this->requestObject)) {
-                $url .= '?' . http_build_query($this->requestObject->fieldsFilled());
+                $url .= '?' . http_build_query($this->requestObject->serializeToHashMap());
             }
             $ch = curl_init($url);
             curl_setopt($ch, CURLOPT_COOKIEJAR, './'); // TODO: storing in cwd??

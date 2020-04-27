@@ -5,6 +5,7 @@ namespace org\camunda\php\tests;
 use org\camunda\php\sdk\entity\request\ProcessDefinitionRequest;
 use org\camunda\php\sdk\entity\request\ProcessInstanceRequest;
 use org\camunda\php\sdk\entity\request\StatisticRequest;
+use org\camunda\php\sdk\entity\request\VariableRequest;
 use org\camunda\php\sdk\service\ProcessDefinitionService;
 use org\camunda\php\sdk\service\ProcessInstanceService;
 
@@ -70,7 +71,12 @@ class ProcessDefinitionTest extends \PHPUnit\Framework\TestCase
         $countPreStart = self::$pis->getCount(new ProcessInstanceRequest());
         foreach (self::$pds->getDefinitions(new ProcessDefinitionRequest()) as $data) {
             if ($data->getKey() == 'invoice') {
-                self::$pds->startInstance($data->getId(), new ProcessDefinitionRequest());
+                $pdr = new ProcessDefinitionRequest();
+                $pdr->setVariables([
+                    'amount'          => (new VariableRequest())->setType('Integer')->setValue(100),
+                    'invoiceCategory' => (new VariableRequest())->setType('String')->setValue("Misc"),
+                ]);
+                self::$pds->startInstance($data->getId(), $pdr);
             }
         }
         $this->assertGreaterThan($countPreStart, self::$pis->getCount(new ProcessInstanceRequest()));
@@ -91,10 +97,8 @@ class ProcessDefinitionTest extends \PHPUnit\Framework\TestCase
     function testGetActivityInstanceStatistics()
     {
         $pdr = self::$pds->getDefinitions(new ProcessDefinitionRequest());
-        $pdi = $pdr[0]->getId();
-        $asr = self::$pds->getActivityInstanceStatistic($pdi, new StatisticRequest());
-        $asi = $asr[0]->getId();
-        $this->assertEquals('UserTask_1', $asi);
+        $asr = self::$pds->getActivityInstanceStatistic($pdr[0]->getId(), new StatisticRequest());
+        $this->assertEquals('approveInvoice', $asr[0]->getId());
     }
 
     /**
