@@ -13,7 +13,7 @@ class ProcessInstanceTest extends \PHPUnit\Framework\TestCase
      */
     protected static $pis;
 
-    public static function setUpBeforeClass(): void
+    public static function setUpBeforeClass()
     {
         self::$pis = new ProcessInstanceService($_ENV['camunda_url']);
     }

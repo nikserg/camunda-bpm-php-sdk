@@ -2,6 +2,7 @@
 
 namespace org\camunda\php\sdk;
 
+use org\camunda\php\sdk\entity\request\VariableRequest;
 use org\camunda\php\sdk\helper\DiagramHelper;
 use org\camunda\php\sdk\service\AuthorizationService;
 use org\camunda\php\sdk\service\ExecutionService;
@@ -52,5 +53,44 @@ class Api
         $this->task = new TaskService($this->restApiUrl);
         $this->user = new UserService($this->restApiUrl);
         $this->variableInstance = new VariableInstanceService($this->restApiUrl);
+    }
+
+    /**
+     * Конвертирует значение PHP в переменную процесса
+     *
+     * @param $value
+     * @return VariableRequest
+     * @throws \Exception
+     */
+    function convertValue($value)
+    {
+        static $typeMap = [
+            "boolean" => "Boolean",
+            "integer" => "Integer",
+            "float"   => "Double",
+            "string"  => "String",
+            "NULL"    => "Null",
+        ];
+        $type = gettype($value);
+        if (empty($typeMap[$type])) {
+            throw new \Exception("Process variable binding for type `$type` not supported");
+        }
+        return (new VariableRequest())->setType($typeMap[$type])->setValue($value);
+    }
+
+    /**
+     * Convert PHP values to a VariableRequest array
+     *
+     * @param $values
+     * @return array
+     * @throws \Exception
+     */
+    function convertValues(array $values)
+    {
+        $variables = [];
+        foreach ($values as $name => $datum) {
+            $variables[$name] = $this->convertValue($datum);
+        }
+        return $variables;
     }
 }

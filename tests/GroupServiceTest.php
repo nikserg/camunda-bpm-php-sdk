@@ -21,13 +21,16 @@ class GroupServiceTest extends \PHPUnit\Framework\TestCase
      */
     protected static $us;
 
-    public static function setUpBeforeClass(): void
+    public static function setUpBeforeClass()
     {
         self::$gs = new GroupService($_ENV['camunda_url']);
         self::$us = new UserService($_ENV['camunda_url']);
     }
 
-    protected function setUp(): void
+    /**
+     * @throws \Exception
+     */
+    protected function setUp()
     {
         self::$gs->createGroup((new GroupRequest())
             ->setName('phpUnitTestOne')
@@ -36,7 +39,10 @@ class GroupServiceTest extends \PHPUnit\Framework\TestCase
         parent::setUp();
     }
 
-    function tearDown(): void
+    /**
+     * @throws \Exception
+     */
+    function tearDown()
     {
         self::$gs->deleteGroup('phpUnitTestOne');
         parent::tearDown();
@@ -92,7 +98,6 @@ class GroupServiceTest extends \PHPUnit\Framework\TestCase
     function testGetGroups()
     {
         $searchResult = self::$gs->getGroups(new GroupRequest());
-        $this->assertIsArray($searchResult);
         $this->assertNotEmpty($searchResult);
         self::assertContainsOnlyInstancesOf(Group::class, $searchResult);
         $searchResult = self::$gs->getGroups((new GroupRequest())->setId('phpUnitTestOne'));

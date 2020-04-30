@@ -16,7 +16,7 @@ class Variable extends CastHelper
     /**
      * @param mixed $type
      */
-    function setType($type): void
+    function setType($type)
     {
         $this->type = $type;
     }
@@ -32,7 +32,7 @@ class Variable extends CastHelper
     /**
      * @param mixed $value
      */
-    function setValue($value): void
+    function setValue($value)
     {
         $this->value = $value;
     }
@@ -48,7 +48,7 @@ class Variable extends CastHelper
     /**
      * @param mixed $valueInfo
      */
-    public function setValueInfo($valueInfo): void
+    public function setValueInfo($valueInfo)
     {
         $this->valueInfo = $valueInfo;
     }
