@@ -13,7 +13,7 @@ class ExecutionServiceTest extends \PHPUnit\Framework\TestCase
      */
     protected static $es;
 
-    public static function setUpBeforeClass(): void
+    public static function setUpBeforeClass()
     {
         self::$es = new ExecutionService($_ENV['camunda_url']);
     }

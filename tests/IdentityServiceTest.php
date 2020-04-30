@@ -12,7 +12,7 @@ class IdentityServiceTest extends \PHPUnit\Framework\TestCase
      */
     protected static $is;
 
-    public static function setUpBeforeClass(): void
+    public static function setUpBeforeClass()
     {
         self::$is = new IdentityService($_ENV['camunda_url']);
     }

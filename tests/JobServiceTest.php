@@ -12,7 +12,7 @@ class JobServiceTest extends \PHPUnit\Framework\TestCase
      */
     protected static $js;
 
-    public static function setUpBeforeClass(): void
+    public static function setUpBeforeClass()
     {
         self::$js = new JobService($_ENV['camunda_url']);
     }

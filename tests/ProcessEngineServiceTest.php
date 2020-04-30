@@ -11,7 +11,7 @@ class ProcessEngineServiceTest extends \PHPUnit\Framework\TestCase
      */
     protected static $pes;
 
-    public static function setUpBeforeClass(): void
+    public static function setUpBeforeClass()
     {
         self::$pes = new ProcessEngineService($_ENV['camunda_url']);
     }

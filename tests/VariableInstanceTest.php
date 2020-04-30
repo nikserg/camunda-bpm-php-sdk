@@ -12,7 +12,7 @@ class VariableInstanceTest extends \PHPUnit\Framework\TestCase
      */
     protected static $vis;
 
-    public static function setUpBeforeClass(): void
+    public static function setUpBeforeClass()
     {
         self::$vis = new VariableInstanceService($_ENV['camunda_url']);
     }
@@ -54,7 +54,7 @@ class VariableInstanceTest extends \PHPUnit\Framework\TestCase
         $vic = self::$vis->getCount($vir, true);
         $this->assertGreaterThan(0, $vic);
         $vir = new VariableInstanceRequest();
-        $vir->setVariableName('haha');
+        $vir->setVariableName('testPhpunitVariable');
         $vic = self::$vis->getCount($vir, true);
         $this->assertEquals(0, $vic);
     }

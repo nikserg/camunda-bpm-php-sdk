@@ -21,7 +21,7 @@ class TaskServiceTest extends \PHPUnit\Framework\TestCase
      */
     protected static $us;
 
-    public static function setUpBeforeClass(): void
+    public static function setUpBeforeClass()
     {
         self::$ts = new TaskService($_ENV['camunda_url']);
         self::$us = new UserService($_ENV['camunda_url']);

@@ -12,7 +12,7 @@ class AuthorizationServiceTest extends \PHPUnit\Framework\TestCase
      */
     protected static $as;
 
-    public static function setUpBeforeClass(): void
+    public static function setUpBeforeClass()
     {
         self::$as = new AuthorizationService($_ENV['camunda_url']);
     }

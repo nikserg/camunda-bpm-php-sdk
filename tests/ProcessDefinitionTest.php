@@ -20,7 +20,7 @@ class ProcessDefinitionTest extends \PHPUnit\Framework\TestCase
      */
     protected static $pis;
 
-    public static function setUpBeforeClass(): void
+    public static function setUpBeforeClass()
     {
         self::$pds = new ProcessDefinitionService($_ENV['camunda_url']);
         self::$pis = new ProcessInstanceService($_ENV['camunda_url']);

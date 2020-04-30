@@ -15,7 +15,7 @@ class UserServiceTest extends \PHPUnit\Framework\TestCase
      */
     protected static $us;
 
-    public static function setUpBeforeClass(): void
+    public static function setUpBeforeClass()
     {
         self::$us = new UserService($_ENV['camunda_url']);
     }
@@ -32,13 +32,19 @@ class UserServiceTest extends \PHPUnit\Framework\TestCase
         );
     }
 
-    protected function setUp(): void
+    /**
+     * @throws \Exception
+     */
+    protected function setUp()
     {
         self::$us->createUser($this->setupUserObject());
         parent::setUp();
     }
 
-    function tearDown(): void
+    /**
+     * @throws \Exception
+     */
+    function tearDown()
     {
         self::$us->deleteUser('phpUnitTesterOne');
         parent::tearDown();
@@ -71,7 +77,6 @@ class UserServiceTest extends \PHPUnit\Framework\TestCase
     function testGetUsers()
     {
         $filteredUsers = self::$us->getUsers((new UserRequest())->setFirstName('phpUnitTesterOne'));
-        self::assertIsArray($filteredUsers);
         self::assertContainsOnly(User::class, $filteredUsers);
         $this->assertEquals('phpUnitTesterOne', $filteredUsers[0]->getId());
     }

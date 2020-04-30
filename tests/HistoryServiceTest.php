@@ -21,7 +21,7 @@ class HistoryServiceTest extends \PHPUnit\Framework\TestCase
      */
     protected static $pds;
 
-    public static function setUpBeforeClass(): void
+    public static function setUpBeforeClass()
     {
         self::$hs = new HistoryService($_ENV['camunda_url']);
         self::$pds = new ProcessDefinitionService($_ENV['camunda_url']);
