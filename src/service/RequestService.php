@@ -3,6 +3,9 @@
 namespace org\camunda\php\sdk\service;
 
 use org\camunda\php\sdk\entity\request\Request;
+use org\camunda\php\sdk\exceptions\CamundaException;
+use org\camunda\php\sdk\exceptions\JsonException;
+use org\camunda\php\sdk\exceptions\TransportException;
 
 abstract class RequestService
 {
@@ -106,8 +109,10 @@ abstract class RequestService
     /**
      * executes the rest request
      *
-     * @throws \Exception
      * @return mixed server response
+     * @throws JsonException
+     * @throws TransportException
+     * @throws CamundaException
      */
     protected function execute()
     {
@@ -145,19 +150,21 @@ abstract class RequestService
         $errorMessage = curl_error($ch);
         curl_close($ch);
         $this->reset();
-        if ($errorNumber != 0) {
-            throw new \Exception("HTTP $this->httpStatusCode curl error: " . $errorMessage, $errorNumber);
+        if ($errorNumber !== 0) {
+            throw new TransportException($this->httpStatusCode,
+                "Curl said: $errorMessage", $errorNumber);
         }
-        if ($this->httpStatusCode == '204') {
+        if ($this->httpStatusCode === '204') {
             return null;
         } elseif (empty($response)) {
-            throw new \Exception("HTTP $this->httpStatusCode with empty response body: " . $errorMessage, $errorNumber);
+            throw new TransportException($this->httpStatusCode,
+                "Unexpected empty response body", 0);
         }
-        if (preg_match('/^[12]0\d/', $this->httpStatusCode)) {
+        if ($this->httpStatusCode === '200') {
             return $this->assertiveJsonDecode($response);
         }
         $errorData = $this->assertiveJsonDecode($response);
-        throw new \Exception("HTTP $this->httpStatusCode error type $errorData->type: $errorData->message");
+        throw new CamundaException($this->httpStatusCode, $errorData->type, $errorData->message);
     }
 
     /**
@@ -166,14 +173,16 @@ abstract class RequestService
      * @param int  $depth
      * @param int  $options
      * @return mixed
-     * @throws \Exception
+     * @throws JsonException
      */
     function assertiveJsonDecode($json, $assoc = false, $depth = 512, $options = 0)
     {
         $data = json_decode($json, $assoc, $depth, $options);
-        if (JSON_ERROR_NONE != json_last_error()) {
-            throw new \Exception("Invalid json: " . json_last_error_msg() . "\nSample: $json",
-                json_last_error());
+        $errorNumber = json_last_error();
+        $errorMessage = json_last_error();
+        if (JSON_ERROR_NONE !== $errorNumber) {
+            throw new JsonException("Invalid json: $errorMessage\nSample: $json",
+                $errorNumber);
         }
         return $data;
     }
