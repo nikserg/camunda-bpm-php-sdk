@@ -154,13 +154,13 @@ abstract class RequestService
             throw new TransportException($this->httpStatusCode,
                 "Curl said: $errorMessage", $errorNumber);
         }
-        if ($this->httpStatusCode === '204') {
+        if ($this->httpStatusCode === 204) {
             return null;
         } elseif (empty($response)) {
             throw new TransportException($this->httpStatusCode,
                 "Unexpected empty response body", 0);
         }
-        if ($this->httpStatusCode === '200') {
+        if ($this->httpStatusCode === 200) {
             return $this->assertiveJsonDecode($response);
         }
         $errorData = $this->assertiveJsonDecode($response);
