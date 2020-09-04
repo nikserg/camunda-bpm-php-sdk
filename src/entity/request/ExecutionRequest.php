@@ -201,7 +201,7 @@ class ExecutionRequest extends Request
     }
 
     /**
-     * @param mixed $processVariables
+     * @param VariableRequest[] $processVariables
      * @return $this
      */
     function setProcessVariables($processVariables)
@@ -211,7 +211,7 @@ class ExecutionRequest extends Request
     }
 
     /**
-     * @return mixed
+     * @return VariableRequest[]
      */
     function getProcessVariables()
     {
@@ -273,7 +273,7 @@ class ExecutionRequest extends Request
     }
 
     /**
-     * @param mixed $variables
+     * @param VariableRequest[] $variables
      * @return $this
      */
     function setVariables($variables)
@@ -283,7 +283,7 @@ class ExecutionRequest extends Request
     }
 
     /**
-     * @return mixed
+     * @return VariableRequest[]
      */
     function getVariables()
     {

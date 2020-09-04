@@ -88,7 +88,7 @@ class MessageRequest extends Request
     }
 
     /**
-     * @param array $processVariables
+     * @param VariableRequest[] $processVariables
      * @return MessageRequest
      */
     function setProcessVariables(array $processVariables): MessageRequest

@@ -2,6 +2,7 @@
 
 namespace org\camunda\php\sdk;
 
+use Exception;
 use org\camunda\php\sdk\entity\request\VariableRequest;
 use org\camunda\php\sdk\helper\DiagramHelper;
 use org\camunda\php\sdk\service\AuthorizationService;
@@ -60,7 +61,7 @@ class Api
      *
      * @param $value
      * @return VariableRequest
-     * @throws \Exception
+     * @throws Exception
      */
     function convertValue($value)
     {
@@ -73,7 +74,7 @@ class Api
         ];
         $type = gettype($value);
         if (empty($typeMap[$type])) {
-            throw new \Exception("Process variable binding for type `$type` not supported");
+            throw new Exception("Process variable binding for type `$type` not supported");
         }
         return (new VariableRequest())->setType($typeMap[$type])->setValue($value);
     }
@@ -82,8 +83,8 @@ class Api
      * Convert PHP values to a VariableRequest array
      *
      * @param $values
-     * @return array
-     * @throws \Exception
+     * @return VariableRequest[]
+     * @throws Exception
      */
     function convertValues(array $values)
     {

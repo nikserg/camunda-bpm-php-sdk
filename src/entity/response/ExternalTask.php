@@ -365,7 +365,7 @@ class ExternalTask extends CastHelper
     }
 
     /**
-     * @return mixed
+     * @return Variable[]
      */
     public function getVariables()
     {

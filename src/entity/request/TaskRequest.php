@@ -548,7 +548,7 @@ class TaskRequest extends Request
     }
 
     /**
-     * @param mixed $processVariables
+     * @param VariableRequest[] $processVariables
      * @return $this
      */
     function setProcessVariables($processVariables)
@@ -558,7 +558,7 @@ class TaskRequest extends Request
     }
 
     /**
-     * @return mixed
+     * @return VariableRequest[]
      */
     function getProcessVariables()
     {

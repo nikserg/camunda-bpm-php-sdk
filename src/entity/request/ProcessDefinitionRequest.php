@@ -427,7 +427,7 @@ class ProcessDefinitionRequest extends Request
     }
 
     /**
-     * @return mixed
+     * @return VariableRequest[]
      */
     function getVariables()
     {
@@ -435,7 +435,7 @@ class ProcessDefinitionRequest extends Request
     }
 
     /**
-     * @param mixed $variables
+     * @param VariableRequest[] $variables
      * @return $this
      */
     function setVariables($variables)

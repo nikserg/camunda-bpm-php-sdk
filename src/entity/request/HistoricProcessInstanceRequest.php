@@ -296,7 +296,7 @@ class HistoricProcessInstanceRequest extends Request
     }
 
     /**
-     * @param mixed $variables
+     * @param VariableRequest[] $variables
      */
     function setVariables($variables)
     {
@@ -304,7 +304,7 @@ class HistoricProcessInstanceRequest extends Request
     }
 
     /**
-     * @return mixed
+     * @return VariableRequest[]
      */
     function getVariables()
     {

@@ -235,7 +235,7 @@ class ProcessInstanceRequest extends Request
     }
 
     /**
-     * @param mixed $variables
+     * @param VariableRequest[] $variables
      * @return $this
      */
     function setVariables($variables)
@@ -245,7 +245,7 @@ class ProcessInstanceRequest extends Request
     }
 
     /**
-     * @return mixed
+     * @return VariableRequest[]
      */
     function getVariables()
     {
