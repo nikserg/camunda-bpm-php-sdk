@@ -1,5 +1,5 @@
 {
-  "name": "izucken/camunda-bpm-php-sdk",
+  "name": "nikserg/camunda-bpm-php-sdk",
   "description": "PHP SDK for Camunda BPM engine rest service",
   "license": "Apache-2.0",
   "minimum-stability": "stable",
